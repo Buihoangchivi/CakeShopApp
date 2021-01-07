@@ -24,5 +24,75 @@ namespace CakeShopApp
 		{
 			InitializeComponent();
 		}
+
+		private void Cake_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void SearchCakeButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+
+		}
+
+		private void searchTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+
+		}
+
+		private void searchTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+		{
+
+		}
+
+		private void searchTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+
+		}
+
+		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void MenuButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void DeleteTextInSearchButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void DeleteTextInSearchButton_MouseEnter(object sender, MouseEventArgs e)
+		{
+
+		}
+
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void ChangeClickedTypeButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void ChangeClickedControlButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
