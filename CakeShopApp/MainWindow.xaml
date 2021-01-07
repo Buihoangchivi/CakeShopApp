@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CakeShopApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="690" Width="1152"
+        Title="MainWindow" Height="690" Width="1152" Loaded="Window_Loaded"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
@@ -360,7 +360,7 @@
         </DockPanel>
 
         <!--Hình ảnh và tên các món ăn-->
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="2" Grid.Column="1" Visibility="Visible">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="2" Grid.Column="1">
             <Grid Name="CakeListGrid">
                 <ItemsControl Grid.Row="1" Name="CakeButtonItemsControl">
                     <ItemsControl.ItemsPanel>
@@ -384,13 +384,14 @@
                                         </Rectangle.Fill>
                                     </Rectangle>
 
-                                    <Image Source="Images/location.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
-
-                                    <TextBlock Text="{Binding Location}" Width="184" TextAlignment="Left" TextWrapping="Wrap" 
-                                               FontSize="14" Padding="3,1" MaxHeight="300" Foreground="Gray"></TextBlock>
-
                                     <TextBlock Text="{Binding CakeName}" TextAlignment="Left" TextWrapping="Wrap" Width="204" 
                                                FontSize="15" Padding="3,1" MaxHeight="300" FontFamily="Segoe UI Semibold"></TextBlock>
+
+                                    <TextBlock Text="{Binding Price}" Width="184" TextAlignment="Left" TextWrapping="Wrap" 
+                                               FontSize="14" Padding="3,1" MaxHeight="300" Foreground="Gray"></TextBlock>
+
+                                    <Image Source="Images/location.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
+
                                 </WrapPanel>
                             </Button>
                         </DataTemplate>
