@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,23 @@ namespace CakeShopApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public BindingList<CakeCategory> CakeCategoryList = new BindingList<CakeCategory> {
+			new CakeCategory { Name = "Tất cả" },
+			new CakeCategory { Name = "Bánh Bơ-gơ" },
+			new CakeCategory { Name = "Bánh kem" },
+			new CakeCategory { Name = "Bánh mì" },
+			new CakeCategory { Name = "Bánh mì vòng" },
+			new CakeCategory { Name = "Bánh nướng nhỏ" },
+			new CakeCategory { Name = "Bánh ổ dài" },
+			new CakeCategory { Name = "Các loại khác" }
+		};
+
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.DataContext = this;
+			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
+			CakeCategoryCombobox.SelectedItem = CakeCategoryList[0];
 		}
 
 		private void Cake_Click(object sender, RoutedEventArgs e)
