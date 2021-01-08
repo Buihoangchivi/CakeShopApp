@@ -455,5 +455,43 @@
             </Grid>
         </ScrollViewer>
 
+        <!--Nút cài đặt-->
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="SettingStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
+            <TextBlock FontSize="16" Margin="0,0,0,10">Chọn màu cho ứng dụng</TextBlock>
+            <ItemsControl Name="SettingColorItemsControl" Margin="0,0,0,10" Width="290" HorizontalAlignment="Left">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Margin="0,0,8,8" Width="50" Height="50" Background="{Binding Color}"
+                                    BorderThickness="0" Click="ColorButton_Click"></Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <CheckBox Name="ShowSplashScreenCheckBox" HorizontalAlignment="Left" Foreground="Black" FontSize="16" 
+                      Checked="ShowSplashScreenCheckBox_Checked" Unchecked="ShowSplashScreenCheckBox_Unchecked" VerticalContentAlignment="Center">
+                Hiển thị màn hình thông tin chào mừng
+            </CheckBox>
+        </StackPanel>
+
+        <!--Nút thông tin nhóm lập trình-->
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+                    Name="AboutStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
+            <TextBlock FontSize="16" Margin="0,20,0,10" FontWeight="Bold">Windows programming - 18_31</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,30">VNUHCM - University of Science</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,10" FontWeight="Bold">Contact</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,30">
+                        <Hyperlink>18120082@student.hcmus.edu.vn</Hyperlink>
+            </TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,10" FontWeight="Bold">Developers</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,10">Phạm Tấn - 18120082</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,10">Bùi Văn Vĩ - 18120106</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,30">Nguyễn Thanh Duy - 18120171</TextBlock>
+            <TextBlock FontSize="16" Margin="0,0,0,10">Copyright © 2021</TextBlock>
+        </StackPanel>
+
     </Grid>
 </Window>

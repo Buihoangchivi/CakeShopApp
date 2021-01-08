@@ -128,7 +128,7 @@ namespace CakeShopApp
 			this.DataContext = this;
 
 			//Binding dữ liệu màu cho Setting Color Table
-			//SettingColorItemsControl.ItemsSource = ListColor;
+			SettingColorItemsControl.ItemsSource = ListColor;
 
 			//Cài đặt màu chủ đạo cho ứng dụng
 			//ColorScheme = ConfigurationManager.AppSettings["ColorScheme"];
@@ -365,7 +365,86 @@ namespace CakeShopApp
 
 		private void ChangeClickedControlButton_Click(object sender, RoutedEventArgs e)
 		{
+			//Tắt màu của nút hiện tại
+			var wrapPanel = (WrapPanel)clickedControlButton.Content;
+			var collection = wrapPanel.Children;
+			var block = (TextBlock)collection[0];
+			var text = (TextBlock)collection[2];
+			block.Background = Brushes.Transparent;
+			text.Foreground = Brushes.Black;
 
+			//Đóng giao diện thanh chọn loại và tìm kiếm
+			TypeBarDockPanel.Visibility = Visibility.Collapsed;
+			//Đóng giao diện menu
+			ControlStackPanel.Visibility = Visibility.Collapsed;
+			//Đóng giao diện màn hình chi tiết chuyến đi
+			//DetailCakeGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện màn hình trang chủ
+			CakeListGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện màn hình thêm chuyến đi mới
+			//AddCakeGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện màn hình cài đặt
+			SettingStackPanel.Visibility = Visibility.Collapsed;
+			//Đóng giao diện thông tin developer
+			AboutStackPanel.Visibility = Visibility.Collapsed;
+
+			if (IsDetailCake == true)
+			{
+				IsDetailCake = false;
+			}
+			else
+			{
+				//Do nothing
+			}
+
+			//Hiển thị màu cho nút vừa được nhấn
+			var button = (Button)sender;
+			wrapPanel = (WrapPanel)button.Content;
+			collection = wrapPanel.Children;
+			block = (TextBlock)collection[0];
+			text = (TextBlock)collection[2];
+			block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			text.Foreground = block.Background;
+
+			//Cập nhật nút mới
+			clickedControlButton = button;
+
+			//Mở giao diện mới sau khi nhấn nút
+			if (button == HomeButton)
+			{
+				CakeListGrid.Visibility = Visibility.Visible;
+				TypeBarDockPanel.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+			}
+			/*else if (button == AddCakeButton)
+			{
+				AddCakeGrid.Visibility = Visibility.Visible;
+				if (isEditMode == false)
+				{
+					int newID = GetMinID();
+					Cake = new Cake() { CakeID = newID, Stage = "Bắt đầu" };
+				}
+				AddCakeGrid.DataContext = Cake;
+			}*/
+			else if (button == SettingButton)
+			{
+				SettingStackPanel.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+				/*var value = ConfigurationManager.AppSettings["ShowSplashScreen"];
+				bool showSplashStatus = bool.Parse(value);
+				if (showSplashStatus == true)
+				{
+					ShowSplashScreenCheckBox.IsChecked = true;
+				}*/
+			}
+			else if (button == AboutButton)
+			{
+				AboutStackPanel.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+			}
+
+			//Cập nhật lại giao diện
+			UpdateUIFromData();
 		}
 
 		private void CakeCategoryCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -505,6 +584,30 @@ namespace CakeShopApp
 				searchComboBox.ItemsSource = CakeInfoList;
 			}
 
+		}
+
+		private void ColorButton_Click(object sender, RoutedEventArgs e)
+		{
+			var datatContex = (sender as Button).DataContext;
+			var color = (datatContex as ColorSetting).Color;
+			ColorScheme = color;
+			TitleBar.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			SettingTextBlock.Background = TitleBar.Background;
+			SettingTitleTextBlock.Foreground = SettingTextBlock.Background;
+		}
+
+		private void ShowSplashScreenCheckBox_Checked(object sender, RoutedEventArgs e)
+		{
+			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			//config.AppSettings.Settings["ShowSplashScreen"].Value = "true";
+			//config.Save(ConfigurationSaveMode.Minimal);
+		}
+
+		private void ShowSplashScreenCheckBox_Unchecked(object sender, RoutedEventArgs e)
+		{
+			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			//config.AppSettings.Settings["ShowSplashScreen"].Value = "false";
+			//config.Save(ConfigurationSaveMode.Minimal);
 		}
 
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
