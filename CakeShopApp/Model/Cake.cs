@@ -14,6 +14,8 @@ public class Cake : INotifyPropertyChanged
 	private string primaryImagePath;        //Đường dẫn ảnh chính
 	private BindingList<CakeImage> imagesList;
 	private string description;
+	private string origin;
+	private string producer;
 
 	public string CakeName
 	{
@@ -102,6 +104,30 @@ public class Cake : INotifyPropertyChanged
 			OnPropertyChanged("Description");
 		}
 	}
+	public string Origin
+	{
+		get
+		{
+			return origin;
+		}
+		set
+		{
+			origin = value;
+			OnPropertyChanged("Origin");
+		}
+	}
+	public string Producer
+	{
+		get
+		{
+			return producer;
+		}
+		set
+		{
+			producer = value;
+			OnPropertyChanged("Producer");
+		}
+	}
 
 	public Cake()
 	{
@@ -114,6 +140,8 @@ public class Cake : INotifyPropertyChanged
 	{
 		ID = oldCake.ID;
 		CakeName = string.Copy(oldCake.CakeName);
+		Origin = string.Copy(oldCake.Origin);
+		Producer = string.Copy(oldCake.Producer);
 		Category = oldCake.Category;
 		Price = string.Copy(oldCake.Price);
 		primaryImagePath = string.Copy(oldCake.PrimaryImagePath);

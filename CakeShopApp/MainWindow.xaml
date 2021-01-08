@@ -553,7 +553,12 @@
                            FontWeight="Bold" Text="MÔ TẢ SẢN PHẨM" VerticalAlignment="Top"
                                Foreground="{DynamicResource ColorScheme}"/>
 
-                    <TextBlock Grid.Row="1" Text="{Binding Description}" FontSize="16"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Margin="10,0,10,5">
+
+                        <TextBlock Text="{Binding Description}" FontSize="16" TextWrapping="Wrap"/>
+
+                    </ScrollViewer>
+                    
 
                 </Grid>
 
@@ -616,7 +621,7 @@
                            FontWeight="Bold" Text="THÔNG TIN CHI TIẾT" VerticalAlignment="Top"
                                Foreground="{DynamicResource ColorScheme}"/>
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Margin="5">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
@@ -640,8 +645,9 @@
 
                             <TextBlock Text="Giá sản phẩm:" FontSize="15" FontWeight="DemiBold" Margin="5,1,2,1"/>
 
-                            <TextBlock TextWrapping="Wrap" Loaded="CakePriceTextBlock_Loaded"
-                               Grid.Row="3" FontSize="16" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
+                            <TextBlock TextWrapping="Wrap" Loaded="CakePriceTextBlock_Loaded" 
+                                       IsVisibleChanged="CakePriceTextBlock_IsVisibleChanged"
+                                       Grid.Row="3" FontSize="16" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
 
                         </WrapPanel>
 
@@ -650,16 +656,18 @@
 
                             <TextBlock Text="Loại sản phẩm:" FontSize="15" FontWeight="DemiBold" Margin="5,1,2,1"/>
 
-                            <TextBlock Loaded="CakeCategoryTextBlock_Loaded" FontSize="16" Padding="3,1" Foreground="OrangeRed"></TextBlock>
+                            <TextBlock 
+                                       IsVisibleChanged="CakeCategoryTextBlock_IsVisibleChanged"
+                                       FontSize="16" Padding="3,1" Foreground="OrangeRed"></TextBlock>
 
                         </WrapPanel>
 
-                        <!--Thương hiệu-->
+                        <!--Nhà sản xuất-->
                         <WrapPanel Grid.Row="3">
 
-                            <TextBlock Text="Thương hiệu:" FontSize="15" FontWeight="DemiBold" Margin="5,1,2,1"/>
+                            <TextBlock Text="Nhà sản xuất:" FontSize="15" FontWeight="DemiBold" Margin="5,1,2,1"/>
 
-                            <TextBlock Loaded="CakeCategoryTextBlock_Loaded" FontSize="16" Padding="3,1" Foreground="OrangeRed"></TextBlock>
+                            <TextBlock Text="{Binding Producer}" FontSize="16" Padding="3,1" Foreground="OrangeRed"></TextBlock>
 
                         </WrapPanel>
 
@@ -668,7 +676,7 @@
 
                             <TextBlock Text="Xuất xứ:" FontSize="15" FontWeight="DemiBold" Margin="5,1,2,1"/>
 
-                            <TextBlock Loaded="CakeCategoryTextBlock_Loaded" FontSize="16" Padding="3,1" Foreground="OrangeRed"></TextBlock>
+                            <TextBlock Text="{Binding Origin}" FontSize="16" Padding="3,1" Foreground="OrangeRed"></TextBlock>
 
                         </WrapPanel>
 

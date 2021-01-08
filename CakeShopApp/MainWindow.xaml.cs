@@ -677,6 +677,16 @@ namespace CakeShopApp
 			//config.Save(ConfigurationSaveMode.Minimal);
 		}
 
+		private void CakePriceTextBlock_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			CakePriceTextBlock_Loaded(sender, new RoutedEventArgs());
+		}
+
+		private void CakeCategoryTextBlock_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			CakeCategoryTextBlock_Loaded(sender, new RoutedEventArgs());
+		}
+
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
 		private void CakeListAppearAnimation()
