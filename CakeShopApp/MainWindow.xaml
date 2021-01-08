@@ -455,5 +455,27 @@
             </Grid>
         </ScrollViewer>
 
+        <!--Nút cài đặt-->
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="SettingStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
+            <TextBlock FontSize="16" Margin="0,0,0,10">Chọn màu cho ứng dụng</TextBlock>
+            <ItemsControl Name="SettingColorItemsControl" Margin="0,0,0,10" Width="290" HorizontalAlignment="Left">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Margin="0,0,8,8" Width="50" Height="50" Background="{Binding Color}"
+                                    BorderThickness="0" Click="ColorButton_Click"></Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <CheckBox Name="ShowSplashScreenCheckBox" HorizontalAlignment="Left" Foreground="Black" FontSize="16" 
+                      Checked="ShowSplashScreenCheckBox_Checked" Unchecked="ShowSplashScreenCheckBox_Unchecked" VerticalContentAlignment="Center">
+                Hiển thị màn hình thông tin chào mừng
+            </CheckBox>
+        </StackPanel>
+
     </Grid>
 </Window>
