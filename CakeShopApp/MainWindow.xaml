@@ -263,7 +263,7 @@
                 <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0">Loại bánh</TextBlock>
 
                 <ComboBox Name="CakeCategoryCombobox" Height="30" Width="150"
-                          VerticalContentAlignment="Center"
+                          VerticalContentAlignment="Center" SelectionChanged="CakeCategoryCombobox_SelectionChanged"
                           DisplayMemberPath="Name" FontSize="14">
 
                 </ComboBox>

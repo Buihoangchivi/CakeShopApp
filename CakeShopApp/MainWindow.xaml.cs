@@ -92,19 +92,7 @@ namespace CakeShopApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			// Đọc dữ liệu các món ăn từ data
-			XmlSerializer xsFood = new XmlSerializer(typeof(List<Cake>));
-			try
-			{
-				using (var reader = new StreamReader(@"Data\Cake.xml"))
-				{
-					CakeInfoList = (List<Cake>)xsFood.Deserialize(reader);
-				}
-			}
-			catch
-			{
-				CakeInfoList = new List<Cake>();
-			}
+			
 			/*CakeInfoList = new List<Cake>
 			{
 				new Cake
@@ -154,7 +142,6 @@ namespace CakeShopApp
 			isEditMode = false;
 
 			CakeButtonItemsControl.ItemsSource = CakeInfoList;
-			view = (CollectionView)CollectionViewSource.GetDefaultView(CakeInfoList);
 			CakeListAppearAnimation();
 
 			//Default buttons
@@ -164,6 +151,22 @@ namespace CakeShopApp
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			// Đọc dữ liệu các món ăn từ data
+			XmlSerializer xsFood = new XmlSerializer(typeof(List<Cake>));
+			try
+			{
+				using (var reader = new StreamReader(@"Data\Cake.xml"))
+				{
+					CakeInfoList = (List<Cake>)xsFood.Deserialize(reader);
+				}
+			}
+			catch
+			{
+				CakeInfoList = new List<Cake>();
+			}
+
+			view = (CollectionView)CollectionViewSource.GetDefaultView(CakeInfoList);
 		}
 
 		//---------------------------------------- Các hàm xử lý cập nhật giao diện --------------------------------------------//
@@ -309,7 +312,7 @@ namespace CakeShopApp
 		{
 			bool result = true;
 			var cakeInfo = (Cake)item;
-			if (FilterCondition.Type != "" && FilterCondition.Type != cakeInfo.Category)
+			if (FilterCondition.Type != "Tất cả" && FilterCondition.Type != CakeCategoryList[cakeInfo.Category].Name)
 			{
 				result = false;
 			}
@@ -391,6 +394,15 @@ namespace CakeShopApp
 
 		private void ChangeClickedControlButton_Click(object sender, RoutedEventArgs e)
 		{
+
+		}
+
+		private void CakeCategoryCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+			FilterCondition.Type = CakeCategoryList[((ComboBox)sender).SelectedIndex].Name;
+			//Cập nhật lại giao diện
+			UpdateUIFromData();
 
 		}
 

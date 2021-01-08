@@ -9,7 +9,7 @@ public class Cake : INotifyPropertyChanged
 {
 	private string cakeName;
 	private string id;
-	private string category;
+	private int category;
 	private string price;
 	private string primaryImagePath;        //Đường dẫn ảnh chính
 	private BindingList<CakeImage> imagesList;
@@ -39,7 +39,7 @@ public class Cake : INotifyPropertyChanged
 			OnPropertyChanged("ID");
 		}
 	}
-	public string Category
+	public int Category
 	{
 		get
 		{
