@@ -93,7 +93,7 @@ namespace CakeShopApp
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			// Đọc dữ liệu các món ăn từ data
-			/*XmlSerializer xsFood = new XmlSerializer(typeof(List<Cake>));
+			XmlSerializer xsFood = new XmlSerializer(typeof(List<Cake>));
 			try
 			{
 				using (var reader = new StreamReader(@"Data\Cake.xml"))
@@ -104,14 +104,13 @@ namespace CakeShopApp
 			catch
 			{
 				CakeInfoList = new List<Cake>();
-			}*/
-			CakeInfoList = new List<Cake>
+			}
+			/*CakeInfoList = new List<Cake>
 			{
 				new Cake
 				{
 					CakeName = "Bánh tráng",
 					Category = "Bánh Bơ-gơ",
-					Cost = 100000,
 					Description = "Bánh tráng siêu to khổng lồ.",
 					ID = "0",
 					ImagesList = new BindingList<CakeImage>
@@ -129,10 +128,10 @@ namespace CakeShopApp
 							ImagePath = "Images/2.jpg"
 						}
 					},
-					Price = 110000,
+					Price = 100000,
 					PrimaryImagePath = "Images/0.jpg"
 				}
-			};
+			};*/
 
 			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
 			CakeCategoryCombobox.SelectedItem = CakeCategoryList[0];
@@ -144,7 +143,7 @@ namespace CakeShopApp
 
 			//Cài đặt màu chủ đạo cho ứng dụng
 			//ColorScheme = ConfigurationManager.AppSettings["ColorScheme"];
-			ColorScheme = ListColor[2].Color;
+			ColorScheme = ListColor[8].Color;
 
 			//Mặc định khi mở ứng dụng thị hiển thị menu ở dạng mở rộng
 			isMinimizeMenu = false;
@@ -235,16 +234,72 @@ namespace CakeShopApp
 			return result;
 		}*/
 
-		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
-		private void CakeListAppearAnimation()
+
+		//---------------------------------------- Các hàm lưu trữ dữ liệu --------------------------------------------//
+
+		//Lưu lại danh sách món ăn
+		private void SaveListFood()
 		{
-			ThicknessAnimation animation = new ThicknessAnimation();
-			animation.AccelerationRatio = 0.9;
-			animation.From = new Thickness(15, 60, 0, 0);
-			animation.To = new Thickness(15, 6, 0, 0);
-			animation.Duration = TimeSpan.FromSeconds(0.5);
-			CakeListGrid.BeginAnimation(Grid.MarginProperty, animation);
+			XmlSerializer xs = new XmlSerializer(typeof(List<Cake>));
+			TextWriter writer = new StreamWriter(@"Data\Cake.xml");
+			xs.Serialize(writer, CakeInfoList);
+			writer.Close();
+		}
+
+
+		//---------------------------------------- Xử lý cửa sổ --------------------------------------------//
+
+		//Cài đặt nút đóng cửa sổ
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
+			SaveListFood();
+			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			//config.AppSettings.Settings["ColorScheme"].Value = ColorScheme;
+			//config.Save(ConfigurationSaveMode.Minimal);
+			Application.Current.Shutdown();
+
+		}
+		//Cài đặt nút phóng to/ thu nhỏ cửa sổ
+		private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+		{
+			AdjustWindowSize();
+		}
+
+		//Cài đặt nút ẩn cửa sổ
+		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = WindowState.Minimized;
+		}
+
+		//Thay đổi kích thước cửa sổ
+		//Nếu đang ở trạng thái phóng to thì thu nhỏ và ngược lại
+		private void AdjustWindowSize()
+		{
+			var imgName = "";
+
+			if (WindowState == WindowState.Maximized)
+			{
+				WindowState = WindowState.Normal;
+				imgName = "Images/maximize.png";
+			}
+			else
+			{
+				WindowState = WindowState.Maximized;
+				imgName = "Images/restoreDown.png";
+			}
+
+			//Lấy nguồn ảnh
+			var img = new BitmapImage(new Uri(
+						imgName,
+						UriKind.Relative)
+				);
+
+			//Thiết lập ảnh chất lượng cao
+			RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
+
+			//Thay đổi icon
+			(MaxButton.Content as Image).Source = img;
 		}
 
 
@@ -297,19 +352,18 @@ namespace CakeShopApp
 
 		}
 
-		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
 		private void MenuButton_Click(object sender, RoutedEventArgs e)
 		{
-
-		}
-
-		private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-		{
-
+			if (isMinimizeMenu == false)
+			{
+				col0.Width = new GridLength(45);
+				isMinimizeMenu = true;
+			}
+			else
+			{
+				col0.Width = new GridLength(250);
+				isMinimizeMenu = false;
+			}
 		}
 
 		private void DeleteTextInSearchButton_Click(object sender, RoutedEventArgs e)
@@ -322,11 +376,6 @@ namespace CakeShopApp
 
 		}
 
-		private void CloseButton_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
 		private void ChangeClickedTypeButton_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -335,6 +384,18 @@ namespace CakeShopApp
 		private void ChangeClickedControlButton_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
+
+		private void CakeListAppearAnimation()
+		{
+			ThicknessAnimation animation = new ThicknessAnimation();
+			animation.AccelerationRatio = 0.9;
+			animation.From = new Thickness(15, 60, 0, 0);
+			animation.To = new Thickness(15, 6, 0, 0);
+			animation.Duration = TimeSpan.FromSeconds(0.5);
+			CakeListGrid.BeginAnimation(Grid.MarginProperty, animation);
 		}
 	}
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCake xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Cake>
+    <CakeName>Bánh tráng</CakeName>
+    <ID>0</ID>
+    <Category>Bánh Bơ-gơ</Category>
+    <Price>100000</Price>
+    <PrimaryImagePath>Images/0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/0.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/1.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/2.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh tráng siêu to khổng lồ.</Description>
+  </Cake>
+  <Cake>
+    <CakeName>Bánh kem</CakeName>
+    <ID>1</ID>
+    <Category>Bánh mì</Category>
+    <Price>200000</Price>
+    <PrimaryImagePath>Images/1.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/0.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/1.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/2.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh tráng siêu to khổng lồ.</Description>
+  </Cake>
+  <Cake>
+    <CakeName>Bánh bông lan</CakeName>
+    <ID>1</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>500000</Price>
+    <PrimaryImagePath>Images/2.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/0.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/1.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/2.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh tráng siêu to khổng lồ.</Description>
+  </Cake>
+</ArrayOfCake>

@@ -10,7 +10,6 @@ public class Cake : INotifyPropertyChanged
 	private string cakeName;
 	private string id;
 	private string category;
-	private double cost;
 	private double price;
 	private string primaryImagePath;        //Đường dẫn ảnh chính
 	private BindingList<CakeImage> imagesList;
@@ -50,18 +49,6 @@ public class Cake : INotifyPropertyChanged
 		{
 			category = value;
 			OnPropertyChanged("Category");
-		}
-	}
-	public double Cost
-	{
-		get
-		{
-			return cost;
-		}
-		set
-		{
-			cost = value;
-			OnPropertyChanged("Cost");
 		}
 	}
 	public double Price

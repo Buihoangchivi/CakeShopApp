@@ -35,7 +35,7 @@
         <!--Thanh tiêu đề-->
         <DockPanel x:Name="TitleBar" Grid.ColumnSpan="2" Height="35" Background="{Binding ColorScheme}">
             <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
-                       FontSize="15" VerticalAlignment="Center" Foreground="White">We Split</TextBlock>
+                       FontSize="15" VerticalAlignment="Center" Foreground="White">Cake Shop</TextBlock>
             <Button x:Name="CloseButton" Width="47" BorderThickness="0" 
                     DockPanel.Dock="Right" Click="CloseButton_Click">
                 <Button.Style>
