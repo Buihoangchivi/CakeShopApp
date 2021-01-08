@@ -371,14 +371,37 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Width="204" VerticalContentAlignment="Top" Click="Cake_Click"
-                                    Background="White" Margin="0,0,11,10" BorderThickness="0" >
+                                    Margin="0,0,11,10">
+
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="AntiqueWhite"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="10"/>
                                     </Style>
                                 </Button.Resources>
+
                                 <WrapPanel>
-                                    <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="145">
+                                    
+                                    <Rectangle RadiusX="10" RadiusY="10" Width="204" Height="145">
                                         <Rectangle.Fill>
                                             <ImageBrush ImageSource="{Binding PrimaryImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
                                         </Rectangle.Fill>
@@ -387,11 +410,43 @@
                                     <TextBlock Text="{Binding CakeName}" TextAlignment="Left" TextWrapping="Wrap" Width="204" 
                                                FontSize="15" Padding="3,1" MaxHeight="300" FontFamily="Segoe UI Semibold"></TextBlock>
 
-                                    <TextBlock Text="{Binding Price}" Width="184" TextAlignment="Left" TextWrapping="Wrap" 
+                                    <TextBlock Text="{Binding Price}" Width="204" TextAlignment="Left" TextWrapping="Wrap" 
                                                FontSize="14" Padding="3,1" MaxHeight="300" Foreground="Gray"></TextBlock>
 
-                                    <Image Source="Images/location.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
-
+                                    <Grid Width="203">
+                                        <Button Width="130" Height="30" Content="Mua hàng"
+                                            FontSize="14">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Background" Value="White"/>
+                                                    <Setter Property="Foreground" Value="ForestGreen"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="{TemplateBinding Background}">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="ForestGreen"/>
+                                                            <Setter Property="Foreground" Value="White"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="15"/>
+                                                    <Setter Property="BorderBrush" Value="ForestGreen"/>
+                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </Grid>
+                                    
                                 </WrapPanel>
                             </Button>
                         </DataTemplate>
