@@ -410,16 +410,16 @@
                                     <TextBlock Text="{Binding CakeName}" TextAlignment="Left" TextWrapping="Wrap" Width="204" 
                                                FontSize="15" Padding="3,1" MaxHeight="300" FontFamily="Segoe UI Semibold"></TextBlock>
 
-                                    <TextBlock Text="{Binding Price}" Width="204" TextAlignment="Left" TextWrapping="Wrap" 
-                                               FontSize="14" Padding="3,1" MaxHeight="300" Foreground="Gray"></TextBlock>
+                                    <TextBlock Width="204" TextAlignment="Left" TextWrapping="Wrap" Loaded="CakePriceTextBlock_Loaded"
+                                               FontSize="15" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
 
-                                    <Grid Width="203">
+                                    <Grid Width="203" Margin="0,5,0,0">
                                         <Button Width="130" Height="30" Content="Mua hàng"
                                             FontSize="14">
                                             <Button.Style>
                                                 <Style TargetType="{x:Type Button}">
                                                     <Setter Property="Background" Value="White"/>
-                                                    <Setter Property="Foreground" Value="ForestGreen"/>
+                                                    <Setter Property="Foreground" Value="{DynamicResource ColorScheme}"/>
                                                     <Setter Property="Template">
                                                         <Setter.Value>
                                                             <ControlTemplate TargetType="{x:Type Button}">
@@ -431,7 +431,7 @@
                                                     </Setter>
                                                     <Style.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="ForestGreen"/>
+                                                            <Setter Property="Background" Value="{DynamicResource ColorScheme}"/>
                                                             <Setter Property="Foreground" Value="White"/>
                                                         </Trigger>
                                                     </Style.Triggers>
@@ -440,7 +440,7 @@
                                             <Button.Resources>
                                                 <Style TargetType="Border">
                                                     <Setter Property="CornerRadius" Value="15"/>
-                                                    <Setter Property="BorderBrush" Value="ForestGreen"/>
+                                                    <Setter Property="BorderBrush" Value="{DynamicResource ColorScheme}"/>
                                                     <Setter Property="BorderThickness" Value="1"/>
                                                 </Style>
                                             </Button.Resources>

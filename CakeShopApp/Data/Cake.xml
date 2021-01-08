@@ -4,7 +4,7 @@
     <CakeName>Bánh tráng</CakeName>
     <ID>0</ID>
     <Category>Bánh Bơ-gơ</Category>
-    <Price>100000</Price>
+    <Price>10343</Price>
     <PrimaryImagePath>Images/0.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
@@ -23,7 +23,7 @@
     <CakeName>Bánh kem</CakeName>
     <ID>1</ID>
     <Category>Bánh mì</Category>
-    <Price>200000</Price>
+    <Price>242120</Price>
     <PrimaryImagePath>Images/1.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
@@ -42,7 +42,7 @@
     <CakeName>Bánh bông lan</CakeName>
     <ID>1</ID>
     <Category>Bánh nướng nhỏ</Category>
-    <Price>500000</Price>
+    <Price>124374</Price>
     <PrimaryImagePath>Images/2.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>

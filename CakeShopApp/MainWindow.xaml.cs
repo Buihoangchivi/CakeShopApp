@@ -381,6 +381,14 @@ namespace CakeShopApp
 
 		}
 
+		private void CakePriceTextBlock_Loaded(object sender, RoutedEventArgs e)
+		{
+			
+			var cake = ((TextBlock)sender).DataContext as Cake;
+			((TextBlock)sender).Text = FormatPriceString(cake.Price) + " ₫";
+
+		}
+
 		private void ChangeClickedControlButton_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -396,6 +404,30 @@ namespace CakeShopApp
 			animation.To = new Thickness(15, 6, 0, 0);
 			animation.Duration = TimeSpan.FromSeconds(0.5);
 			CakeListGrid.BeginAnimation(Grid.MarginProperty, animation);
+		}
+
+		private string FormatPriceString(string price)
+		{
+
+			var i = price.Length - 1;
+			var count = 0;
+
+			while (i > 0)
+			{
+				count++;
+				if (count % 3 == 0)
+				{
+					price = price.Insert(i, ".");
+				}
+				else
+				{
+					//Do nothing
+				}
+				i--;
+			}
+
+			return price;
+
 		}
 	}
 }
