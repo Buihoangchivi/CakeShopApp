@@ -103,6 +103,61 @@ public class Cake : INotifyPropertyChanged
 		}
 	}
 
+	public Cake()
+	{
+		imagesList = new BindingList<CakeImage>();
+		//MembersList = new BindingList<Member>();
+	}
+
+	//Phương thức khởi tạo để chỉnh sửa món bánh ngọt
+	public Cake(Cake oldCake)
+	{
+		ID = oldCake.ID;
+		CakeName = string.Copy(oldCake.CakeName);
+		Category = oldCake.Category;
+		Price = string.Copy(oldCake.Price);
+		primaryImagePath = string.Copy(oldCake.PrimaryImagePath);
+
+		imagesList = new BindingList<CakeImage>();
+
+		foreach (var image in oldCake.ImagesList)
+		{
+			imagesList.Add(new CakeImage(image.ImagePath));
+		}
+
+		/*membersList = new BindingList<Member>();
+
+		foreach (var member in oldCake.MembersList)
+		{
+			if (member.MemberName != null)
+			{
+				membersList.Add(new Member()
+				{
+					MemberName = string.Copy(member.MemberName)
+				});
+			}
+			else
+			{
+				membersList.Add(new Member()
+				{
+					MemberName = ""
+				});
+			}
+
+
+			membersList[membersList.Count - 1].Deposits = int.Parse(member.Deposits.ToString());
+
+			foreach (var cost in member.CostsList)
+			{
+				membersList[membersList.Count - 1].CostsList.Add(new Cost()
+				{
+					Charge = cost.Charge,
+					PaymentName = cost.PaymentName
+				}); ;
+			}
+		}*/
+	}
+
 	#region INotifyPropertyChanged Members  
 
 	public event PropertyChangedEventHandler PropertyChanged;

@@ -193,7 +193,7 @@
                 <WrapPanel>
                     <TextBlock Width="5" Height="45"></TextBlock>
                     <Image Source="Images/addImage.png" Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Thêm chuyến đi</TextBlock>
+                    <TextBlock VerticalAlignment="Center" Width="153" FontSize="15">Thêm món bánh ngọt</TextBlock>
                 </WrapPanel>
             </Button>
 
@@ -455,6 +455,164 @@
             </Grid>
         </ScrollViewer>
 
+        <!--Chi tiết món bánh-->
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="DetailCakeGrid" Margin="0,0,10,0" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3.5*"/>
+            </Grid.ColumnDefinitions>
+            <!--Tiêu đề và thao tác với món bánh ngọt-->
+
+            <!--Label Chi tiết món bánh ngọt-->
+            <Border Grid.ColumnSpan="4" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <TextBlock FontSize="25" Text="CHI TIẾT SẢN PHẨM" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{StaticResource ColorScheme}" FontWeight="ExtraBold" FontStyle="Italic"/>
+            </Border>
+
+            <!--Hai nút chỉnh sửa hoặc xóa món bánh ngọt-->
+            <Border Grid.Column="4" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <!--Nút chỉnh sửa món bánh ngọt-->
+                    <Button BorderThickness="0" Height="35" Width="35"
+                            Name="EditCakeButton" Click="EditCakeButton_Click">
+                        <Image Source="Images/editImage.png" Width="20" 
+                           RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    </Button>
+
+                    <!--Nút xóa món bánh ngọt-->
+                    <Button Grid.Row="1" BorderThickness="0" Width="35" Height="35" Name="DeleteCakeButton" Click="DeleteCakeButton_Click">
+                        <Image Source="Images/deleteRecipe.png" Width="22"
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <!--Thông tin cơ bản món bánh ngọt-->
+            <Border Grid.Row="1" Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="175" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Label Thông tin cơ bản-->
+                    <TextBlock Grid.ColumnSpan="2" Text="THÔNG TIN CƠ BẢN" HorizontalAlignment="Center"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Top"
+                               Foreground="{DynamicResource ColorScheme}"/>
+
+                    <!--Hình ảnh chính của món bánh ngọt-->
+                    <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Width="260" Height="175" VerticalAlignment="Top">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding PrimaryImagePath, Converter={StaticResource converter}}" 
+                                        Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <!--Giá thành món bánh ngọt-->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Image Source="Images/location.png" Width="18" Height="18" Margin="0,6,0,0" 
+                               RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"/>
+                        <TextBlock Text="{Binding Location}" Height="18" Foreground="Gray"
+                                   TextWrapping="Wrap" FontSize="14" Margin="0,7,0,0" />
+                    </StackPanel>
+
+                    <!--Tên món bánh ngọt-->
+                    <TextBlock Grid.Row="3" Text="{Binding CakeName}" TextWrapping="Wrap"
+                               FontSize="15" Padding="5,2,0,0" FontFamily="Segoe UI Semibold"/>
+
+                    <!--Danh sách thành viên-->
+                    <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True" Margin="5,0,0,0">
+
+                        <TextBlock DockPanel.Dock="Top" Text="Các thành viên:" FontSize="14" FontWeight="DemiBold" Margin="2,0,0,0"/>
+                        <ListView ItemsSource="{Binding MembersList}" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="{x:Null}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding MemberName}" FontSize="14" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </DockPanel>
+
+                    <!--Giai đoạn hiện tại-->
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Giai đoạn:" 
+                               FontSize="14" FontWeight="DemiBold" Margin="7,6,0,0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Stage}" 
+                               FontSize="14" Margin="7,3,0,0"/>
+
+                </Grid>
+            </Border>
+
+            <!--Danh sách hình ảnh của món bánh ngọt-->
+            <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" 
+                    Background="Gainsboro" CornerRadius="10" Margin="10,10,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="18" 
+                           FontWeight="Bold" Text="HÌNH ẢNH MÓN BÁNH NGỌT" VerticalAlignment="Top"
+                               Foreground="{DynamicResource ColorScheme}"/>
+
+                    <ListView Grid.Row="1" ItemsSource="{Binding ImagesList}" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" Background="{x:Null}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Rectangle RadiusX="10" RadiusY="10" Width="109" Height="85">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" 
+                                       Stretch="UniformToFill"
+                                       RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
+            </Border>
+
+        </Grid>
+        
         <!--Nút cài đặt-->
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="SettingStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
             <TextBlock FontSize="16" Margin="0,0,0,10">Chọn màu cho ứng dụng</TextBlock>

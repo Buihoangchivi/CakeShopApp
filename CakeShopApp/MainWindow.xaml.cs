@@ -55,7 +55,7 @@ namespace CakeShopApp
 		};
 
 		private Condition FilterCondition = new Condition { Type = "" };
-		public Cake Cake = new Cake();
+		public Cake cake = new Cake();
 		private bool isMinimizeMenu, isEditMode, IsDetailCake;
 		int selectedCakeIndex = 0;
 
@@ -328,7 +328,63 @@ namespace CakeShopApp
 
 		private void Cake_Click(object sender, RoutedEventArgs e)
 		{
+			//Đóng giao diện màn hình danh sách các món bánh ngọt
+			CakeListGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện thanh chọn loại món bánh ngọt
+			TypeBarDockPanel.Visibility = Visibility.Collapsed;
 
+			//Lấy chỉ số của hình ảnh món ăn được nhấn
+			selectedCakeIndex = GetElementIndexInArray((Button)sender);
+			DetailCakeGrid.DataContext = CakeInfoList[selectedCakeIndex];
+			cake = new Cake(CakeInfoList[selectedCakeIndex]);
+
+			//Mở giao diện màn hình chi tiết món bánh ngọt
+			DetailCakeGrid.Visibility = Visibility.Visible;
+
+			//Bật chế độ đang ở màn hình chi tiết
+			IsDetailCake = true;
+		}
+
+		private void EditCakeButton_Click(object sender, RoutedEventArgs e)
+		{
+			isEditMode = true;
+			cake = new Cake(CakeInfoList[selectedCakeIndex]);
+			//Bật màn hình chỉnh sửa
+			ChangeClickedControlButton_Click(AddCakeButton, null);
+		}
+
+		private void DeleteCakeButton_Click(object sender, RoutedEventArgs e)
+		{
+			/*TripInfoList.Remove(TripInfoList[selectedTripIndex]);
+
+			//
+			DetailTripGrid.Visibility = Visibility.Collapsed;
+			//Tắt màu của nút Add
+			var wrapPanel = (WrapPanel)AddTripButton.Content;
+			var collection = wrapPanel.Children;
+			var block = (TextBlock)collection[0];
+			var text = (TextBlock)collection[2];
+			block.Background = Brushes.Transparent;
+			text.Foreground = Brushes.Black;
+
+			//Quay về màn hình Home
+			clickedControlButton = HomeButton;
+			TripListGrid.Visibility = Visibility.Visible;
+			TypeBarDockPanel.Visibility = Visibility.Visible;
+			ControlStackPanel.Visibility = Visibility.Visible;
+			//Hiển thị màu cho nút Home
+			wrapPanel = (WrapPanel)HomeButton.Content;
+			collection = wrapPanel.Children;
+			block = (TextBlock)collection[0];
+			text = (TextBlock)collection[2];
+			block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			text.Foreground = block.Background;
+
+			//Tắt chế độ chỉnh sửa
+			isEditMode = false;
+
+			//Cập nhật lại giao diện
+			UpdateUIFromData();*/
 		}
 
 		private void SearchCakeButton_Click(object sender, RoutedEventArgs e)
@@ -348,11 +404,6 @@ namespace CakeShopApp
 				col0.Width = new GridLength(250);
 				isMinimizeMenu = false;
 			}
-		}
-
-		private void ChangeClickedTypeButton_Click(object sender, RoutedEventArgs e)
-		{
-
 		}
 
 		private void CakePriceTextBlock_Loaded(object sender, RoutedEventArgs e)
@@ -378,7 +429,7 @@ namespace CakeShopApp
 			//Đóng giao diện menu
 			ControlStackPanel.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình chi tiết chuyến đi
-			//DetailCakeGrid.Visibility = Visibility.Collapsed;
+			DetailCakeGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình trang chủ
 			CakeListGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình thêm chuyến đi mới
