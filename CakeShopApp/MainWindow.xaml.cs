@@ -410,7 +410,23 @@ namespace CakeShopApp
 		{
 			
 			var cake = ((TextBlock)sender).DataContext as Cake;
-			((TextBlock)sender).Text = FormatPriceString(cake.Price) + " ₫";
+			//Hiển thị ở màn hình trang chủ
+			if (cake != null)
+			{
+				((TextBlock)sender).Text = FormatPriceString(cake.Price) + " ₫";
+			}
+			else //Hiển thị ở màn hình chi tiết
+			{
+				((TextBlock)sender).Text = FormatPriceString(CakeInfoList[selectedCakeIndex].Price) + " ₫";
+			}				
+
+		}
+
+		private void CakeCategoryTextBlock_Loaded(object sender, RoutedEventArgs e)
+		{
+
+			var category = CakeInfoList[selectedCakeIndex].Category;
+			((TextBlock)sender).Text = CakeCategoryList[category].Name;
 
 		}
 

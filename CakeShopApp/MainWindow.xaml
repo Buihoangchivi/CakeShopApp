@@ -463,7 +463,7 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="4*"/>
@@ -512,14 +512,12 @@
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="175" />
-                        <RowDefinition Height="25" />
                         <RowDefinition Height="1*" />
+                        <RowDefinition Height="22" />
+                        <RowDefinition Height="22" />
+                        <RowDefinition Height="22" />
+                        <RowDefinition Height="22" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="260"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
 
                     <!--Label Thông tin cơ bản-->
                     <TextBlock Grid.ColumnSpan="2" Text="THÔNG TIN CƠ BẢN" HorizontalAlignment="Center"
@@ -527,45 +525,45 @@
                                Foreground="{DynamicResource ColorScheme}"/>
 
                     <!--Hình ảnh chính của món bánh ngọt-->
-                    <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Width="260" Height="175" VerticalAlignment="Top">
+                    <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Height="155" VerticalAlignment="Top">
                         <Rectangle.Fill>
                             <ImageBrush ImageSource="{Binding PrimaryImagePath, Converter={StaticResource converter}}" 
                                         Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"/>
                         </Rectangle.Fill>
                     </Rectangle>
 
-                    <!--Giá thành món bánh ngọt-->
-                    <StackPanel Grid.Row="2" Orientation="Horizontal">
-                        <Image Source="Images/location.png" Width="18" Height="18" Margin="0,6,0,0" 
-                               RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"/>
-                        <TextBlock Text="{Binding Location}" Height="18" Foreground="Gray"
-                                   TextWrapping="Wrap" FontSize="14" Margin="0,7,0,0" />
-                    </StackPanel>
-
+                   
                     <!--Tên món bánh ngọt-->
-                    <TextBlock Grid.Row="3" Text="{Binding CakeName}" TextWrapping="Wrap"
+                    <TextBlock Grid.Row="2" Text="{Binding CakeName}" TextWrapping="Wrap"
                                FontSize="15" Padding="5,2,0,0" FontFamily="Segoe UI Semibold"/>
 
-                    <!--Danh sách thành viên-->
-                    <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True" Margin="5,0,0,0">
+                    <!--Mã món bánh ngọt-->
+                    <WrapPanel Grid.Row="3">
 
-                        <TextBlock DockPanel.Dock="Top" Text="Các thành viên:" FontSize="14" FontWeight="DemiBold" Margin="2,0,0,0"/>
-                        <ListView ItemsSource="{Binding MembersList}" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="{x:Null}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding MemberName}" FontSize="14" TextWrapping="Wrap"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                        <TextBlock Text="Mã sản phẩm:" FontSize="14" Margin="5,1,2,1"/>
 
-                    </DockPanel>
+                        <TextBlock Text="{Binding ID}" FontSize="15" Padding="3,1" Foreground="OrangeRed"></TextBlock>
 
-                    <!--Giai đoạn hiện tại-->
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Giai đoạn:" 
-                               FontSize="14" FontWeight="DemiBold" Margin="7,6,0,0"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Stage}" 
-                               FontSize="14" Margin="7,3,0,0"/>
+                    </WrapPanel>
+
+                    <!--Giá thành món bánh ngọt-->
+                    <WrapPanel Grid.Row="4">
+
+                        <TextBlock Text="Giá sản phẩm:" FontSize="14" Margin="5,1,2,1"/>
+
+                        <TextBlock TextWrapping="Wrap" Loaded="CakePriceTextBlock_Loaded"
+                               Grid.Row="3" FontSize="15" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
+
+                    </WrapPanel>
+
+                    <!--Loại bánh ngọt-->
+                    <WrapPanel Grid.Row="5">
+
+                        <TextBlock Text="Loại sản phẩm:" FontSize="14" Margin="5,1,2,1"/>
+
+                        <TextBlock Loaded="CakeCategoryTextBlock_Loaded" FontSize="15" Padding="3,1" Foreground="OrangeRed"></TextBlock>
+
+                    </WrapPanel>
 
                 </Grid>
             </Border>
