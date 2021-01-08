@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CakeShopApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="690" Width="1152"
+        Title="MainWindow" Height="690" Width="1152" Loaded="Window_Loaded"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
@@ -35,7 +35,7 @@
         <!--Thanh tiêu đề-->
         <DockPanel x:Name="TitleBar" Grid.ColumnSpan="2" Height="35" Background="{Binding ColorScheme}">
             <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Left" Margin="10,0,0,0" 
-                       FontSize="15" VerticalAlignment="Center" Foreground="White">We Split</TextBlock>
+                       FontSize="15" VerticalAlignment="Center" Foreground="White">Cake Shop</TextBlock>
             <Button x:Name="CloseButton" Width="47" BorderThickness="0" 
                     DockPanel.Dock="Right" Click="CloseButton_Click">
                 <Button.Style>
@@ -256,167 +256,111 @@
 
         <!--Thanh để lọc loại thức ăn-->
         <DockPanel Name="TypeBarDockPanel" Height="40" Margin="15,0" Grid.Row="1" Grid.Column="1" Visibility="Visible">
-            <StackPanel Orientation="Horizontal" Width="400" DockPanel.Dock="Left">
-                <Button Height="40" Width="130" x:Name="AllButton" Click="ChangeClickedTypeButton_Click"
-                        BorderThickness="0" Content="Tất cả" FontSize="15" Foreground="Gray">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#66D3D3D3"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Button Height="40" Width="130" x:Name="ProcessingButton" Click="ChangeClickedTypeButton_Click"
-                        BorderThickness="0" Content="Bắt đầu" FontSize="15" Foreground="Gray">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#66D3D3D3"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Button Height="40" Width="130" x:Name="AccomplishedButton" Click="ChangeClickedTypeButton_Click"
-                        BorderThickness="0" Content="Kết thúc" FontSize="15" Foreground="Gray">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#66D3D3D3"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+
+            <!--Dropdown chọn loại bánh-->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+
+                <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0">Loại bánh</TextBlock>
+
+                <ComboBox Name="CakeCategoryCombobox" Height="30" Width="150"
+                          VerticalContentAlignment="Center" SelectionChanged="CakeCategoryCombobox_SelectionChanged"
+                          DisplayMemberPath="Name" FontSize="14"/>
+
             </StackPanel>
-            <StackPanel DockPanel.Dock="Right" Width="269">
-                <Border CornerRadius="6" Margin="0,0.6,5,0" BorderBrush="Gray" Padding="0,0,2,0" BorderThickness="3">
-                    <DockPanel LastChildFill="True">
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                            <Button Name="DeleteTextInSearchButton" Width="30" BorderThickness="0" Padding="8"
+
+            <!--Khung tìm kiếm-->
+            <Border DockPanel.Dock="Right" Width="269" HorizontalAlignment="Right" 
+                    CornerRadius="6" Margin="0,0.6,5,0" BorderBrush="Gray" 
+                    Padding="0,0,2,0" BorderThickness="3">
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <Button Name="DeleteTextInSearchButton" Width="30" BorderThickness="0" Padding="8"
                                     Background="White" Height="29" Click="DeleteTextInSearchButton_Click"
                                     MouseEnter="DeleteTextInSearchButton_MouseEnter">
-                                <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel>
-                            <Grid Margin="2,1,0,1">
+                            <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel>
+                        <Grid Margin="2,1,0,1">
 
-                                <ComboBox Name="SearchNotificationComboBox" Width="219">
-                                    <ComboBoxItem>Không có kết quả</ComboBoxItem>
-                                </ComboBox>
-                                <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"          
+                            <ComboBox Name="SearchNotificationComboBox" Width="219">
+                                <ComboBoxItem>Không có kết quả</ComboBoxItem>
+                            </ComboBox>
+
+                            <ComboBox IsTextSearchEnabled="False" IsEditable="True" Name="searchComboBox"          
                                       Height="32" Width="226"
                                       BorderThickness="0" VerticalContentAlignment="Center">
-                                    <!--Set chiều rộng cho dropdown list-->
+                                <!--Set chiều rộng cho dropdown list-->
 
-                                    <ComboBox.ItemContainerStyle>
-                                        <Style TargetType="ComboBoxItem">
-                                            <Setter Property="Width" Value="226"></Setter>
-                                            <Setter Property="Padding" Value="0"></Setter>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsHighlighted" Value="True">
-                                                    <Setter Property="Background" Value="Red"/>
-                                                    <Setter Property="BorderThickness" Value="5"></Setter>
-                                                </Trigger>
-                                                <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="Red"/>
-                                                    <Setter Property="BorderThickness" Value="5"></Setter>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ComboBox.ItemContainerStyle>
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="Width" Value="226"></Setter>
+                                        <Setter Property="Padding" Value="0"></Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsHighlighted" Value="True">
+                                                <Setter Property="Background" Value="Red"/>
+                                                <Setter Property="BorderThickness" Value="2.5"></Setter>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="Red"/>
+                                                <Setter Property="BorderThickness" Value="2.5"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
 
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button BorderThickness="0" Width="226" Background="White" Click="SearchCakeButton_Click">
-                                                    <Button.Content>
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="70"/>
-                                                                <ColumnDefinition Width="149"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Width="70" Height="70" Stretch="Fill"
-                                                            RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="0"/>
-                                                            <TextBlock Grid.Column="1" Text="{Binding CakeName}" VerticalAlignment="Center"
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button BorderThickness="0" Width="226" Background="White" Click="SearchCakeButton_Click">
+                                                <Button.Content>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="70"/>
+                                                            <ColumnDefinition Width="149"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" 
+                                                               Width="70" Height="70" Stretch="Fill"
+                                                               RenderOptions.BitmapScalingMode="HighQuality" 
+                                                               RenderOptions.EdgeMode="Aliased" Margin="0"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding CakeName}" VerticalAlignment="Center"
                                                                        Margin="-10 0 0 0" FontSize="13" TextWrapping="Wrap" 
                                                                        Width="120"></TextBlock>
-                                                        </Grid>
-                                                    </Button.Content>
-                                                    <Button.Style>
-                                                        <Style TargetType="{x:Type Button}">
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type Button}">
-                                                                        <Border Background="{TemplateBinding Background}">
-                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                                        </Border>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </Style>
-                                                    </Button.Style>
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <TextBox Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown" HorizontalAlignment="Left"
+                                                    </Grid>
+                                                </Button.Content>
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border Background="{TemplateBinding Background}">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <TextBox Name="searchTextBox" PreviewKeyDown="searchTextBox_PreviewKeyDown" HorizontalAlignment="Left"
                                          PreviewTextInput="searchTextBox_PreviewTextInput" FontSize="14" Width="223"
                                          PreviewKeyUp="searchTextBox_PreviewKeyUp" VerticalContentAlignment="Center"
                                          DataObject.Pasting="searchTextBox_Pasting" BorderThickness="0"/>
-                            </Grid>
+                        </Grid>
 
-                        </StackPanel>
-                    </DockPanel>
-                </Border>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,10,0">
-                <RadioButton Name="SearchFilter" IsChecked="True" FontSize="14"
-                             VerticalContentAlignment="Center">Tên Thành Viên</RadioButton>
-                <RadioButton Margin="5 0 0 0" FontSize="14"
-                             VerticalContentAlignment="Center">Địa điểm</RadioButton>
-            </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
         </DockPanel>
 
         <!--Hình ảnh và tên các món ăn-->
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="2" Grid.Column="1" Visibility="Visible">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="2" Grid.Column="1">
             <Grid Name="CakeListGrid">
                 <ItemsControl Grid.Row="1" Name="CakeButtonItemsControl">
                     <ItemsControl.ItemsPanel>
@@ -427,26 +371,82 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Width="204" VerticalContentAlignment="Top" Click="Cake_Click"
-                                    Background="White" Margin="0,0,11,10" BorderThickness="0" >
+                                    Margin="0,0,11,10">
+
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="AntiqueWhite"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="10"/>
                                     </Style>
                                 </Button.Resources>
+
                                 <WrapPanel>
-                                    <Rectangle RadiusX="10" RadiusY="10" Width="202" Height="145">
+                                    
+                                    <Rectangle RadiusX="10" RadiusY="10" Width="204" Height="145">
                                         <Rectangle.Fill>
                                             <ImageBrush ImageSource="{Binding PrimaryImagePath, Converter={StaticResource converter}}" RenderOptions.BitmapScalingMode="HighQuality"/>
                                         </Rectangle.Fill>
                                     </Rectangle>
 
-                                    <Image Source="Images/location.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
-
-                                    <TextBlock Text="{Binding Location}" Width="184" TextAlignment="Left" TextWrapping="Wrap" 
-                                               FontSize="14" Padding="3,1" MaxHeight="300" Foreground="Gray"></TextBlock>
-
                                     <TextBlock Text="{Binding CakeName}" TextAlignment="Left" TextWrapping="Wrap" Width="204" 
                                                FontSize="15" Padding="3,1" MaxHeight="300" FontFamily="Segoe UI Semibold"></TextBlock>
+
+                                    <TextBlock Width="204" TextAlignment="Left" TextWrapping="Wrap" Loaded="CakePriceTextBlock_Loaded"
+                                               FontSize="15" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
+
+                                    <Grid Width="203" Margin="0,5,0,0">
+                                        <Button Width="130" Height="30" Content="Mua hàng"
+                                            FontSize="14">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Background" Value="White"/>
+                                                    <Setter Property="Foreground" Value="{DynamicResource ColorScheme}"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="{TemplateBinding Background}">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{DynamicResource ColorScheme}"/>
+                                                            <Setter Property="Foreground" Value="White"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="15"/>
+                                                    <Setter Property="BorderBrush" Value="{DynamicResource ColorScheme}"/>
+                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </Grid>
+                                    
                                 </WrapPanel>
                             </Button>
                         </DataTemplate>
@@ -454,6 +454,6 @@
                 </ItemsControl>
             </Grid>
         </ScrollViewer>
-        
+
     </Grid>
 </Window>
