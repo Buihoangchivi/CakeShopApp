@@ -386,7 +386,7 @@ namespace CakeShopApp
 			//Đóng giao diện màn hình cài đặt
 			SettingStackPanel.Visibility = Visibility.Collapsed;
 			//Đóng giao diện thông tin developer
-			//AboutStackPanel.Visibility = Visibility.Collapsed;
+			AboutStackPanel.Visibility = Visibility.Collapsed;
 
 			if (IsDetailCake == true)
 			{
@@ -437,11 +437,11 @@ namespace CakeShopApp
 					ShowSplashScreenCheckBox.IsChecked = true;
 				}*/
 			}
-			/*else if (button == AboutButton)
+			else if (button == AboutButton)
 			{
 				AboutStackPanel.Visibility = Visibility.Visible;
 				ControlStackPanel.Visibility = Visibility.Visible;
-			}*/
+			}
 
 			//Cập nhật lại giao diện
 			UpdateUIFromData();
