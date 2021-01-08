@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -332,27 +333,7 @@ namespace CakeShopApp
 
 		private void SearchCakeButton_Click(object sender, RoutedEventArgs e)
 		{
-
-		}
-
-		private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-		{
-
-		}
-
-		private void searchTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-		{
-
-		}
-
-		private void searchTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
-		{
-
-		}
-
-		private void searchTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
-		{
-
+			Cake_Click(sender, null);
 		}
 
 		private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -367,16 +348,6 @@ namespace CakeShopApp
 				col0.Width = new GridLength(250);
 				isMinimizeMenu = false;
 			}
-		}
-
-		private void DeleteTextInSearchButton_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void DeleteTextInSearchButton_MouseEnter(object sender, MouseEventArgs e)
-		{
-
 		}
 
 		private void ChangeClickedTypeButton_Click(object sender, RoutedEventArgs e)
@@ -403,6 +374,136 @@ namespace CakeShopApp
 			FilterCondition.Type = CakeCategoryList[((ComboBox)sender).SelectedIndex].Name;
 			//Cập nhật lại giao diện
 			UpdateUIFromData();
+
+		}
+
+		//---------------------------------------- Các hàm xử lý sự kiện --------------------------------------------//
+
+		private string ConvertToUnSign(string input)
+		{
+			input = input.Trim();
+			for (int i = 0x20; i < 0x30; i++)
+			{
+				input = input.Replace(((char)i).ToString(), " ");
+			}
+			Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+			string str = input.Normalize(NormalizationForm.FormD);
+			string str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');
+			while (str2.IndexOf("?") >= 0)
+			{
+				str2 = str2.Remove(str2.IndexOf("?"), 1);
+			}
+			return str2;
+		}
+
+		private void DeleteTextInSearchButton_Click(object sender, RoutedEventArgs e)
+		{
+			searchTextBox.Text = "";
+			searchTextBox.Focus();
+		}
+
+		private void DeleteTextInSearchButton_MouseEnter(object sender, MouseEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+			{
+				DeleteTextInSearchButton_Click(null, null);
+			}
+			else
+			{
+				//Do nothing
+			}
+		}
+
+		private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Down)
+			{
+				searchComboBox.Focus();
+				searchComboBox.SelectedIndex = 0;
+				searchComboBox.IsDropDownOpen = true;
+			}
+			if (e.Key == Key.Escape)
+			{
+				searchComboBox.IsDropDownOpen = false;
+
+			}
+		}
+
+		private void searchTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			if (e.Text != "\u001b")  //khác escapes
+			{
+				searchComboBox.IsDropDownOpen = true;
+			}
+			if (!string.IsNullOrEmpty(searchTextBox.Text))
+			{
+				string fullText = ConvertToUnSign(searchTextBox.Text.Insert(searchTextBox.CaretIndex, (e.Text)));
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(fullText, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				if (searchComboBox.Items.Count == 0)
+				{
+					SearchNotificationComboBox.IsDropDownOpen = true;
+					searchComboBox.IsDropDownOpen = false;
+				}
+			}
+			else if (!string.IsNullOrEmpty(e.Text))
+			{
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(e.Text), 
+					StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+			}
+			else
+			{
+				searchComboBox.ItemsSource = CakeInfoList;
+			}
+		}
+
+		private void searchTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Back || e.Key == Key.Delete)
+			{
+
+				searchComboBox.IsDropDownOpen = true;
+
+				if (!string.IsNullOrEmpty(searchTextBox.Text))
+				{
+					searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(searchTextBox.Text), 
+						StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+					if (searchComboBox.Items.Count == 0)
+					{
+						SearchNotificationComboBox.IsDropDownOpen = true;
+						searchComboBox.IsDropDownOpen = false;
+					}
+
+				}
+				else
+				{
+					searchComboBox.ItemsSource = CakeInfoList;
+				}
+
+			}
+		}
+
+		private void searchTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+
+			searchComboBox.IsDropDownOpen = true;
+
+			string pastedText = (string)e.DataObject.GetData(typeof(string));
+			string fullText = searchTextBox.Text.Insert(searchTextBox.CaretIndex, (pastedText));
+
+			if (!string.IsNullOrEmpty(fullText))
+			{
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(fullText), 
+					StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
+				if (searchComboBox.Items.Count == 0)
+				{
+					SearchNotificationComboBox.IsDropDownOpen = true;
+					searchComboBox.IsDropDownOpen = false;
+				}
+			}
+			else
+			{
+				searchComboBox.ItemsSource = CakeInfoList;
+			}
 
 		}
 

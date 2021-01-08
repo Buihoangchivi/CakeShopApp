@@ -264,9 +264,7 @@
 
                 <ComboBox Name="CakeCategoryCombobox" Height="30" Width="150"
                           VerticalContentAlignment="Center" SelectionChanged="CakeCategoryCombobox_SelectionChanged"
-                          DisplayMemberPath="Name" FontSize="14">
-
-                </ComboBox>
+                          DisplayMemberPath="Name" FontSize="14"/>
 
             </StackPanel>
 
@@ -301,11 +299,11 @@
                                         <Style.Triggers>
                                             <Trigger Property="IsHighlighted" Value="True">
                                                 <Setter Property="Background" Value="Red"/>
-                                                <Setter Property="BorderThickness" Value="5"></Setter>
+                                                <Setter Property="BorderThickness" Value="2.5"></Setter>
                                             </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
                                                 <Setter Property="Background" Value="Red"/>
-                                                <Setter Property="BorderThickness" Value="5"></Setter>
+                                                <Setter Property="BorderThickness" Value="2.5"></Setter>
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -321,8 +319,10 @@
                                                             <ColumnDefinition Width="70"/>
                                                             <ColumnDefinition Width="149"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" Width="70" Height="70" Stretch="Fill"
-                                                            RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="0"/>
+                                                        <Image Grid.Column="0" Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" 
+                                                               Width="70" Height="70" Stretch="Fill"
+                                                               RenderOptions.BitmapScalingMode="HighQuality" 
+                                                               RenderOptions.EdgeMode="Aliased" Margin="0"/>
                                                         <TextBlock Grid.Column="1" Text="{Binding CakeName}" VerticalAlignment="Center"
                                                                        Margin="-10 0 0 0" FontSize="13" TextWrapping="Wrap" 
                                                                        Width="120"></TextBlock>
