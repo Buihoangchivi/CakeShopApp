@@ -451,8 +451,7 @@
                                                FontSize="15" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
 
                                     <Grid Width="203" Margin="0,5,0,0">
-                                        <Button Width="130" Height="30" Content="Mua hàng"
-                                            FontSize="14">
+                                        <Button Width="130" Height="30" Content="Mua hàng" FontSize="14">
                                             <Button.Style>
                                                 <Style TargetType="{x:Type Button}">
                                                     <Setter Property="Background" Value="White"/>
@@ -734,22 +733,93 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <!--Label thống kê doanh thu-->
-            <Border Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+            <Border Grid.ColumnSpan="3" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
                 </Border.Effect>
 
                 <TextBlock FontSize="25" Text="THỐNG KÊ DOANH THU SẢN PHẨM" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Foreground="{StaticResource ColorScheme}" FontWeight="ExtraBold" FontStyle="Italic"/>
+                
+            </Border>
+            
+            <!--Khung chọn năm để thống kê-->
+            <Border Grid.Column="3" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <!--Dropdown chọn tháng-->
+                    <StackPanel Margin="0,0,12,0">
+
+                        <TextBlock FontSize="13" Width="80" Margin="0,0,0,3" Foreground="{DynamicResource ColorScheme}">Tháng</TextBlock>
+
+                        <ComboBox Name="MonthStatisticCombobox" Height="30" Width="80" FontSize="14" VerticalContentAlignment="Center">
+
+                            <ComboBoxItem>Tháng 1</ComboBoxItem>
+                            <ComboBoxItem>Tháng 2</ComboBoxItem>
+                            <ComboBoxItem>Tháng 3</ComboBoxItem>
+
+                        </ComboBox>
+
+                    </StackPanel>
+                    
+                    <!--Dropdown chọn năm-->
+                    <StackPanel Margin="0,0,12,0">
+
+                        <TextBlock FontSize="13" Width="60" Margin="0,0,0,3" Foreground="{DynamicResource ColorScheme}">Năm</TextBlock>
+
+                        <ComboBox Name="YearStatisticCombobox" Height="30" Width="60" FontSize="14" VerticalContentAlignment="Center"/>
+
+                    </StackPanel>
+                    
+                    <!--Nút thống kê-->
+                    <Button Width="100" Height="35" Content="THỐNG KÊ" FontSize="14">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ColorScheme}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource ColorScheme}"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource ColorScheme}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                </StackPanel>
+
             </Border>
 
             <!--Thống kê doanh thu theo tháng-->
-            <Border Grid.Row="1" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
+            <Border Grid.Row="1" Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
                 </Border.Effect>
@@ -775,7 +845,7 @@
             </Border>
 
             <!--Thống kê doanh thu theo loại bánh-->
-            <Border Grid.Row="1" Grid.Column="1" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
+            <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
                 </Border.Effect>

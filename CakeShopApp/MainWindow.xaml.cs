@@ -43,6 +43,7 @@ namespace CakeShopApp
 			new CakeCategory { Name = "Bánh ổ dài" },
 			new CakeCategory { Name = "Các loại khác" }
 		};
+		public List<int> YearList = new List<int>();			//Danh sách 10 năm gần đây tính từ năm hiện tại
 		private CollectionView view;
 		private BindingList<ColorSetting> ListColor = new BindingList<ColorSetting>       //Tạo dữ liệu màu cho ListColor
 		{
@@ -180,6 +181,18 @@ namespace CakeShopApp
 				}
 			};*/
 
+			//Tạo list chứa 10 năm trở lại đây
+			DateTime today = DateTime.Today;
+			for (int i = today.Year - 5; i <= today.Year + 5; i++)
+			{
+
+				YearList.Add(i);
+
+			}
+			//Loại năm hiển thị ở màn hình thống kê
+			YearStatisticCombobox.ItemsSource = YearList;
+
+			//Loại bánh ngọt hiển thị ở màn hình trang chủ
 			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
 			CakeCategoryCombobox.SelectedItem = CakeCategoryList[0];
 
@@ -576,6 +589,8 @@ namespace CakeShopApp
 			}*/
 			else if (button == StatisticButton)
 			{
+				//Mặc định hiển thị thống kê cho năm hiện tại
+				YearStatisticCombobox.SelectedItem = DateTime.Today.Year;
 				StatisticGrid.Visibility = Visibility.Visible;
 				ControlStackPanel.Visibility = Visibility.Visible;
 			}
@@ -606,6 +621,13 @@ namespace CakeShopApp
 			FilterCondition.Type = CakeCategoryList[((ComboBox)sender).SelectedIndex].Name;
 			//Cập nhật lại giao diện
 			UpdateUIFromData();
+
+		}
+
+		private void YearStatisticCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+			
 
 		}
 
