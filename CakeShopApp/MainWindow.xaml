@@ -114,6 +114,7 @@
         <StackPanel x:Name="ControlStackPanel" Grid.Row="1" Grid.RowSpan="2" Visibility="Visible"
                     Grid.Column="0" Background="#FFDDDDDD" Width="250">
 
+            <!--Menu-->
             <Button Height="45" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" 
                     HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <Button.Style>
@@ -142,6 +143,7 @@
                 </WrapPanel>
             </Button>
 
+            <!--Trang chủ-->
             <Button Height="45" Name="HomeButton" BorderThickness="0" Click="ChangeClickedControlButton_Click"
                     HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <Button.Style>
@@ -169,6 +171,8 @@
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15" Foreground="{Binding ColorScheme}">Trang chủ</TextBlock>
                 </WrapPanel>
             </Button>
+
+            <!--Thêm sản phẩm-->
             <Button Height="45" Name="AddCakeButton" Click="ChangeClickedControlButton_Click"
                     BorderThickness="0" HorizontalContentAlignment="Left">
                 <Button.Style>
@@ -197,6 +201,7 @@
                 </WrapPanel>
             </Button>
 
+            <!--Cài đặt-->
             <Button Height="45" Name="SettingButton" Click="ChangeClickedControlButton_Click"
                     BorderThickness="0" HorizontalContentAlignment="Left">
                 <Button.Style>
@@ -224,7 +229,37 @@
                     <TextBlock Name="SettingTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Cài đặt</TextBlock>
                 </WrapPanel>
             </Button>
+            
+            <!--Thống kê-->
+            <Button Height="45" Name="StatisticButton" Click="ChangeClickedControlButton_Click"
+                    BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <WrapPanel>
+                    <TextBlock Name="StatisticTextBlock" Width="5" Height="45"></TextBlock>
+                    <Image Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality" Source="Images/statistic.png"></Image>
+                    <TextBlock Name="StatisticTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Thống kê</TextBlock>
+                </WrapPanel>
+            </Button>
 
+            <!--Thông tin-->
             <Button Height="45" Name="AboutButton" Click="ChangeClickedControlButton_Click"
                     BorderThickness="0" HorizontalContentAlignment="Left">
                 <Button.Style>
@@ -252,6 +287,7 @@
                     <TextBlock Name="AboutTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Thông tin</TextBlock>
                 </WrapPanel>
             </Button>
+            
         </StackPanel>
 
         <!--Thanh để lọc loại thức ăn-->
@@ -688,6 +724,19 @@
 
         </Grid>
         
+        <!--Thống kê danh thu-->
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="StatisticGrid" Margin="15,6" Visibility="Collapsed">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Background="Red"/>
+            <TextBlock Grid.Column="1" Background="ForestGreen"/>
+
+        </Grid>
+
         <!--Nút cài đặt-->
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="SettingStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
             <TextBlock FontSize="16" Margin="0,0,0,10">Chọn màu cho ứng dụng</TextBlock>

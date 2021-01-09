@@ -450,6 +450,8 @@ namespace CakeShopApp
 			CakeListGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình thêm chuyến đi mới
 			//AddCakeGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện thống kê doanh thu
+			StatisticGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình cài đặt
 			SettingStackPanel.Visibility = Visibility.Collapsed;
 			//Đóng giao diện thông tin developer
@@ -493,6 +495,11 @@ namespace CakeShopApp
 				}
 				AddCakeGrid.DataContext = Cake;
 			}*/
+			else if (button == StatisticButton)
+			{
+				StatisticGrid.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+			}
 			else if (button == SettingButton)
 			{
 				SettingStackPanel.Visibility = Visibility.Visible;
