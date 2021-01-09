@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -30,6 +32,7 @@ namespace CakeShopApp
 		public event PropertyChangedEventHandler PropertyChanged;
 		private Button clickedControlButton;
 		private List<Cake> CakeInfoList = new List<Cake>();     //Danh sách thông tin tất cả các chuyến đi
+		private List<Bill> BillList = new List<Bill>();         //Danh sách hóa đơn
 		public BindingList<CakeCategory> CakeCategoryList = new BindingList<CakeCategory> {
 			new CakeCategory { Name = "Tất cả" },
 			new CakeCategory { Name = "Bánh Bơ-gơ" },
@@ -44,13 +47,13 @@ namespace CakeShopApp
 		private BindingList<ColorSetting> ListColor = new BindingList<ColorSetting>       //Tạo dữ liệu màu cho ListColor
 		{
 			new ColorSetting { Color = "#FFCA5010" }, new ColorSetting { Color = "#FFFF8C00" }, new ColorSetting { Color = "#FFE81123" },
-			new ColorSetting { Color = "#FFD13438" }, new ColorSetting { Color = "#FFFF4081" }, new ColorSetting { Color = "#FFC30052" }, 
-			new ColorSetting { Color = "#FFBF0077" }, new ColorSetting { Color = "#FF9A0089" }, new ColorSetting { Color = "#FF881798" }, 
-			new ColorSetting { Color = "#FF744DA9" }, new ColorSetting { Color = "#FF4CAF50" }, new ColorSetting { Color = "#FF10893E" }, 
+			new ColorSetting { Color = "#FFD13438" }, new ColorSetting { Color = "#FFFF4081" }, new ColorSetting { Color = "#FFC30052" },
+			new ColorSetting { Color = "#FFBF0077" }, new ColorSetting { Color = "#FF9A0089" }, new ColorSetting { Color = "#FF881798" },
+			new ColorSetting { Color = "#FF744DA9" }, new ColorSetting { Color = "#FF4CAF50" }, new ColorSetting { Color = "#FF10893E" },
 			new ColorSetting { Color = "#FF018574" }, new ColorSetting { Color = "#FF03A9F4" }, new ColorSetting { Color = "#FF304FFE" },
 			new ColorSetting { Color = "#FF0063B1" }, new ColorSetting { Color = "#FF6B69D6" }, new ColorSetting { Color = "#FF8E8CD8" },
-			new ColorSetting { Color = "#FF8764B8" }, new ColorSetting { Color = "#FF038387" }, new ColorSetting { Color = "#FF525E54" }, 
-			new ColorSetting { Color = "#FF7E735F" }, new ColorSetting { Color = "#FF9E9E9E" }, new ColorSetting { Color = "#FF515C6B" }, 
+			new ColorSetting { Color = "#FF8764B8" }, new ColorSetting { Color = "#FF038387" }, new ColorSetting { Color = "#FF525E54" },
+			new ColorSetting { Color = "#FF7E735F" }, new ColorSetting { Color = "#FF9E9E9E" }, new ColorSetting { Color = "#FF515C6B" },
 			new ColorSetting { Color = "#FF000000" }
 		};
 
@@ -93,7 +96,7 @@ namespace CakeShopApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			
+
 			/*CakeInfoList = new List<Cake>
 			{
 				new Cake
@@ -119,6 +122,61 @@ namespace CakeShopApp
 					},
 					Price = 100000,
 					PrimaryImagePath = "Images/0.jpg"
+				}
+			};*/
+			/*BillList = new List<Bill>
+			{
+				new Bill
+				{
+					Address = "KTX khu B",
+					CakesList = new BindingList<CakeInfo>
+					{
+						new CakeInfo
+						{
+							CakeName = "Bánh tráng",
+							ID = "0",
+							Number = 5,
+							Price = "10343"
+						},
+						new CakeInfo
+						{
+							CakeName = "Bánh bông lan",
+							ID = "2",
+							Number = 10,
+							Price = "1274"
+						}
+					},
+					CustomerName = "Bùi Văn Vĩ",
+					Date = "09/01/2021",
+					PaymentMethod = 0,
+					PhoneNumber = "0124321432",
+					TotalMoney = 64455
+				},
+				new Bill
+				{
+					Address = "KTX khu A",
+					CakesList = new BindingList<CakeInfo>
+					{
+						new CakeInfo
+						{
+							CakeName = "Bánh kem",
+							ID = "1",
+							Number = 3,
+							Price = "24214220"
+						},
+						new CakeInfo
+						{
+							CakeName = "Bánh bông lan",
+							ID = "2",
+							Number = 4,
+							Price = "1274"
+						}
+					},
+					CustomerName = "Phạm Tấn",
+					Date = "19/09/2021",
+					PaymentMethod = 1,
+					PhoneNumber = "0158442736",
+					TotalMoney = 72647756
 				}
 			};*/
 
@@ -153,7 +211,7 @@ namespace CakeShopApp
 		{
 			InitializeComponent();
 
-			// Đọc dữ liệu các món ăn từ data
+			//Đọc dữ liệu các món bánh từ data
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<Cake>));
 			try
 			{
@@ -165,6 +223,20 @@ namespace CakeShopApp
 			catch
 			{
 				CakeInfoList = new List<Cake>();
+			}
+
+			//Đọc dữ liệu các hóa đơn từ data
+			xsFood = new XmlSerializer(typeof(List<Bill>));
+			try
+			{
+				using (var reader = new StreamReader(@"Data\Bill.xml"))
+				{
+					BillList = (List<Bill>)xsFood.Deserialize(reader);
+				}
+			}
+			catch
+			{
+				BillList = new List<Bill>();
 			}
 
 			view = (CollectionView)CollectionViewSource.GetDefaultView(CakeInfoList);
@@ -245,9 +317,16 @@ namespace CakeShopApp
 		//Lưu lại danh sách món ăn
 		private void SaveListFood()
 		{
+			//Ghi dữ liệu của các món bánh
 			XmlSerializer xs = new XmlSerializer(typeof(List<Cake>));
 			TextWriter writer = new StreamWriter(@"Data\Cake.xml");
 			xs.Serialize(writer, CakeInfoList);
+			writer.Close();
+
+			//Ghi dữ liệu hóa đơn mua hàng
+			xs = new XmlSerializer(typeof(List<Bill>));
+			writer = new StreamWriter(@"Data\Bill.xml");
+			xs.Serialize(writer, BillList);
 			writer.Close();
 		}
 
@@ -408,7 +487,7 @@ namespace CakeShopApp
 
 		private void CakePriceTextBlock_Loaded(object sender, RoutedEventArgs e)
 		{
-			
+
 			var cake = ((TextBlock)sender).DataContext as Cake;
 			//Hiển thị ở màn hình trang chủ
 			if (cake != null)
@@ -418,7 +497,7 @@ namespace CakeShopApp
 			else //Hiển thị ở màn hình chi tiết
 			{
 				((TextBlock)sender).Text = FormatPriceString(CakeInfoList[selectedCakeIndex].Price) + " ₫";
-			}				
+			}
 
 		}
 
@@ -600,7 +679,7 @@ namespace CakeShopApp
 			}
 			else if (!string.IsNullOrEmpty(e.Text))
 			{
-				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(e.Text), 
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(e.Text),
 					StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else
@@ -618,7 +697,7 @@ namespace CakeShopApp
 
 				if (!string.IsNullOrEmpty(searchTextBox.Text))
 				{
-					searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(searchTextBox.Text), 
+					searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(searchTextBox.Text),
 						StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 					if (searchComboBox.Items.Count == 0)
 					{
@@ -645,7 +724,7 @@ namespace CakeShopApp
 
 			if (!string.IsNullOrEmpty(fullText))
 			{
-				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(fullText), 
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(fullText),
 					StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 				if (searchComboBox.Items.Count == 0)
 				{
@@ -692,6 +771,24 @@ namespace CakeShopApp
 		private void CakeCategoryTextBlock_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			CakeCategoryTextBlock_Loaded(sender, new RoutedEventArgs());
+		}
+
+		private void MonthlyRevenueChart_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			MonthlyRevenueChart.Series = new SeriesCollection();
+			((DefaultTooltip)MonthlyRevenueChart.DataTooltip).SelectionMode = TooltipSelectionMode.OnlySender;
+			MonthlyRevenueChart.AxisY = new AxesCollection();
+			//foreach (var member in cake.MembersList)
+			//{
+			//	foreach (var cost in member.CostsList)
+			//	{
+			//		MonthlyRevenueChart.Series.Add(new ColumnSeries()
+			//		{
+			//			Values = new ChartValues<decimal> { cost.Charge },
+			//			Title = cost.PaymentName
+			//		}); ;
+			//	}
+			//}
 		}
 
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//

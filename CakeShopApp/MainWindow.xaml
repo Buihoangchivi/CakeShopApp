@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:CakeShopApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="690" Width="1152" Loaded="Window_Loaded"
@@ -725,16 +726,54 @@
         </Grid>
         
         <!--Thống kê danh thu-->
-        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="StatisticGrid" Margin="15,6" Visibility="Collapsed">
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="StatisticGrid" Margin="5" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Background="Red"/>
-            <TextBlock Grid.Column="1" Background="ForestGreen"/>
+            <!--Label thống kê doanh thu-->
+            <Border Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
 
+                <TextBlock FontSize="25" Text="THỐNG KÊ DOANH THU SẢN PHẨM" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{StaticResource ColorScheme}" FontWeight="ExtraBold" FontStyle="Italic"/>
+            </Border>
+
+            <!--Thống kê doanh thu theo tháng-->
+            <Border Grid.Row="1" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <!--Biểu đồ hình cột thể hiện doanh thu theo tháng-->
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Label doanh thu theo tháng-->
+                    <TextBlock Text="DOANH THU THEO THÁNG" HorizontalAlignment="Center"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Top"
+                               Foreground="{DynamicResource ColorScheme}"/>
+
+                    <!--Biểu đồ hình cột thể hiện doanh thu theo tháng-->
+                    <lvc:CartesianChart LegendLocation="Bottom" Grid.Row="1" Name="MonthlyRevenueChart" 
+                                        IsVisibleChanged="MonthlyRevenueChart_IsVisibleChanged"/>
+
+                </Grid>
+
+            </Border>
+            
         </Grid>
 
         <!--Nút cài đặt-->

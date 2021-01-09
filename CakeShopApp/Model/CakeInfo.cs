@@ -9,7 +9,7 @@ public class CakeInfo : INotifyPropertyChanged
 {
 	private string cakeName;
 	private string id;
-	private double price;
+	private string price;
 	private int number;
 
 	public string CakeName
@@ -36,7 +36,7 @@ public class CakeInfo : INotifyPropertyChanged
 			OnPropertyChanged("ID");
 		}
 	}
-	public double Price
+	public string Price
 	{
 		get
 		{
