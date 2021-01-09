@@ -27,13 +27,13 @@
     <PhoneNumber>0158442736</PhoneNumber>
     <Address>KTX khu A</Address>
     <PaymentMethod>1</PaymentMethod>
-    <TotalMoney>72647756</TotalMoney>
+    <TotalMoney>77738</TotalMoney>
     <Date>19/09/2021</Date>
     <CakesList>
       <CakeInfo>
         <CakeName>Bánh kem</CakeName>
         <ID>1</ID>
-        <Price>24214220</Price>
+        <Price>24214</Price>
         <Number>3</Number>
       </CakeInfo>
       <CakeInfo>

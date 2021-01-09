@@ -25,7 +25,7 @@
     <CakeName>Bánh kem</CakeName>
     <ID>1</ID>
     <Category>3</Category>
-    <Price>24214220</Price>
+    <Price>24214</Price>
     <PrimaryImagePath>Images/1.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>

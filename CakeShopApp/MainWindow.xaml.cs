@@ -778,17 +778,35 @@ namespace CakeShopApp
 			MonthlyRevenueChart.Series = new SeriesCollection();
 			((DefaultTooltip)MonthlyRevenueChart.DataTooltip).SelectionMode = TooltipSelectionMode.OnlySender;
 			MonthlyRevenueChart.AxisY = new AxesCollection();
-			//foreach (var member in cake.MembersList)
-			//{
-			//	foreach (var cost in member.CostsList)
-			//	{
-			//		MonthlyRevenueChart.Series.Add(new ColumnSeries()
-			//		{
-			//			Values = new ChartValues<decimal> { cost.Charge },
-			//			Title = cost.PaymentName
-			//		}); ;
-			//	}
-			//}
+
+			var monthlyRevenueList = new List<double>(Enumerable.Repeat(0.0, 12));
+			var result = 0.0;
+			//Tính toán doanh thu theo tháng
+			foreach (var bill in BillList)
+			{
+
+				//Chuyển chuỗi ngày tháng năm sang kiểu DateTime
+				DateTime date = DateTime.ParseExact(bill.Date, "dd/MM/yyyy", null);
+				//Tăng giá trị doanh thu trong tháng của hóa đơn
+				if (double.TryParse(bill.TotalMoney, out result))
+				{
+					monthlyRevenueList[date.Month - 1] += result;
+				}
+				
+			}
+
+			//Vẽ biểu đồ hình cột thể hiện doanh thu theo tháng
+			for (int month = 1; month <= 12; month++)
+			{
+
+				MonthlyRevenueChart.Series.Add(new ColumnSeries()
+				{
+					Values = new ChartValues<double> { monthlyRevenueList[month - 1] },
+					Title = $"Tháng {month}"
+				});
+
+			}
+
 		}
 
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
