@@ -14,6 +14,8 @@ public class Cake : INotifyPropertyChanged
 	private string primaryImagePath;        //Đường dẫn ảnh chính
 	private BindingList<CakeImage> imagesList;
 	private string description;
+	private string origin;
+	private string producer;
 
 	public string CakeName
 	{
@@ -101,6 +103,87 @@ public class Cake : INotifyPropertyChanged
 			description = value;
 			OnPropertyChanged("Description");
 		}
+	}
+	public string Origin
+	{
+		get
+		{
+			return origin;
+		}
+		set
+		{
+			origin = value;
+			OnPropertyChanged("Origin");
+		}
+	}
+	public string Producer
+	{
+		get
+		{
+			return producer;
+		}
+		set
+		{
+			producer = value;
+			OnPropertyChanged("Producer");
+		}
+	}
+
+	public Cake()
+	{
+		imagesList = new BindingList<CakeImage>();
+		//MembersList = new BindingList<Member>();
+	}
+
+	//Phương thức khởi tạo để chỉnh sửa món bánh ngọt
+	public Cake(Cake oldCake)
+	{
+		ID = oldCake.ID;
+		CakeName = string.Copy(oldCake.CakeName);
+		Origin = string.Copy(oldCake.Origin);
+		Producer = string.Copy(oldCake.Producer);
+		Category = oldCake.Category;
+		Price = string.Copy(oldCake.Price);
+		primaryImagePath = string.Copy(oldCake.PrimaryImagePath);
+
+		imagesList = new BindingList<CakeImage>();
+
+		foreach (var image in oldCake.ImagesList)
+		{
+			imagesList.Add(new CakeImage(image.ImagePath));
+		}
+
+		/*membersList = new BindingList<Member>();
+
+		foreach (var member in oldCake.MembersList)
+		{
+			if (member.MemberName != null)
+			{
+				membersList.Add(new Member()
+				{
+					MemberName = string.Copy(member.MemberName)
+				});
+			}
+			else
+			{
+				membersList.Add(new Member()
+				{
+					MemberName = ""
+				});
+			}
+
+
+			membersList[membersList.Count - 1].Deposits = int.Parse(member.Deposits.ToString());
+
+			foreach (var cost in member.CostsList)
+			{
+				membersList[membersList.Count - 1].CostsList.Add(new Cost()
+				{
+					Charge = cost.Charge,
+					PaymentName = cost.PaymentName
+				}); ;
+			}
+		}*/
 	}
 
 	#region INotifyPropertyChanged Members  

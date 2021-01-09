@@ -18,12 +18,14 @@
       </CakeImage>
     </ImagesList>
     <Description>Bánh tráng siêu to khổng lồ.</Description>
+    <Origin>Việt Nam</Origin>
+    <Producer>Kinh đô</Producer>
   </Cake>
   <Cake>
     <CakeName>Bánh kem</CakeName>
     <ID>1</ID>
     <Category>3</Category>
-    <Price>242120</Price>
+    <Price>24214220</Price>
     <PrimaryImagePath>Images/1.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
@@ -36,13 +38,15 @@
         <ImagePath>Images/2.jpg</ImagePath>
       </CakeImage>
     </ImagesList>
-    <Description>Bánh tráng siêu to khổng lồ.</Description>
+    <Description>Bánh kem siêu to khổng lồ.</Description>
+    <Origin>Ấn Độ</Origin>
+    <Producer>Oreo</Producer>
   </Cake>
   <Cake>
     <CakeName>Bánh bông lan</CakeName>
-    <ID>1</ID>
+    <ID>2</ID>
     <Category>2</Category>
-    <Price>124374</Price>
+    <Price>1274</Price>
     <PrimaryImagePath>Images/2.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
@@ -55,6 +59,8 @@
         <ImagePath>Images/2.jpg</ImagePath>
       </CakeImage>
     </ImagesList>
-    <Description>Bánh tráng siêu to khổng lồ.</Description>
+    <Description>Bánh bông lan siêu to khổng lồ.</Description>
+    <Origin>Hàn Quốc</Origin>
+    <Producer>Lotte</Producer>
   </Cake>
 </ArrayOfCake>
