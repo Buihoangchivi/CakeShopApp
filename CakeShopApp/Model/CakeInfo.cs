@@ -11,6 +11,7 @@ public class CakeInfo : INotifyPropertyChanged
 	private string id;
 	private string price;
 	private int number;
+	private int category;
 
 	public string CakeName
 	{
@@ -58,6 +59,18 @@ public class CakeInfo : INotifyPropertyChanged
 		{
 			number = value;
 			OnPropertyChanged("Number");
+		}
+	}
+	public int Category
+	{
+		get
+		{
+			return category;
+		}
+		set
+		{
+			category = value;
+			OnPropertyChanged("Category");
 		}
 	}
 

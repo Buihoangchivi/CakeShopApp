@@ -809,6 +809,44 @@ namespace CakeShopApp
 
 		}
 
+		private void CategoryRevenueChart_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			CategoryRevenueChart.Series = new SeriesCollection();
+			((DefaultTooltip)CategoryRevenueChart.DataTooltip).SelectionMode = TooltipSelectionMode.OnlySender;
+
+			//Xác định doanh thu theo từng loại bánh ngọt
+			var categoryRevenueList = new List<double>(Enumerable.Repeat(0.0, CakeCategoryList.Count));
+			var result = 0.0;
+			foreach (var bill in BillList)
+			{
+
+				//Tăng giá trị doanh thu theo loại cho các sản phẩm bánh trong hóa đơn
+				foreach (var cake in bill.CakesList)
+				{
+
+					if (double.TryParse(cake.Price, out result))
+					{
+						categoryRevenueList[cake.Category] += result * cake.Number;
+					}
+
+				}
+
+			}
+
+			//Chạy từng loại bánh ngọt
+			for (int index = 1; index < CakeCategoryList.Count; index++)
+			{
+
+				CategoryRevenueChart.Series.Add(new PieSeries()
+				{
+					Values = new ChartValues<double> { categoryRevenueList[index] },
+					Title = CakeCategoryList[index].Name
+				});
+
+			}
+
+		}
+
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
 		private void CakeListAppearAnimation()

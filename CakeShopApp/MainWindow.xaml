@@ -773,7 +773,33 @@
                 </Grid>
 
             </Border>
-            
+
+            <!--Thống kê doanh thu theo loại bánh-->
+            <Border Grid.Row="1" Grid.Column="1" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <!--Biểu đồ hình cột thể hiện doanh thu theo loại bánh-->
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Label doanh thu theo loại bánh-->
+                    <TextBlock Text="DOANH THU THEO LOẠI BÁNH" HorizontalAlignment="Center"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Top"
+                               Foreground="{DynamicResource ColorScheme}"/>
+
+                    <!--Biểu đồ hình tròn thể hiện doanh thu theo loại bánh-->
+                    <lvc:PieChart LegendLocation="Bottom" Grid.Row="1" Name="CategoryRevenueChart" 
+                                        IsVisibleChanged="CategoryRevenueChart_IsVisibleChanged"/>
+
+                </Grid>
+
+            </Border>
+
         </Grid>
 
         <!--Nút cài đặt-->

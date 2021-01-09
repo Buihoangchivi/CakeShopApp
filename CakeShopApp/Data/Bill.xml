@@ -13,12 +13,14 @@
         <ID>0</ID>
         <Price>10343</Price>
         <Number>5</Number>
+        <Category>1</Category>
       </CakeInfo>
       <CakeInfo>
         <CakeName>Bánh bông lan</CakeName>
         <ID>2</ID>
         <Price>1274</Price>
         <Number>10</Number>
+        <Category>2</Category>
       </CakeInfo>
     </CakesList>
   </Bill>
@@ -35,12 +37,14 @@
         <ID>1</ID>
         <Price>24214</Price>
         <Number>3</Number>
+        <Category>3</Category>
       </CakeInfo>
       <CakeInfo>
         <CakeName>Bánh bông lan</CakeName>
         <ID>2</ID>
         <Price>1274</Price>
         <Number>4</Number>
+        <Category>2</Category>
       </CakeInfo>
     </CakesList>
   </Bill>
