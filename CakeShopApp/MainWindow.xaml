@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:CakeShopApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="690" Width="1152" Loaded="Window_Loaded"
@@ -114,6 +115,7 @@
         <StackPanel x:Name="ControlStackPanel" Grid.Row="1" Grid.RowSpan="2" Visibility="Visible"
                     Grid.Column="0" Background="#FFDDDDDD" Width="250">
 
+            <!--Menu-->
             <Button Height="45" Name="MenuButton" Click="MenuButton_Click" BorderThickness="0" 
                     HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <Button.Style>
@@ -142,6 +144,7 @@
                 </WrapPanel>
             </Button>
 
+            <!--Trang chủ-->
             <Button Height="45" Name="HomeButton" BorderThickness="0" Click="ChangeClickedControlButton_Click"
                     HorizontalContentAlignment="Left" Padding="0,1,1,1">
                 <Button.Style>
@@ -169,6 +172,8 @@
                     <TextBlock VerticalAlignment="Center" Width="153" FontSize="15" Foreground="{Binding ColorScheme}">Trang chủ</TextBlock>
                 </WrapPanel>
             </Button>
+
+            <!--Thêm sản phẩm-->
             <Button Height="45" Name="AddCakeButton" Click="ChangeClickedControlButton_Click"
                     BorderThickness="0" HorizontalContentAlignment="Left">
                 <Button.Style>
@@ -197,6 +202,7 @@
                 </WrapPanel>
             </Button>
 
+            <!--Cài đặt-->
             <Button Height="45" Name="SettingButton" Click="ChangeClickedControlButton_Click"
                     BorderThickness="0" HorizontalContentAlignment="Left">
                 <Button.Style>
@@ -224,7 +230,37 @@
                     <TextBlock Name="SettingTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Cài đặt</TextBlock>
                 </WrapPanel>
             </Button>
+            
+            <!--Thống kê-->
+            <Button Height="45" Name="StatisticButton" Click="ChangeClickedControlButton_Click"
+                    BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FFDDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C4C4"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <WrapPanel>
+                    <TextBlock Name="StatisticTextBlock" Width="5" Height="45"></TextBlock>
+                    <Image Width="20" Margin="10,0" RenderOptions.BitmapScalingMode="HighQuality" Source="Images/statistic.png"></Image>
+                    <TextBlock Name="StatisticTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Thống kê</TextBlock>
+                </WrapPanel>
+            </Button>
 
+            <!--Thông tin-->
             <Button Height="45" Name="AboutButton" Click="ChangeClickedControlButton_Click"
                     BorderThickness="0" HorizontalContentAlignment="Left">
                 <Button.Style>
@@ -252,6 +288,7 @@
                     <TextBlock Name="AboutTitleTextBlock" VerticalAlignment="Center" Width="153" FontSize="15">Thông tin</TextBlock>
                 </WrapPanel>
             </Button>
+            
         </StackPanel>
 
         <!--Thanh để lọc loại thức ăn-->
@@ -414,8 +451,7 @@
                                                FontSize="15" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
 
                                     <Grid Width="203" Margin="0,5,0,0">
-                                        <Button Width="130" Height="30" Content="Mua hàng"
-                                            FontSize="14">
+                                        <Button Width="130" Height="30" Content="Mua hàng" FontSize="14">
                                             <Button.Style>
                                                 <Style TargetType="{x:Type Button}">
                                                     <Setter Property="Background" Value="White"/>
@@ -688,6 +724,149 @@
 
         </Grid>
         
+        <!--Thống kê danh thu-->
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="StatisticGrid" Margin="5" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Label thống kê doanh thu-->
+            <Border Grid.ColumnSpan="3" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <TextBlock FontSize="25" Text="THỐNG KÊ DOANH THU SẢN PHẨM" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{StaticResource ColorScheme}" FontWeight="ExtraBold" FontStyle="Italic"/>
+                
+            </Border>
+            
+            <!--Khung chọn tháng năm để thống kê-->
+            <Border Grid.Column="3" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <!--Dropdown chọn tháng-->
+                    <StackPanel Margin="0,0,12,0">
+
+                        <TextBlock FontSize="13" Width="80" Margin="0,0,0,3" Foreground="{DynamicResource ColorScheme}">Tháng</TextBlock>
+
+                        <ComboBox Name="MonthStatisticCombobox" Height="30" Width="85" FontSize="14" VerticalContentAlignment="Center"/>
+
+                    </StackPanel>
+                    
+                    <!--Dropdown chọn năm-->
+                    <StackPanel Margin="0,0,12,0">
+
+                        <TextBlock FontSize="13" Width="60" Margin="0,0,0,3" Foreground="{DynamicResource ColorScheme}">Năm</TextBlock>
+
+                        <ComboBox Name="YearStatisticCombobox" Height="30" Width="60" FontSize="14"
+                                  VerticalContentAlignment="Center"/>
+
+                    </StackPanel>
+                    
+                    <!--Nút thống kê-->
+                    <Button Width="100" Height="35" Content="THỐNG KÊ" FontSize="14" Click="Button_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ColorScheme}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource ColorScheme}"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource ColorScheme}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                </StackPanel>
+
+            </Border>
+
+            <!--Thống kê doanh thu theo tháng-->
+            <Border Grid.Row="1" Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <!--Biểu đồ hình cột thể hiện doanh thu theo tháng-->
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Label doanh thu theo tháng-->
+                    <TextBlock Text="DOANH THU THEO THÁNG" HorizontalAlignment="Center"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Top"
+                               Foreground="{DynamicResource ColorScheme}"/>
+
+                    <!--Biểu đồ hình cột thể hiện doanh thu theo tháng-->
+                    <lvc:CartesianChart LegendLocation="Bottom" Grid.Row="1" Name="MonthlyRevenueChart" 
+                                        IsVisibleChanged="MonthlyRevenueChart_IsVisibleChanged"/>
+
+                </Grid>
+
+            </Border>
+
+            <!--Thống kê doanh thu theo loại bánh-->
+            <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Background="Gainsboro" CornerRadius="10" Margin="10,10,0,10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <!--Biểu đồ hình cột thể hiện doanh thu theo loại bánh-->
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Label doanh thu theo loại bánh-->
+                    <TextBlock Text="DOANH THU THEO LOẠI BÁNH" HorizontalAlignment="Center"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Top"
+                               Foreground="{DynamicResource ColorScheme}"/>
+
+                    <!--Biểu đồ hình tròn thể hiện doanh thu theo loại bánh-->
+                    <lvc:PieChart LegendLocation="Bottom" Grid.Row="1" Name="CategoryRevenueChart" 
+                                        IsVisibleChanged="CategoryRevenueChart_IsVisibleChanged"/>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
         <!--Nút cài đặt-->
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="SettingStackPanel" Margin="15,6,0,0" Visibility="Collapsed">
             <TextBlock FontSize="16" Margin="0,0,0,10">Chọn màu cho ứng dụng</TextBlock>

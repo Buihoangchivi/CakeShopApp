@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -30,6 +32,7 @@ namespace CakeShopApp
 		public event PropertyChangedEventHandler PropertyChanged;
 		private Button clickedControlButton;
 		private List<Cake> CakeInfoList = new List<Cake>();     //Danh sách thông tin tất cả các chuyến đi
+		private List<Bill> BillList = new List<Bill>();         //Danh sách hóa đơn
 		public BindingList<CakeCategory> CakeCategoryList = new BindingList<CakeCategory> {
 			new CakeCategory { Name = "Tất cả" },
 			new CakeCategory { Name = "Bánh Bơ-gơ" },
@@ -40,17 +43,19 @@ namespace CakeShopApp
 			new CakeCategory { Name = "Bánh ổ dài" },
 			new CakeCategory { Name = "Các loại khác" }
 		};
+		public List<int> YearList = new List<int>();			//Danh sách 10 năm gần đây tính từ năm hiện tại
+		private List<string> MonthList = new List<string>();	//Danh sách 12 tháng trong 1 năm
 		private CollectionView view;
 		private BindingList<ColorSetting> ListColor = new BindingList<ColorSetting>       //Tạo dữ liệu màu cho ListColor
 		{
 			new ColorSetting { Color = "#FFCA5010" }, new ColorSetting { Color = "#FFFF8C00" }, new ColorSetting { Color = "#FFE81123" },
-			new ColorSetting { Color = "#FFD13438" }, new ColorSetting { Color = "#FFFF4081" }, new ColorSetting { Color = "#FFC30052" }, 
-			new ColorSetting { Color = "#FFBF0077" }, new ColorSetting { Color = "#FF9A0089" }, new ColorSetting { Color = "#FF881798" }, 
-			new ColorSetting { Color = "#FF744DA9" }, new ColorSetting { Color = "#FF4CAF50" }, new ColorSetting { Color = "#FF10893E" }, 
+			new ColorSetting { Color = "#FFD13438" }, new ColorSetting { Color = "#FFFF4081" }, new ColorSetting { Color = "#FFC30052" },
+			new ColorSetting { Color = "#FFBF0077" }, new ColorSetting { Color = "#FF9A0089" }, new ColorSetting { Color = "#FF881798" },
+			new ColorSetting { Color = "#FF744DA9" }, new ColorSetting { Color = "#FF4CAF50" }, new ColorSetting { Color = "#FF10893E" },
 			new ColorSetting { Color = "#FF018574" }, new ColorSetting { Color = "#FF03A9F4" }, new ColorSetting { Color = "#FF304FFE" },
 			new ColorSetting { Color = "#FF0063B1" }, new ColorSetting { Color = "#FF6B69D6" }, new ColorSetting { Color = "#FF8E8CD8" },
-			new ColorSetting { Color = "#FF8764B8" }, new ColorSetting { Color = "#FF038387" }, new ColorSetting { Color = "#FF525E54" }, 
-			new ColorSetting { Color = "#FF7E735F" }, new ColorSetting { Color = "#FF9E9E9E" }, new ColorSetting { Color = "#FF515C6B" }, 
+			new ColorSetting { Color = "#FF8764B8" }, new ColorSetting { Color = "#FF038387" }, new ColorSetting { Color = "#FF525E54" },
+			new ColorSetting { Color = "#FF7E735F" }, new ColorSetting { Color = "#FF9E9E9E" }, new ColorSetting { Color = "#FF515C6B" },
 			new ColorSetting { Color = "#FF000000" }
 		};
 
@@ -93,7 +98,7 @@ namespace CakeShopApp
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			
+
 			/*CakeInfoList = new List<Cake>
 			{
 				new Cake
@@ -121,7 +126,84 @@ namespace CakeShopApp
 					PrimaryImagePath = "Images/0.jpg"
 				}
 			};*/
+			/*BillList = new List<Bill>
+			{
+				new Bill
+				{
+					Address = "KTX khu B",
+					CakesList = new BindingList<CakeInfo>
+					{
+						new CakeInfo
+						{
+							CakeName = "Bánh tráng",
+							ID = "0",
+							Number = 5,
+							Price = "10343"
+						},
+						new CakeInfo
+						{
+							CakeName = "Bánh bông lan",
+							ID = "2",
+							Number = 10,
+							Price = "1274"
+						}
+					},
+					CustomerName = "Bùi Văn Vĩ",
+					Date = "09/01/2021",
+					PaymentMethod = 0,
+					PhoneNumber = "0124321432",
+					TotalMoney = 64455
+				},
+				new Bill
+				{
+					Address = "KTX khu A",
+					CakesList = new BindingList<CakeInfo>
+					{
+						new CakeInfo
+						{
+							CakeName = "Bánh kem",
+							ID = "1",
+							Number = 3,
+							Price = "24214220"
+						},
+						new CakeInfo
+						{
+							CakeName = "Bánh bông lan",
+							ID = "2",
+							Number = 4,
+							Price = "1274"
+						}
+					},
+					CustomerName = "Phạm Tấn",
+					Date = "19/09/2021",
+					PaymentMethod = 1,
+					PhoneNumber = "0158442736",
+					TotalMoney = 72647756
+				}
+			};*/
 
+			//Tạo list chứa 10 năm trở lại đây
+			DateTime today = DateTime.Today;
+			for (int i = today.Year - 5; i <= today.Year + 5; i++)
+			{
+
+				YearList.Add(i);
+
+			}
+			//Loại năm hiển thị ở màn hình thống kê
+			YearStatisticCombobox.ItemsSource = YearList;
+
+			//Tạo list chứa 12 tháng trong năm
+			for (int i = 1; i <= 12; i++)
+			{
+
+				MonthList.Add($"Tháng {i}");
+
+			}
+			//Loại tháng hiển thị ở màn hình thống kê
+			MonthStatisticCombobox.ItemsSource = MonthList;
+
+			//Loại bánh ngọt hiển thị ở màn hình trang chủ
 			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
 			CakeCategoryCombobox.SelectedItem = CakeCategoryList[0];
 
@@ -153,7 +235,7 @@ namespace CakeShopApp
 		{
 			InitializeComponent();
 
-			// Đọc dữ liệu các món ăn từ data
+			//Đọc dữ liệu các món bánh từ data
 			XmlSerializer xsFood = new XmlSerializer(typeof(List<Cake>));
 			try
 			{
@@ -165,6 +247,20 @@ namespace CakeShopApp
 			catch
 			{
 				CakeInfoList = new List<Cake>();
+			}
+
+			//Đọc dữ liệu các hóa đơn từ data
+			xsFood = new XmlSerializer(typeof(List<Bill>));
+			try
+			{
+				using (var reader = new StreamReader(@"Data\Bill.xml"))
+				{
+					BillList = (List<Bill>)xsFood.Deserialize(reader);
+				}
+			}
+			catch
+			{
+				BillList = new List<Bill>();
 			}
 
 			view = (CollectionView)CollectionViewSource.GetDefaultView(CakeInfoList);
@@ -245,9 +341,16 @@ namespace CakeShopApp
 		//Lưu lại danh sách món ăn
 		private void SaveListFood()
 		{
+			//Ghi dữ liệu của các món bánh
 			XmlSerializer xs = new XmlSerializer(typeof(List<Cake>));
 			TextWriter writer = new StreamWriter(@"Data\Cake.xml");
 			xs.Serialize(writer, CakeInfoList);
+			writer.Close();
+
+			//Ghi dữ liệu hóa đơn mua hàng
+			xs = new XmlSerializer(typeof(List<Bill>));
+			writer = new StreamWriter(@"Data\Bill.xml");
+			xs.Serialize(writer, BillList);
 			writer.Close();
 		}
 
@@ -406,9 +509,20 @@ namespace CakeShopApp
 			}
 		}
 
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+
+			//Cập nhật thống kê doanh thu theo tháng năm vừa chọn
+			MonthlyRevenueChart_IsVisibleChanged(null, new DependencyPropertyChangedEventArgs());
+
+			//Cập nhật thống kê doanh thu theo loại bánh trong năm vừa chọn
+			CategoryRevenueChart_IsVisibleChanged(null, new DependencyPropertyChangedEventArgs());
+
+		}
+
 		private void CakePriceTextBlock_Loaded(object sender, RoutedEventArgs e)
 		{
-			
+
 			var cake = ((TextBlock)sender).DataContext as Cake;
 			//Hiển thị ở màn hình trang chủ
 			if (cake != null)
@@ -418,7 +532,7 @@ namespace CakeShopApp
 			else //Hiển thị ở màn hình chi tiết
 			{
 				((TextBlock)sender).Text = FormatPriceString(CakeInfoList[selectedCakeIndex].Price) + " ₫";
-			}				
+			}
 
 		}
 
@@ -450,6 +564,8 @@ namespace CakeShopApp
 			CakeListGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình thêm chuyến đi mới
 			//AddCakeGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện thống kê doanh thu
+			StatisticGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình cài đặt
 			SettingStackPanel.Visibility = Visibility.Collapsed;
 			//Đóng giao diện thông tin developer
@@ -493,6 +609,15 @@ namespace CakeShopApp
 				}
 				AddCakeGrid.DataContext = Cake;
 			}*/
+			else if (button == StatisticButton)
+			{
+				//Mặc định hiển thị thống kê cho năm hiện tại
+				YearStatisticCombobox.SelectedItem = DateTime.Today.Year;
+				//Mặc định hiển thị thống kê cho tháng hiện tại
+				MonthStatisticCombobox.SelectedIndex = DateTime.Today.Month - 1;
+				StatisticGrid.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+			}
 			else if (button == SettingButton)
 			{
 				SettingStackPanel.Visibility = Visibility.Visible;
@@ -520,6 +645,13 @@ namespace CakeShopApp
 			FilterCondition.Type = CakeCategoryList[((ComboBox)sender).SelectedIndex].Name;
 			//Cập nhật lại giao diện
 			UpdateUIFromData();
+
+		}
+
+		private void YearStatisticCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+			
 
 		}
 
@@ -593,7 +725,7 @@ namespace CakeShopApp
 			}
 			else if (!string.IsNullOrEmpty(e.Text))
 			{
-				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(e.Text), 
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(e.Text),
 					StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 			}
 			else
@@ -611,7 +743,7 @@ namespace CakeShopApp
 
 				if (!string.IsNullOrEmpty(searchTextBox.Text))
 				{
-					searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(searchTextBox.Text), 
+					searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(searchTextBox.Text),
 						StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 					if (searchComboBox.Items.Count == 0)
 					{
@@ -638,7 +770,7 @@ namespace CakeShopApp
 
 			if (!string.IsNullOrEmpty(fullText))
 			{
-				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(fullText), 
+				searchComboBox.ItemsSource = CakeInfoList.Where(s => ConvertToUnSign(s.CakeName).IndexOf(ConvertToUnSign(fullText),
 					StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
 				if (searchComboBox.Items.Count == 0)
 				{
@@ -686,6 +818,106 @@ namespace CakeShopApp
 		{
 			CakeCategoryTextBlock_Loaded(sender, new RoutedEventArgs());
 		}
+
+		private void MonthlyRevenueChart_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			MonthlyRevenueChart.Series = new SeriesCollection();
+			((DefaultTooltip)MonthlyRevenueChart.DataTooltip).SelectionMode = TooltipSelectionMode.OnlySender;
+			MonthlyRevenueChart.AxisY = new AxesCollection();
+
+			var monthlyRevenueList = new List<double>(Enumerable.Repeat(0.0, 12));
+			var result = 0.0;
+			//Lấy năm đang được chọn
+			var selectedYear = 0;
+			int.TryParse(YearStatisticCombobox.SelectedItem.ToString(), out selectedYear);
+			//Tính toán doanh thu theo tháng
+			foreach (var bill in BillList)
+			{
+
+				//Chuyển chuỗi ngày tháng năm sang kiểu DateTime
+				DateTime date = DateTime.ParseExact(bill.Date, "dd/MM/yyyy", null);
+				//Kiểm tra có cùng tháng năm đã chọn hay không
+				if (date.Year == selectedYear)
+				{
+
+					//Tăng giá trị doanh thu trong tháng của hóa đơn
+					if (double.TryParse(bill.TotalMoney, out result))
+					{
+						monthlyRevenueList[date.Month - 1] += result;
+					}
+
+				}
+				
+			}
+
+			//Vẽ biểu đồ hình cột thể hiện doanh thu theo tháng
+			for (int month = 1; month <= 12; month++)
+			{
+
+				MonthlyRevenueChart.Series.Add(new ColumnSeries()
+				{
+					Values = new ChartValues<double> { monthlyRevenueList[month - 1] },
+					Title = $"Tháng {month}"
+				});
+
+			}
+
+		}
+
+		private void CategoryRevenueChart_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			CategoryRevenueChart.Series = new SeriesCollection();
+			((DefaultTooltip)CategoryRevenueChart.DataTooltip).SelectionMode = TooltipSelectionMode.OnlySender;
+
+			//Xác định doanh thu theo từng loại bánh ngọt
+			var categoryRevenueList = new List<double>(Enumerable.Repeat(0.0, CakeCategoryList.Count));
+			var result = 0.0;
+			//Lấy tháng năm đang được chọn
+			var selectedMonth = MonthStatisticCombobox.SelectedIndex + 1;
+			var selectedYear = 0;
+			int.TryParse(YearStatisticCombobox.SelectedItem.ToString(), out selectedYear);
+			foreach (var bill in BillList)
+			{
+
+				//Tăng giá trị doanh thu theo loại cho các sản phẩm bánh trong hóa đơn
+				foreach (var cake in bill.CakesList)
+				{
+
+					//Chuyển chuỗi ngày tháng năm sang kiểu DateTime
+					DateTime date = DateTime.ParseExact(bill.Date, "dd/MM/yyyy", null);
+					//Kiểm tra có cùng tháng năm đã chọn hay không hoặc có chọn xem thống kê Cả năm hay không
+					if (date.Month == selectedMonth && date.Year == selectedYear)
+					{
+						if (double.TryParse(cake.Price, out result))
+						{
+							categoryRevenueList[cake.Category] += result * cake.Number;
+						}
+					}
+
+				}
+
+			}
+
+			//Chạy từng loại bánh ngọt
+			for (int index = 1; index < CakeCategoryList.Count; index++)
+			{
+
+				//Kiểm tra loại bánh có khác 0 hay không
+				if (categoryRevenueList[index] > 0)
+				{
+
+					CategoryRevenueChart.Series.Add(new PieSeries()
+					{
+						Values = new ChartValues<double> { categoryRevenueList[index] },
+						Title = CakeCategoryList[index].Name
+					});
+
+				}
+
+			}
+
+		}
+
 
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 

@@ -9,8 +9,9 @@ public class CakeInfo : INotifyPropertyChanged
 {
 	private string cakeName;
 	private string id;
-	private double price;
+	private string price;
 	private int number;
+	private int category;
 
 	public string CakeName
 	{
@@ -36,7 +37,7 @@ public class CakeInfo : INotifyPropertyChanged
 			OnPropertyChanged("ID");
 		}
 	}
-	public double Price
+	public string Price
 	{
 		get
 		{
@@ -58,6 +59,18 @@ public class CakeInfo : INotifyPropertyChanged
 		{
 			number = value;
 			OnPropertyChanged("Number");
+		}
+	}
+	public int Category
+	{
+		get
+		{
+			return category;
+		}
+		set
+		{
+			category = value;
+			OnPropertyChanged("Category");
 		}
 	}
 

@@ -10,8 +10,8 @@ public class Bill : INotifyPropertyChanged
 	private string customerName;
 	private string phoneNumber;
 	private string address;
-	private double paymentMethod;
-	private double totalMoney;
+	private int paymentMethod;
+	private string totalMoney;
 	private string date;
 	private BindingList<CakeInfo> cakesList;
 
@@ -51,7 +51,7 @@ public class Bill : INotifyPropertyChanged
 			OnPropertyChanged("Address");
 		}
 	}
-	public double PaymentMethod
+	public int PaymentMethod
 	{
 		get
 		{
@@ -63,7 +63,7 @@ public class Bill : INotifyPropertyChanged
 			OnPropertyChanged("PaymentMethod");
 		}
 	}
-	public double TotalMoney
+	public string TotalMoney
 	{
 		get
 		{
