@@ -44,6 +44,7 @@ namespace CakeShopApp
 			new CakeCategory { Name = "Các loại khác" }
 		};
 		public List<int> YearList = new List<int>();			//Danh sách 10 năm gần đây tính từ năm hiện tại
+		private List<string> MonthList = new List<string>();	//Danh sách 12 tháng trong 1 năm
 		private CollectionView view;
 		private BindingList<ColorSetting> ListColor = new BindingList<ColorSetting>       //Tạo dữ liệu màu cho ListColor
 		{
@@ -191,6 +192,16 @@ namespace CakeShopApp
 			}
 			//Loại năm hiển thị ở màn hình thống kê
 			YearStatisticCombobox.ItemsSource = YearList;
+
+			//Tạo list chứa 12 tháng trong năm
+			for (int i = 1; i <= 12; i++)
+			{
+
+				MonthList.Add($"Tháng {i}");
+
+			}
+			//Loại tháng hiển thị ở màn hình thống kê
+			MonthStatisticCombobox.ItemsSource = MonthList;
 
 			//Loại bánh ngọt hiển thị ở màn hình trang chủ
 			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
@@ -498,6 +509,17 @@ namespace CakeShopApp
 			}
 		}
 
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+
+			//Cập nhật thống kê doanh thu theo tháng năm vừa chọn
+			MonthlyRevenueChart_IsVisibleChanged(null, new DependencyPropertyChangedEventArgs());
+
+			//Cập nhật thống kê doanh thu theo loại bánh trong năm vừa chọn
+			CategoryRevenueChart_IsVisibleChanged(null, new DependencyPropertyChangedEventArgs());
+
+		}
+
 		private void CakePriceTextBlock_Loaded(object sender, RoutedEventArgs e)
 		{
 
@@ -591,6 +613,8 @@ namespace CakeShopApp
 			{
 				//Mặc định hiển thị thống kê cho năm hiện tại
 				YearStatisticCombobox.SelectedItem = DateTime.Today.Year;
+				//Mặc định hiển thị thống kê cho tháng hiện tại
+				MonthStatisticCombobox.SelectedIndex = DateTime.Today.Month - 1;
 				StatisticGrid.Visibility = Visibility.Visible;
 				ControlStackPanel.Visibility = Visibility.Visible;
 			}
@@ -803,16 +827,25 @@ namespace CakeShopApp
 
 			var monthlyRevenueList = new List<double>(Enumerable.Repeat(0.0, 12));
 			var result = 0.0;
+			//Lấy năm đang được chọn
+			var selectedYear = 0;
+			int.TryParse(YearStatisticCombobox.SelectedItem.ToString(), out selectedYear);
 			//Tính toán doanh thu theo tháng
 			foreach (var bill in BillList)
 			{
 
 				//Chuyển chuỗi ngày tháng năm sang kiểu DateTime
 				DateTime date = DateTime.ParseExact(bill.Date, "dd/MM/yyyy", null);
-				//Tăng giá trị doanh thu trong tháng của hóa đơn
-				if (double.TryParse(bill.TotalMoney, out result))
+				//Kiểm tra có cùng tháng năm đã chọn hay không
+				if (date.Year == selectedYear)
 				{
-					monthlyRevenueList[date.Month - 1] += result;
+
+					//Tăng giá trị doanh thu trong tháng của hóa đơn
+					if (double.TryParse(bill.TotalMoney, out result))
+					{
+						monthlyRevenueList[date.Month - 1] += result;
+					}
+
 				}
 				
 			}
@@ -839,6 +872,10 @@ namespace CakeShopApp
 			//Xác định doanh thu theo từng loại bánh ngọt
 			var categoryRevenueList = new List<double>(Enumerable.Repeat(0.0, CakeCategoryList.Count));
 			var result = 0.0;
+			//Lấy tháng năm đang được chọn
+			var selectedMonth = MonthStatisticCombobox.SelectedIndex + 1;
+			var selectedYear = 0;
+			int.TryParse(YearStatisticCombobox.SelectedItem.ToString(), out selectedYear);
 			foreach (var bill in BillList)
 			{
 
@@ -846,9 +883,15 @@ namespace CakeShopApp
 				foreach (var cake in bill.CakesList)
 				{
 
-					if (double.TryParse(cake.Price, out result))
+					//Chuyển chuỗi ngày tháng năm sang kiểu DateTime
+					DateTime date = DateTime.ParseExact(bill.Date, "dd/MM/yyyy", null);
+					//Kiểm tra có cùng tháng năm đã chọn hay không hoặc có chọn xem thống kê Cả năm hay không
+					if (date.Month == selectedMonth && date.Year == selectedYear)
 					{
-						categoryRevenueList[cake.Category] += result * cake.Number;
+						if (double.TryParse(cake.Price, out result))
+						{
+							categoryRevenueList[cake.Category] += result * cake.Number;
+						}
 					}
 
 				}
@@ -859,15 +902,22 @@ namespace CakeShopApp
 			for (int index = 1; index < CakeCategoryList.Count; index++)
 			{
 
-				CategoryRevenueChart.Series.Add(new PieSeries()
+				//Kiểm tra loại bánh có khác 0 hay không
+				if (categoryRevenueList[index] > 0)
 				{
-					Values = new ChartValues<double> { categoryRevenueList[index] },
-					Title = CakeCategoryList[index].Name
-				});
+
+					CategoryRevenueChart.Series.Add(new PieSeries()
+					{
+						Values = new ChartValues<double> { categoryRevenueList[index] },
+						Title = CakeCategoryList[index].Name
+					});
+
+				}
 
 			}
 
 		}
+
 
 		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 

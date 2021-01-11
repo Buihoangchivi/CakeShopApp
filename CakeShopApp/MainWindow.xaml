@@ -750,7 +750,7 @@
                 
             </Border>
             
-            <!--Khung chọn năm để thống kê-->
+            <!--Khung chọn tháng năm để thống kê-->
             <Border Grid.Column="3" Background="Gainsboro" CornerRadius="10" Margin="10,5,0,0">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
@@ -763,13 +763,7 @@
 
                         <TextBlock FontSize="13" Width="80" Margin="0,0,0,3" Foreground="{DynamicResource ColorScheme}">Tháng</TextBlock>
 
-                        <ComboBox Name="MonthStatisticCombobox" Height="30" Width="80" FontSize="14" VerticalContentAlignment="Center">
-
-                            <ComboBoxItem>Tháng 1</ComboBoxItem>
-                            <ComboBoxItem>Tháng 2</ComboBoxItem>
-                            <ComboBoxItem>Tháng 3</ComboBoxItem>
-
-                        </ComboBox>
+                        <ComboBox Name="MonthStatisticCombobox" Height="30" Width="85" FontSize="14" VerticalContentAlignment="Center"/>
 
                     </StackPanel>
                     
@@ -778,12 +772,13 @@
 
                         <TextBlock FontSize="13" Width="60" Margin="0,0,0,3" Foreground="{DynamicResource ColorScheme}">Năm</TextBlock>
 
-                        <ComboBox Name="YearStatisticCombobox" Height="30" Width="60" FontSize="14" VerticalContentAlignment="Center"/>
+                        <ComboBox Name="YearStatisticCombobox" Height="30" Width="60" FontSize="14"
+                                  VerticalContentAlignment="Center"/>
 
                     </StackPanel>
                     
                     <!--Nút thống kê-->
-                    <Button Width="100" Height="35" Content="THỐNG KÊ" FontSize="14">
+                    <Button Width="100" Height="35" Content="THỐNG KÊ" FontSize="14" Click="Button_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="White"/>
