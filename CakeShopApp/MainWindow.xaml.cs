@@ -610,9 +610,58 @@ namespace CakeShopApp
 			//config.Save(ConfigurationSaveMode.Minimal);
 		}
 
-		//---------------------------------------- Các hàm xử lý khác --------------------------------------------//
+  //      private void fullNameTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+  //      {
+		//	if (!string.IsNullOrEmpty(fullNameTextBox.Text))
+  //          {
+		//		fullNamePlaceHolderTextBox.Text = "";
+  //          }
 
-		private void CakeListAppearAnimation()
+  //      }
+
+  //      private void fullNameTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+  //      {
+		//	if (string.IsNullOrEmpty(fullNameTextBox.Text))
+		//	{
+		//		fullNamePlaceHolderTextBox.Text = "Họ và tên:";
+		//	}
+		//}
+
+  //      private void phoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+  //      {
+		//	if (!string.IsNullOrEmpty(phoneTextBox.Text))
+		//	{
+		//		phonePlaceHolderTextBox.Text = "";
+		//	}
+		//}
+
+  //      private void phoneTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+  //      {
+		//	if (string.IsNullOrEmpty(phoneTextBox.Text))
+		//	{
+		//		phonePlaceHolderTextBox.Text = "Số điện thoại:";
+		//	}
+		//}
+
+  //      private void addressTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+  //      {
+		//	if (!string.IsNullOrEmpty(addressTextBox.Text))
+		//	{
+		//		addressPlaceHolderTextBox.Text = "";
+		//	}
+		//}
+
+  //      private void addressTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+  //      {
+		//	if (string.IsNullOrEmpty(addressTextBox.Text))
+		//	{
+		//		addressPlaceHolderTextBox.Text = "Địa chỉ:";
+		//	}
+		//}
+
+        //---------------------------------------- Các hàm xử lý khác --------------------------------------------//
+
+        private void CakeListAppearAnimation()
 		{
 			ThicknessAnimation animation = new ThicknessAnimation();
 			animation.AccelerationRatio = 0.9;
