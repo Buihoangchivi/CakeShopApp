@@ -59,6 +59,8 @@ namespace CakeShopApp
 		private bool isMinimizeMenu, isEditMode, IsDetailCake;
 		int selectedCakeIndex = 0;
 
+		
+
 		private string _colorScheme = "";           //Màu nền hiện tại
 		public string ColorScheme
 		{
@@ -610,54 +612,120 @@ namespace CakeShopApp
 			//config.Save(ConfigurationSaveMode.Minimal);
 		}
 
-  //      private void fullNameTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-  //      {
-		//	if (!string.IsNullOrEmpty(fullNameTextBox.Text))
-  //          {
-		//		fullNamePlaceHolderTextBox.Text = "";
-  //          }
+        private void shoppingCartButton_Click(object sender, RoutedEventArgs e)
+        {
+			if (orderCompleteButton.IsEnabled == false)
+			{
+				MessageBox.Show("Bạn đã thanh toán xong rối!!!","Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			else
+            {
+				shoppingCartButton.IsEnabled = false;
+				checkOutDetailsButton.IsEnabled = true;
+				orderCompleteButton.IsEnabled = true;
+				CakeInfo.Visibility = Visibility.Visible;
+				Payment.Visibility = Visibility.Visible;
+				CustomerInfo.Visibility = Visibility.Collapsed;
+				BillInfo.Visibility = Visibility.Collapsed;
+				order.Visibility = Visibility.Collapsed;
+			}
+			
+			
+		}
 
-  //      }
+        private void checkOutDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+			if (orderCompleteButton.IsEnabled == false)
+			{
+				MessageBox.Show("Bạn đã thanh toán xong rối!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			else
+            {
+				checkOutDetailsButton.IsEnabled = false;
+				shoppingCartButton.IsEnabled = true;
+				orderCompleteButton.IsEnabled = true;
+				CakeInfo.Visibility = Visibility.Collapsed;
+				Payment.Visibility = Visibility.Collapsed;
+				CustomerInfo.Visibility = Visibility.Visible;
+				BillInfo.Visibility = Visibility.Visible;
+				order.Visibility = Visibility.Collapsed;
+			}
+			
 
-  //      private void fullNameTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
-  //      {
-		//	if (string.IsNullOrEmpty(fullNameTextBox.Text))
-		//	{
-		//		fullNamePlaceHolderTextBox.Text = "Họ và tên:";
-		//	}
-		//}
+		}
 
-  //      private void phoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-  //      {
-		//	if (!string.IsNullOrEmpty(phoneTextBox.Text))
-		//	{
-		//		phonePlaceHolderTextBox.Text = "";
-		//	}
-		//}
+        private void orderCompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+			orderCompleteButton.IsEnabled = false;
+			shoppingCartButton.IsEnabled = true;
+			checkOutDetailsButton.IsEnabled = true;
+			CakeInfo.Visibility = Visibility.Collapsed;
+			Payment.Visibility = Visibility.Collapsed;
+			CustomerInfo.Visibility = Visibility.Collapsed;
+			BillInfo.Visibility = Visibility.Collapsed;
+			order.Visibility = Visibility.Visible;
+		}
 
-  //      private void phoneTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
-  //      {
-		//	if (string.IsNullOrEmpty(phoneTextBox.Text))
-		//	{
-		//		phonePlaceHolderTextBox.Text = "Số điện thoại:";
-		//	}
-		//}
+        private void orderButton_Click(object sender, RoutedEventArgs e)
+        {
+			orderCompleteButton_Click(null, e);
+        }
 
-  //      private void addressTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-  //      {
-		//	if (!string.IsNullOrEmpty(addressTextBox.Text))
-		//	{
-		//		addressPlaceHolderTextBox.Text = "";
-		//	}
-		//}
+        private void payButton_Click(object sender, RoutedEventArgs e)
+        {
+			checkOutDetailsButton_Click(null, e);
+        }
 
-  //      private void addressTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
-  //      {
-		//	if (string.IsNullOrEmpty(addressTextBox.Text))
-		//	{
-		//		addressPlaceHolderTextBox.Text = "Địa chỉ:";
-		//	}
-		//}
+
+
+        //      private void fullNameTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        //      {
+        //	if (!string.IsNullOrEmpty(fullNameTextBox.Text))
+        //          {
+        //		fullNamePlaceHolderTextBox.Text = "";
+        //          }
+
+        //      }
+
+        //      private void fullNameTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        //      {
+        //	if (string.IsNullOrEmpty(fullNameTextBox.Text))
+        //	{
+        //		fullNamePlaceHolderTextBox.Text = "Họ và tên:";
+        //	}
+        //}
+
+        //      private void phoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        //      {
+        //	if (!string.IsNullOrEmpty(phoneTextBox.Text))
+        //	{
+        //		phonePlaceHolderTextBox.Text = "";
+        //	}
+        //}
+
+        //      private void phoneTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        //      {
+        //	if (string.IsNullOrEmpty(phoneTextBox.Text))
+        //	{
+        //		phonePlaceHolderTextBox.Text = "Số điện thoại:";
+        //	}
+        //}
+
+        //      private void addressTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        //      {
+        //	if (!string.IsNullOrEmpty(addressTextBox.Text))
+        //	{
+        //		addressPlaceHolderTextBox.Text = "";
+        //	}
+        //}
+
+        //      private void addressTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        //      {
+        //	if (string.IsNullOrEmpty(addressTextBox.Text))
+        //	{
+        //		addressPlaceHolderTextBox.Text = "Địa chỉ:";
+        //	}
+        //}
 
         //---------------------------------------- Các hàm xử lý khác --------------------------------------------//
 
