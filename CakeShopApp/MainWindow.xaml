@@ -456,9 +456,123 @@
                 </ItemsControl>
             </Grid>
         </ScrollViewer>
+        
+        <!--Danh sách hóa đơn-->
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="invoiceListGrid" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="10*"/>
+                <!--<RowDefinition Height="2*"/>
+                <RowDefinition Height="10*"/>-->
+                <RowDefinition Height="45"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="5" Grid.Column="1" FontSize="25" Text="DANH SÁCH HÓA ĐƠN" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{DynamicResource ColorScheme}" FontWeight="ExtraBold" FontStyle="Italic"/>
+
+            <Border Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="8"
+                    Background="Gainsboro" CornerRadius="10" Margin="0,0,20,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+            </Border>
+
+            <GridSplitter Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Width="Auto" Height="1" 
+                              VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Background="Black"
+                             />
+
+            
+
+            <TextBlock Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" FontSize="15" 
+                           FontFamily="Segoe UI Semibold" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                Mã hóa đơn
+            </TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="3" TextWrapping="Wrap" FontSize="15" 
+                           FontFamily="Segoe UI Semibold" VerticalAlignment="Center" HorizontalAlignment="Center">
+                Ngày tạo
+            </TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="4" TextWrapping="Wrap" FontSize="15" 
+                           FontFamily="Segoe UI Semibold" VerticalAlignment="Center" HorizontalAlignment="Center">
+                Tên khách hàng
+            </TextBlock>
+       
+
+            <TextBlock Grid.Row="2" Grid.Column="5" TextWrapping="Wrap" FontSize="15" 
+                           FontFamily="Segoe UI Semibold" VerticalAlignment="Center" HorizontalAlignment="Center">
+                Tổng tiền
+            </TextBlock>
+
+            <ListView Grid.Row="3" Grid.Column="2" Name="invoiceListGridListView" Grid.ColumnSpan="5"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0"
+                            ItemsSource="{Binding ListBill}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                               
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                
+                            </Grid.ColumnDefinitions>
+
+                            <!--Mã hóa đơn-->                           
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="{Binding Price}"
+                                           FontWeight="Medium" FontSize="16"/>
+
+                            <!--Ngày tạo đơn-->
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Date}"
+                                           FontWeight="Medium" FontSize="16"/>
+
+                            <!--Tên khách hàng-->
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding CustomerName}"
+                                           FontWeight="Medium" FontSize="16"/>
+
+                            <!--Tổng tiền-->
+                            <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{Binding TotalMoney}"
+                                           FontWeight="Medium" FontSize="16"/>
+
+
+
+
+
+
+                            
+
+                        </Grid>
+
+                       
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
 
         <!--Thêm vào giỏ hàng-->
-        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="Cart" Visibility="Visible">
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="Cart" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="2*"/>
@@ -629,7 +743,7 @@
                 
             
             <!--Màn hình CHECKOUT DETAILS gồm 2 Grid-->
-            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Name="CustomerInfo" Visibility="Visible">
+            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Name="CustomerInfo" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
@@ -767,7 +881,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="BillInfo" Visibility="Visible">
+            <Grid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="BillInfo" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>

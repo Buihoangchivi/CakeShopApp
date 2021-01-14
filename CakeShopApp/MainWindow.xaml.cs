@@ -54,6 +54,8 @@ namespace CakeShopApp
 			new ColorSetting { Color = "#FF000000" }
 		};
 
+		private BindingList<Bill> ListBill = new BindingList<Bill>();
+
 		private Condition FilterCondition = new Condition { Type = "" };
 		public Cake Cake = new Cake();
 		private bool isMinimizeMenu, isEditMode, IsDetailCake;
@@ -169,6 +171,20 @@ namespace CakeShopApp
 				CakeInfoList = new List<Cake>();
 			}
 
+			// Đọc dữ liệu Bill từ data
+			XmlSerializer xsBill = new XmlSerializer(typeof(BindingList<Bill>));
+			try
+			{
+				using (var reader = new StreamReader(@"Data\Bill.xml"))
+				{
+					ListBill = (BindingList<Bill>)xsBill.Deserialize(reader);
+				}
+			}
+			catch
+			{
+				ListBill = new BindingList<Bill>();
+			}
+
 			view = (CollectionView)CollectionViewSource.GetDefaultView(CakeInfoList);
 		}
 
@@ -253,6 +269,14 @@ namespace CakeShopApp
 			writer.Close();
 		}
 
+		private void SaveListBill()
+		{
+			XmlSerializer xs = new XmlSerializer(typeof(BindingList<Bill>));
+			TextWriter writer = new StreamWriter(@"Data\Bill.xml");
+			xs.Serialize(writer, ListBill);
+			writer.Close();
+		}
+
 
 		//---------------------------------------- Xử lý cửa sổ --------------------------------------------//
 
@@ -260,6 +284,7 @@ namespace CakeShopApp
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			SaveListFood();
+			SaveListBill();
 			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 			//config.AppSettings.Settings["ColorScheme"].Value = ColorScheme;
 			//config.Save(ConfigurationSaveMode.Minimal);
