@@ -11,7 +11,9 @@ public class CakeInfo : INotifyPropertyChanged
 	private string id;
 	private string price;
 	private int number;
+	private string total;
 	private int category;
+	private string primaryImagePath;        //Đường dẫn ảnh chính
 
 	public string CakeName
 	{
@@ -61,6 +63,18 @@ public class CakeInfo : INotifyPropertyChanged
 			OnPropertyChanged("Number");
 		}
 	}
+	public string Total
+	{
+		get
+		{
+			return total;
+		}
+		set
+		{
+			total = value;
+			OnPropertyChanged("Total");
+		}
+	}
 	public int Category
 	{
 		get
@@ -71,6 +85,21 @@ public class CakeInfo : INotifyPropertyChanged
 		{
 			category = value;
 			OnPropertyChanged("Category");
+		}
+	}
+	public string PrimaryImagePath
+	{
+		get
+		{
+			return primaryImagePath;
+		}
+		set
+		{
+			primaryImagePath = value;
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs("PrimaryImagePath"));
+			}
 		}
 	}
 

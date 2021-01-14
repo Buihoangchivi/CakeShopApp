@@ -14,6 +14,7 @@
 
     <Window.Resources>
         <local:Converter x:Key="converter"/>
+        <local:PriceConverter x:Key="PriceConverter"/>
         <DataTemplate x:Key="groupingHeaderTemplate">
             <TextBlock Foreground ="{Binding ColorScheme}"
              FontWeight="Bold" FontSize="16"/>
@@ -475,11 +476,11 @@
                                     <TextBlock Text="{Binding CakeName}" TextAlignment="Left" TextWrapping="Wrap" Width="204" 
                                                FontSize="15" Padding="3,1" MaxHeight="300" FontFamily="Segoe UI Semibold"></TextBlock>
 
-                                    <TextBlock Width="204" TextAlignment="Left" TextWrapping="Wrap" Loaded="CakePriceTextBlock_Loaded"
+                                    <TextBlock Width="204" TextAlignment="Left" TextWrapping="Wrap" Text="{Binding Price, Converter={StaticResource PriceConverter}}"
                                                FontSize="15" Padding="3,1" MaxHeight="300" Foreground="OrangeRed"></TextBlock>
 
                                     <Grid Width="203" Margin="0,2,0,5">
-                                        <Button Width="130" Height="30" Content="Mua hàng" FontSize="14">
+                                        <Button Width="130" Height="30" Content="Mua hàng" FontSize="14" Click="BuyCake_Click">
                                             <Button.Style>
                                                 <Style TargetType="{x:Type Button}">
                                                     <Setter Property="Background" Value="White"/>
@@ -991,24 +992,24 @@
         <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="CartGrid" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="45"/>
+                <RowDefinition Height="55"/>
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="20"/>
+
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="shoppingCartButton" Foreground="White" Height="33" VerticalAlignment="Bottom"
-                        Margin="0,0,10,0" Click="shoppingCartButton_Click" BorderThickness="0"
+                        Click="shoppingCartButton_Click" BorderThickness="0"
                         Background="{DynamicResource ColorScheme}">
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -1048,60 +1049,185 @@
             </StackPanel>
 
             <!--Màn hình SHOPPING CART gồm 2 Grid-->
-            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="CakeInfo" Visibility="Visible">
+            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Visible" Name="CakeInfo">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="10*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4"
-                    Background="Gainsboro" CornerRadius="10" Margin="0,0,20,0">
+                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="6"
+                    Background="Gainsboro" CornerRadius="10">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
                     </Border.Effect>
 
                 </Border>
 
-
-
-                <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" FontSize="15" 
-                           FontFamily="Segoe UI Semibold" VerticalAlignment="Center"
-                           HorizontalAlignment="Center">
-                    SẢN PHẨM
-                </TextBlock>
                 <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" FontSize="15" 
-                           FontFamily="Segoe UI Semibold"
-                           VerticalAlignment="Center" HorizontalAlignment="Center">
-                    GIÁ
+                           FontFamily="Segoe UI Semibold" VerticalAlignment="Center"
+                           HorizontalAlignment="Left">
+                    SẢN PHẨM
                 </TextBlock>
                 <TextBlock Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" FontSize="15" 
                            FontFamily="Segoe UI Semibold"
-                           VerticalAlignment="Center" HorizontalAlignment="Center">
-                    SỐ LƯỢNG
+                           VerticalAlignment="Center" HorizontalAlignment="Left">
+                    GIÁ
                 </TextBlock>
                 <TextBlock Grid.Row="0" Grid.Column="3" TextWrapping="Wrap" FontSize="15" 
                            FontFamily="Segoe UI Semibold"
                            VerticalAlignment="Center" HorizontalAlignment="Center">
+                    SỐ LƯỢNG
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="4" TextWrapping="Wrap" FontSize="15" 
+                           FontFamily="Segoe UI Semibold"
+                           VerticalAlignment="Center" HorizontalAlignment="Right">
                     TỔNG
                 </TextBlock>
+
+                <!--Nút thanh toán-->
+                <Button Grid.Row="3" Grid.ColumnSpan="6" Name="payButton" Height="33"
+                        Margin="0,0,20,0" Width="150" VerticalContentAlignment="Center"
+                        BorderThickness="1.3" Click="payButton_Click" HorizontalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ColorScheme}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource ColorScheme}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource ColorScheme}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Style>
+                    </Button.Resources>
+                    <TextBlock VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Margin="12,0">THANH TOÁN</TextBlock>
+                </Button>
+                
                 <!--<GridSplitter Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="1"
                                Margin="0,10,0,10" Background="Black"/>
                 <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Width="1"
                                Margin="0,10,0,10" Background="Black"/>
                 <GridSplitter Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="1"
                                Margin="0,10,0,10" Background="Black"/>-->
-                <GridSplitter Grid.Row="0" Grid.ColumnSpan="4" Width="Auto" Height="1" 
-                              VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Background="Black"
-                              Margin="30,0,50,0"/>
+                <GridSplitter Grid.Row="0" Grid.ColumnSpan="4" Width="Auto" Height="1" Grid.Column="1"
+                              VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Background="Black"/>
+                <GridSplitter Grid.Row="1" Grid.ColumnSpan="4" Width="Auto" Height="1" Grid.Column="1"
+                              VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Background="Black"/>
+
+                <!--Khung hiển thị thông tin sản phẩm trong giỏ hàng-->
+                <ListView Grid.Row="1" Name="CakeInCartListView" Grid.ColumnSpan="6"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0">
+                    <!--<ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>-->
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="25"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button BorderThickness="1.5" Background="{x:Null}" Margin="0,0,3,0"
+                                        VerticalAlignment="Center" Click="DeleteCakeInCart_Click">
+
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="15"/>
+                                        </Style>
+                                    </Button.Resources>
+
+                                    <Image Source="Images/deleteText.png" RenderOptions.BitmapScalingMode="HighQuality"
+                                           Margin="4"/>
+
+                                </Button>
+
+                                <!--<Button Background="{x:Null}" BorderThickness="1">
+                                    <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="5" Source="Images/close.png"></Image>
+                                </Button>-->
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,4">
+
+                                    <!--Hình ảnh món bánh-->
+                                    <Image Source="{Binding PrimaryImagePath, Converter={StaticResource converter}}" 
+                                       Stretch="UniformToFill" Width="80" Height="80"
+                                       RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"/>
+
+                                    <!--Tên bánh-->
+                                    <TextBlock Grid.Column="1" Text="{Binding CakeName}" VerticalAlignment="Center" TextWrapping="Wrap"
+                                               FontWeight="Medium" FontSize="16" Width="300" Margin="8,0,0,0"/>
+
+                                </StackPanel>
+
+                                <!--Giá bánh ngọt-->
+                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Price, Converter={StaticResource PriceConverter}}"
+                                           FontWeight="Medium" FontSize="16"/>
+
+                                <!--Số lượng bánh-->
+                                <TextBox Name="numberofCake" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontWeight="Medium" Text="{Binding Number}" FontSize="16" KeyDown="numberofCake_KeyDown"/>
+
+                                <!--Tổng tiền-->
+                                <TextBlock Name="totalMoney" Grid.Column="4"  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                           FontWeight="Medium" FontSize="16" Text="{Binding Total}"/>
+
+                            </Grid>
+
+                            <!--<Button Background="Red" HorizontalAlignment="Stretch"/>-->
+
+                            <!--<Rectangle RadiusX="10" RadiusY="10" Width="128" Height="90">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" 
+                                       Stretch="UniformToFill"
+                                       RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" />
+                                </Rectangle.Fill>
+                            </Rectangle>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" x:Name="Payment" Visibility="Visible">
+           
+
+            <!--<Grid Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" x:Name="Payment" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
@@ -1120,10 +1246,10 @@
                 <TextBlock Grid.Row="0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" 
                            FontFamily="Segoe UI Semibold" Margin="10,0,0,0" Text="CART TOTALS"/>
 
-                <!--<TextBlock Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" 
+                --><!--<TextBlock Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" 
                            FontFamily="Segoe UI Semibold">
                     PHÍ GIAO HÀNG
-                </TextBlock>-->
+                </TextBlock>--><!--
                 <TextBlock Grid.Row="1" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" 
                            FontFamily="Segoe UI Semibold" Text="TỔNG TIỀN" Margin="10,0,0,0"/>
 
@@ -1171,7 +1297,7 @@
 
 
 
-            </Grid>
+            </Grid>-->
 
 
             <!--Màn hình CHECKOUT DETAILS gồm 2 Grid-->
@@ -1231,7 +1357,7 @@
                            Margin="10,10,0,0" FontWeight="Medium">Họ và tên:</TextBlock>
                     <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
                         Width="230" Height="30" Margin="35,10,0,0" Background="GhostWhite">
-                        <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}"
+                        <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}" Text="{Binding CustomerName}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </StackPanel>
@@ -1245,7 +1371,7 @@
                            Margin="10,10,0,0" FontWeight="Medium">Số điện thoại:</TextBlock>
                     <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
                         Width="230" Height="30" Margin="10,10,0,0" Background="GhostWhite">
-                        <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}"
+                        <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}" Text="{Binding PhoneNumber}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </StackPanel>
@@ -1255,7 +1381,7 @@
                            Margin="10,10,0,0" FontWeight="Medium">Địa chỉ:</TextBlock>
                     <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
                         Width="230" Height="30" Margin="56,10,0,5" Background="GhostWhite">
-                        <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}"
+                        <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}" Text="{Binding Address}"
                              Margin="5,0,0,5" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </StackPanel>
@@ -1266,14 +1392,14 @@
                     PHƯƠNG THỨC THANH TOÁN
                 </TextBlock>
 
-                <CheckBox Grid.Row="5"
+                <RadioButton Grid.Row="5" GroupName="paymentMethod" 
             Content="Thanh toán trực tiếp"
             HorizontalAlignment="Left"
             Margin="10,10,0,0"
             VerticalAlignment="Top"
             />
 
-                <CheckBox Grid.Row="5" Grid.Column="1"
+                <RadioButton Grid.Row="5" Grid.Column="1" GroupName="paymentMethod"
             Content="Giao hàng tận nơi"
             HorizontalAlignment="Left"
             Margin="10,10,0,0"
@@ -1313,7 +1439,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="BillInfo" Visibility="Collapsed">
+            <Grid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Name="BillInfo" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -1364,6 +1490,56 @@
                            Margin="0,0,30,0" FontWeight="Medium">
                     GIÁ
                 </TextBlock>
+                <ListView Grid.Row="2" Name="CakeInCheckOutListView" Grid.ColumnSpan="6"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0">
+                    <!--<ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>-->
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    
+                                </Grid.ColumnDefinitions>
+
+                                <!--Tổng tiền-->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Grid.Column="0" Text="{Binding CakeName}" VerticalAlignment="Center"
+                                               FontWeight="Medium" FontSize="16" Margin="25,0,0,0" TextWrapping="Wrap" Width="250" />
+                                    <TextBlock Text=" X " FontWeight="Medium" FontSize="16" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Number}" VerticalAlignment="Center"
+                                               FontWeight="Medium" FontSize="16" />
+                                   
+
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="1" Text="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                               FontWeight="Medium" FontSize="16" Margin="8,0,20,0" Loaded="CakePriceTextBlock_Loaded" />
+
+                            </Grid>
+
+                            <!--<Button Background="Red" HorizontalAlignment="Stretch"/>-->
+
+                            <!--<Rectangle RadiusX="10" RadiusY="10" Width="128" Height="90">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" 
+                                       Stretch="UniformToFill"
+                                       RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" />
+                                </Rectangle.Fill>
+                            </Rectangle>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
                 <DockPanel Grid.Row="3" Grid.ColumnSpan="2">
                     <TextBlock VerticalAlignment="Center" FontSize="16" 

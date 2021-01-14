@@ -32,7 +32,7 @@ namespace CakeShopApp
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private Button clickedControlButton;
-		private List<Cake> CakeInfoList = new List<Cake>();     //Danh sách thông tin tất cả các chuyến đi
+		private List<Cake> CakeInfoList = new List<Cake>();     //Danh sách thông tin tất cả các món bánh ngọt
 		private List<Bill> BillList = new List<Bill>();         //Danh sách hóa đơn
 		public BindingList<CakeCategory> CakeCategoryList = new BindingList<CakeCategory> {
 			new CakeCategory { Name = "Tất cả" },
@@ -45,7 +45,8 @@ namespace CakeShopApp
 			new CakeCategory { Name = "Các loại khác" }
 		};
 		public List<int> YearList = new List<int>();			//Danh sách 10 năm gần đây tính từ năm hiện tại
-		private List<string> MonthList = new List<string>();	//Danh sách 12 tháng trong 1 năm
+		private List<string> MonthList = new List<string>();    //Danh sách 12 tháng trong 1 năm
+		private BindingList<CakeInfo> ListCakeInCart = new BindingList<CakeInfo>(); //Danh sách các món bánh ngọt đang nằm trong giỏ hàng
 		private CollectionView view;
 		private BindingList<ColorSetting> ListColor = new BindingList<ColorSetting>       //Tạo dữ liệu màu cho ListColor
 		{
@@ -62,7 +63,7 @@ namespace CakeShopApp
 
 		private Condition FilterCondition = new Condition { Type = "" };
 		public Cake cake = new Cake();
-		private bool isMinimizeMenu, isEditMode, IsDetailCake;
+		private bool isMinimizeMenu, isEditMode, IsDetailCake, isBuyCakeClicked;
 		int selectedCakeIndex = 0;
 
 		private string _colorScheme = "";           //Màu nền hiện tại
@@ -227,8 +228,14 @@ namespace CakeShopApp
 			//Mặc định không ở chế độ chỉnh sửa chuyến đi
 			isEditMode = false;
 
+			isBuyCakeClicked = false;
+
 			CakeButtonItemsControl.ItemsSource = CakeInfoList;
 			CakeListAppearAnimation();
+
+			CakeInCartListView.ItemsSource = ListCakeInCart;
+
+			CakeInCheckOutListView.ItemsSource = ListCakeInCart;
 
 			//Default buttons
 			clickedControlButton = HomeButton;
@@ -434,21 +441,29 @@ namespace CakeShopApp
 
 		private void Cake_Click(object sender, RoutedEventArgs e)
 		{
-			//Đóng giao diện màn hình danh sách các món bánh ngọt
-			CakeListGrid.Visibility = Visibility.Collapsed;
-			//Đóng giao diện thanh chọn loại món bánh ngọt
-			TypeBarDockPanel.Visibility = Visibility.Collapsed;
 
-			//Lấy chỉ số của hình ảnh món ăn được nhấn
-			selectedCakeIndex = GetElementIndexInArray((Button)sender);
-			DetailCakeGrid.DataContext = CakeInfoList[selectedCakeIndex];
-			cake = new Cake(CakeInfoList[selectedCakeIndex]);
+			if (isBuyCakeClicked == false)
+			{
 
-			//Mở giao diện màn hình chi tiết món bánh ngọt
-			DetailCakeGrid.Visibility = Visibility.Visible;
+				//Đóng giao diện màn hình danh sách các món bánh ngọt
+				CakeListGrid.Visibility = Visibility.Collapsed;
+				//Đóng giao diện thanh chọn loại món bánh ngọt
+				TypeBarDockPanel.Visibility = Visibility.Collapsed;
 
-			//Bật chế độ đang ở màn hình chi tiết
-			IsDetailCake = true;
+				//Lấy chỉ số của hình ảnh món ăn được nhấn
+				selectedCakeIndex = GetElementIndexInArray((Button)sender);
+				DetailCakeGrid.DataContext = CakeInfoList[selectedCakeIndex];
+				cake = new Cake(CakeInfoList[selectedCakeIndex]);
+
+				//Mở giao diện màn hình chi tiết món bánh ngọt
+				DetailCakeGrid.Visibility = Visibility.Visible;
+
+				//Bật chế độ đang ở màn hình chi tiết
+				IsDetailCake = true;
+
+			}
+
+			
 		}
 
 		private void EditCakeButton_Click(object sender, RoutedEventArgs e)
@@ -603,6 +618,7 @@ namespace CakeShopApp
 				CakeListGrid.Visibility = Visibility.Visible;
 				TypeBarDockPanel.Visibility = Visibility.Visible;
 				ControlStackPanel.Visibility = Visibility.Visible;
+				shoppingCartButton_Click(null, e);
 			}
 			else if (button == AddCakeButton)
 			{
@@ -1127,7 +1143,7 @@ namespace CakeShopApp
 				checkOutDetailsButton.IsEnabled = true;
 				orderCompleteButton.IsEnabled = true;
 				CakeInfo.Visibility = Visibility.Visible;
-				Payment.Visibility = Visibility.Visible;
+				//Payment.Visibility = Visibility.Visible;
 				CustomerInfo.Visibility = Visibility.Collapsed;
 				BillInfo.Visibility = Visibility.Collapsed;
 				order.Visibility = Visibility.Collapsed;
@@ -1153,7 +1169,7 @@ namespace CakeShopApp
 				shoppingCartButton.IsEnabled = true;
 				orderCompleteButton.IsEnabled = true;
 				CakeInfo.Visibility = Visibility.Collapsed;
-				Payment.Visibility = Visibility.Collapsed;
+				//Payment.Visibility = Visibility.Collapsed;
 				CustomerInfo.Visibility = Visibility.Visible;
 				BillInfo.Visibility = Visibility.Visible;
 				order.Visibility = Visibility.Collapsed;
@@ -1173,7 +1189,7 @@ namespace CakeShopApp
 			shoppingCartButton.IsEnabled = true;
 			checkOutDetailsButton.IsEnabled = true;
 			CakeInfo.Visibility = Visibility.Collapsed;
-			Payment.Visibility = Visibility.Collapsed;
+			//Payment.Visibility = Visibility.Collapsed;
 			CustomerInfo.Visibility = Visibility.Collapsed;
 			BillInfo.Visibility = Visibility.Collapsed;
 			order.Visibility = Visibility.Visible;
@@ -1182,6 +1198,82 @@ namespace CakeShopApp
 			shoppingCartButton.Foreground = Brushes.White;
 			orderCompleteButton.Foreground = Brushes.Black;
 			checkOutDetailsButton.Foreground = Brushes.White;
+		}
+
+		private void numberofCake_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				var cake = ((TextBox)sender).DataContext as CakeInfo;
+				var result = 1;
+				int.TryParse(((TextBox)sender).Text, out result);
+				if (result >= 1)
+				{
+					cake.Number = result;
+					long totalCost = result * int.Parse(cake.Price);
+					cake.Total = FormatPriceString(totalCost.ToString()) + " ₫";
+				}
+				else
+				{
+					MessageBox.Show("Số lượng không hợp lệ!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+					((TextBox)sender).Text = cake.Number.ToString();
+				}
+				
+			}
+			
+		}
+
+		private void DeleteCakeInCart_Click(object sender, RoutedEventArgs e)
+		{
+			var cake = ((Button)sender).DataContext as CakeInfo;
+			ListCakeInCart.Remove(cake);
+		}
+
+		private void BuyCake_Click(object sender, RoutedEventArgs e)
+		{
+			isBuyCakeClicked = true;
+			//Lấy chỉ số của hình ảnh món ăn được nhấn
+			var cake = CakeInfoList[GetElementIndexInArray((Button)sender)];
+
+			var isExist = false;
+			foreach (var cakeInCart in ListCakeInCart)
+			{
+
+				if (cakeInCart.ID == cake.ID)
+				{
+
+					isExist = true;
+					break;
+
+				}
+
+			}
+
+			if (isExist == true)
+			{
+
+				MessageBox.Show("Sản phẩm đã có trong giỏ hàng!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+			}
+			else
+			{
+
+				MessageBox.Show("Đã thêm sản phẩm vào giỏ hàng.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+				var newCake = new CakeInfo
+				{
+
+					CakeName = cake.CakeName,
+					Category = cake.Category,
+					ID = cake.ID,
+					Number = 1,
+					Price = cake.Price,
+					Total = FormatPriceString(cake.Price) + " ₫",
+					PrimaryImagePath = cake.PrimaryImagePath
+
+				};
+				ListCakeInCart.Add(newCake);
+
+			}
 		}
 
 		private void orderButton_Click(object sender, RoutedEventArgs e)
