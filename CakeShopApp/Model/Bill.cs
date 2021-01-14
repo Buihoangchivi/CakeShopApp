@@ -7,6 +7,7 @@ using System.ComponentModel;
 
 public class Bill : INotifyPropertyChanged
 {
+	private string id;
 	private string customerName;
 	private string phoneNumber;
 	private string address;
@@ -15,6 +16,18 @@ public class Bill : INotifyPropertyChanged
 	private string date;
 	private BindingList<CakeInfo> cakesList;
 
+	public string ID
+	{
+		get
+		{
+			return id;
+		}
+		set
+		{
+			id = value;
+			OnPropertyChanged("ID");
+		}
+	}
 	public string CustomerName
 	{
 		get

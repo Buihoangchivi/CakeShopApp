@@ -14,6 +14,12 @@ namespace CakeShopApp
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+			{
+
+                return "";
+
+			}
             var price = (string)value;
             var i = price.Length - 1;
             var count = 0;
