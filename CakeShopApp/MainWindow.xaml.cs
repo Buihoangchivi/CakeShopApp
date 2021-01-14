@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -206,6 +207,8 @@ namespace CakeShopApp
 			//Loại bánh ngọt hiển thị ở màn hình trang chủ
 			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
 			CakeCategoryCombobox.SelectedItem = CakeCategoryList[0];
+			StageComboBox.ItemsSource = CakeCategoryList;
+			StageComboBox.SelectedItem = CakeCategoryList[0];
 
 			this.DataContext = this;
 
@@ -956,135 +959,133 @@ namespace CakeShopApp
 
 		}
 
-		private void CancelTripButton_Click(object sender, RoutedEventArgs e)
+		private void CancelCakeButton_Click(object sender, RoutedEventArgs e)
 		{
-			////Đóng màn hình thêm chuyến đi
-			//AddTripGrid.Visibility = Visibility.Collapsed;
-			////Tắt màu của nút Add
-			//var wrapPanel = (WrapPanel)AddTripButton.Content;
-			//var collection = wrapPanel.Children;
-			//var block = (TextBlock)collection[0];
-			//var text = (TextBlock)collection[2];
-			//block.Background = Brushes.Transparent;
-			//text.Foreground = Brushes.Black;
+			//Đóng màn hình thêm chuyến đi
+			AddCakeGrid.Visibility = Visibility.Collapsed;
+			//Tắt màu của nút Add
+			var wrapPanel = (WrapPanel)AddCakeButton.Content;
+			var collection = wrapPanel.Children;
+			var block = (TextBlock)collection[0];
+			var text = (TextBlock)collection[2];
+			block.Background = Brushes.Transparent;
+			text.Foreground = Brushes.Black;
 
-			//if (isEditMode == true)
-			//{
-			//	//Quay ve man hinh chi tiet
-			//	DetailTripGrid.DataContext = TripInfoList[selectedTripIndex];
-			//	DetailTripGrid.Visibility = Visibility.Visible;
-			//	ControlStackPanel.Visibility = Visibility.Visible;
+			if (isEditMode == true)
+			{
+				//Quay ve man hinh chi tiet
+				DetailCakeGrid.DataContext = CakeInfoList[selectedCakeIndex];
+				DetailCakeGrid.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
 
-			//	//Tắt chế độ chỉnh sửa
-			//	isEditMode = false;
-			//	IsDetailTrip = true;
-			//}
-			//else
-			//{
-			//	//Quay về màn hình Home
-			//	clickedControlButton = HomeButton;
-			//	TripListGrid.Visibility = Visibility.Visible;
-			//	TypeBarDockPanel.Visibility = Visibility.Visible;
-			//	ControlStackPanel.Visibility = Visibility.Visible;
-			//}
+				//Tắt chế độ chỉnh sửa
+				isEditMode = false;
+				IsDetailCake = true;
+			}
+			else
+			{
+				//Quay về màn hình Home
+				clickedControlButton = HomeButton;
+				CakeListGrid.Visibility = Visibility.Visible;
+				TypeBarDockPanel.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+			}
 
-			////Hiển thị màu cho nút Home
-			//wrapPanel = (WrapPanel)HomeButton.Content;
-			//collection = wrapPanel.Children;
-			//block = (TextBlock)collection[0];
-			//text = (TextBlock)collection[2];
-			//block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
-			//text.Foreground = block.Background;
+			//Hiển thị màu cho nút Home
+			wrapPanel = (WrapPanel)HomeButton.Content;
+			collection = wrapPanel.Children;
+			block = (TextBlock)collection[0];
+			text = (TextBlock)collection[2];
+			block.Background = (SolidColorBrush)new BrushConverter().ConvertFromString(ColorScheme);
+			text.Foreground = block.Background;
 
-			//clickedControlButton = HomeButton;
+			clickedControlButton = HomeButton;
 
-			////Cập nhật lại giao diện
-			//UpdateUIFromData();
+			//Cập nhật lại giao diện
+			UpdateUIFromData();
 		}
 
 
 
 		private void AddImageButton_Click(object sender, RoutedEventArgs e)
 		{
-			//var fileDialog = new OpenFileDialog();
-			//fileDialog.Multiselect = true;
-			//fileDialog.Filter = "Image Files(*.JPG*;*.JPEG*;*.PNG*)|*.JPG;*.JPEG*;*.PNG*";
-			//fileDialog.Title = "Select Image";
 
-			//if (fileDialog.ShowDialog() == true)
-			//{
-			//	var fileNames = fileDialog.FileNames;
-			//	foreach (var filename in fileNames)
-			//	{
-			//		trip.ImagesList.Add(new TripImage(filename));
-			//	}
-			//}
+			var fileDialog = new OpenFileDialog();
+			fileDialog.Multiselect = true;
+			fileDialog.Filter = "Image Files(*.JPG*;*.JPEG*;*.PNG*)|*.JPG;*.JPEG*;*.PNG*";
+			fileDialog.Title = "Select Image";
+
+			if (fileDialog.ShowDialog() == true)
+			{
+				var fileNames = fileDialog.FileNames;
+				foreach (var filename in fileNames)
+				{
+					cake.ImagesList.Add(new CakeImage(filename));
+				}
+			}
+
 		}
-
-
 
 		private void DeleteImageButton_Click(object sender, RoutedEventArgs e)
 		{
-			//trip.ImagesList.Remove(ImagesListView.SelectedItem as TripImage);
+
+			cake.ImagesList.Remove(ImagesListView.SelectedItem as CakeImage);
+
 		}
 
-
-
-
-
-		private void SaveTripButton_Click(object sender, RoutedEventArgs e)
+		private void SaveCakeButton_Click(object sender, RoutedEventArgs e)
 		{
-			//if (isEditMode == false)
-			//{
-			//	string appFolder = GetAppDomain();
-			//	for (int i = 0; i < trip.ImagesList.Count; i++)
-			//	{
-			//		var imageExtension = System.IO.Path.GetExtension(trip.ImagesList[i].ImagePath);
-			//		var newImageName = $"Images/{trip.TripID}_{i}{imageExtension}";
-			//		var newPath = appFolder + newImageName;
-			//		File.Copy(trip.ImagesList[i].ImagePath, newPath, true);
-			//		trip.ImagesList[i].ImagePath = newImageName;
-			//	}
-			//	trip.PrimaryImagePath = trip.ImagesList[0].ImagePath;
-			//	TripInfoList.Add(trip);
-			//}
-			//else
-			//{
-			//	string appFolder = GetAppDomain();
-			//	for (int i = 0; i < trip.ImagesList.Count; i++)
-			//	{
-			//		TripImage currentImage = trip.ImagesList[i];
-			//		var imageExtension = System.IO.Path.GetExtension(currentImage.ImagePath);
-			//		var newImageName = $"Images/{trip.TripID}_{i}{imageExtension}";
-			//		var newPath = appFolder + newImageName;
-			//		if (System.IO.Path.IsPathRooted(currentImage.ImagePath))
-			//		{
-			//			File.Copy(currentImage.ImagePath, newPath, true);
-			//			trip.ImagesList[i].ImagePath = newImageName;
-			//		}
-			//		else
-			//		{
-			//			if (currentImage.ImagePath != TripInfoList[selectedTripIndex].ImagesList[i].ImagePath)
-			//			{
-			//				File.Delete(appFolder + TripInfoList[selectedTripIndex].ImagesList[i].ImagePath);
-			//				File.Move(appFolder + currentImage.ImagePath, newPath);
-			//				currentImage.ImagePath = newImageName;
-			//			}
-			//		}
-			//	}
-			//	if (trip.ImagesList.Count > 0)
-			//	{
-			//		trip.PrimaryImagePath = trip.ImagesList[0].ImagePath;
-			//	}
-			//	else
-			//	{
-			//		trip.PrimaryImagePath = "";
-			//	}
-			//	TripInfoList[selectedTripIndex] = trip;
-			//}
+			if (isEditMode == false)
+			{
+				string appFolder = GetAppDomain();
+				for (int i = 0; i < cake.ImagesList.Count; i++)
+				{
+					var imageExtension = System.IO.Path.GetExtension(cake.ImagesList[i].ImagePath);
+					var newImageName = $"Images/{cake.ID}_{i}{imageExtension}";
+					var newPath = appFolder + newImageName;
+					File.Copy(cake.ImagesList[i].ImagePath, newPath, true);
+					cake.ImagesList[i].ImagePath = newImageName;
+				}
+				cake.PrimaryImagePath = cake.ImagesList[0].ImagePath;
+				CakeInfoList.Add(cake);
+			}
+			else
+			{
+				string appFolder = GetAppDomain();
+				for (int i = 0; i < cake.ImagesList.Count; i++)
+				{
+					CakeImage currentImage = cake.ImagesList[i];
+					var imageExtension = System.IO.Path.GetExtension(currentImage.ImagePath);
+					var newImageName = $"Images/{cake.ID}_{i}{imageExtension}";
+					var newPath = appFolder + newImageName;
+					if (System.IO.Path.IsPathRooted(currentImage.ImagePath))
+					{
+						File.Copy(currentImage.ImagePath, newPath, true);
+						cake.ImagesList[i].ImagePath = newImageName;
+					}
+					else
+					{
+						if (currentImage.ImagePath != CakeInfoList[selectedCakeIndex].ImagesList[i].ImagePath)
+						{
+							File.Delete(appFolder + CakeInfoList[selectedCakeIndex].ImagesList[i].ImagePath);
+							File.Move(appFolder + currentImage.ImagePath, newPath);
+							currentImage.ImagePath = newImageName;
+						}
+					}
+				}
+				if (cake.ImagesList.Count > 0)
+				{
+					cake.PrimaryImagePath = cake.ImagesList[0].ImagePath;
+				}
+				else
+				{
+					cake.PrimaryImagePath = "";
+				}
+				CakeInfoList[selectedCakeIndex] = cake;
+			}
 
-			////Đóng giao diện thêm/chỉnh sửa và mở giao diện trang chủ
-			//CancelTripButton_Click(null, null);
+			//Đóng giao diện thêm/chỉnh sửa và mở giao diện trang chủ
+			CancelCakeButton_Click(null, null);
 		}
 
 
