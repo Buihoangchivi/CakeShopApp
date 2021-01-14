@@ -567,6 +567,8 @@ namespace CakeShopApp
 			CakeListGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình thêm chuyến đi mới
 			AddCakeGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện màn hình giỏ hàng
+			CartGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện thống kê doanh thu
 			StatisticGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình cài đặt
@@ -612,6 +614,13 @@ namespace CakeShopApp
 					//{ CakeID = newID, Stage = "Bắt đầu" };
 				}
 				AddCakeGrid.DataContext = cake;
+			}
+			else if (button == CartButton)
+			{
+				CartGrid.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
+				shoppingCartButton.IsEnabled = false;
+				shoppingCartButton.Foreground = Brushes.Black;
 			}
 			else if (button == StatisticButton)
 			{
@@ -1105,5 +1114,84 @@ namespace CakeShopApp
 		//		Description.Text = "";
 		//	}
 		//}
+
+		private void shoppingCartButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (orderCompleteButton.IsEnabled == false)
+			{
+				MessageBox.Show("Bạn đã thanh toán xong rối!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			else
+			{
+				shoppingCartButton.IsEnabled = false;
+				checkOutDetailsButton.IsEnabled = true;
+				orderCompleteButton.IsEnabled = true;
+				CakeInfo.Visibility = Visibility.Visible;
+				Payment.Visibility = Visibility.Visible;
+				CustomerInfo.Visibility = Visibility.Collapsed;
+				BillInfo.Visibility = Visibility.Collapsed;
+				order.Visibility = Visibility.Collapsed;
+
+				//Chỉnh màu cho các nút
+				shoppingCartButton.Foreground = Brushes.Black;
+				orderCompleteButton.Foreground = Brushes.White;
+				checkOutDetailsButton.Foreground = Brushes.White;
+			}
+
+
+		}
+
+		private void checkOutDetailsButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (orderCompleteButton.IsEnabled == false)
+			{
+				MessageBox.Show("Bạn đã thanh toán xong rối!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			else
+			{
+				checkOutDetailsButton.IsEnabled = false;
+				shoppingCartButton.IsEnabled = true;
+				orderCompleteButton.IsEnabled = true;
+				CakeInfo.Visibility = Visibility.Collapsed;
+				Payment.Visibility = Visibility.Collapsed;
+				CustomerInfo.Visibility = Visibility.Visible;
+				BillInfo.Visibility = Visibility.Visible;
+				order.Visibility = Visibility.Collapsed;
+
+				//Chỉnh màu cho các nút
+				shoppingCartButton.Foreground = Brushes.White;
+				orderCompleteButton.Foreground = Brushes.White;
+				checkOutDetailsButton.Foreground = Brushes.Black;
+			}
+
+
+		}
+
+		private void orderCompleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			orderCompleteButton.IsEnabled = false;
+			shoppingCartButton.IsEnabled = true;
+			checkOutDetailsButton.IsEnabled = true;
+			CakeInfo.Visibility = Visibility.Collapsed;
+			Payment.Visibility = Visibility.Collapsed;
+			CustomerInfo.Visibility = Visibility.Collapsed;
+			BillInfo.Visibility = Visibility.Collapsed;
+			order.Visibility = Visibility.Visible;
+
+			//Chỉnh màu cho các nút
+			shoppingCartButton.Foreground = Brushes.White;
+			orderCompleteButton.Foreground = Brushes.Black;
+			checkOutDetailsButton.Foreground = Brushes.White;
+		}
+
+		private void orderButton_Click(object sender, RoutedEventArgs e)
+		{
+			orderCompleteButton_Click(null, e);
+		}
+
+		private void payButton_Click(object sender, RoutedEventArgs e)
+		{
+			checkOutDetailsButton_Click(null, e);
+		}
 	}
 }
