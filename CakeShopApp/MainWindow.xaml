@@ -610,7 +610,7 @@
                 <TextBlock VerticalAlignment="Center" FontSize="16" 
                            Margin="20,10,0,0" FontWeight="Medium">Tên sản phẩm:</TextBlock>
                 <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="10,10,0,0" Background="GhostWhite">
+                        Width="280" Height="30" Margin="10,10,0,0" Background="GhostWhite">
                     <TextBox Text="{Binding CakeName}" BorderThickness="0" FontSize="14" Background="{x:Null}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
@@ -621,7 +621,7 @@
                 <TextBlock VerticalAlignment="Center" FontSize="16"
                            Margin="20,10,0,0" FontWeight="Medium">Mã sản phẩm:</TextBlock>
                 <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="10,10,0,-5" Background="GhostWhite">
+                        Width="280" Height="30" Margin="10,10,0,-5" Background="GhostWhite">
                     <TextBox Text="{Binding ID}" BorderThickness="0" FontSize="14" Background="{x:Null}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
@@ -632,7 +632,7 @@
                 <TextBlock VerticalAlignment="Center" FontSize="16" 
                            Margin="20,10,0,0" FontWeight="Medium">Thương hiệu:</TextBlock>
                 <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="15,10,0,0" Background="GhostWhite">
+                        Width="280" Height="30" Margin="15,10,0,0" Background="GhostWhite">
                     <TextBox Text="{Binding Producer}" BorderThickness="0" FontSize="14" Background="{x:Null}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
@@ -737,7 +737,7 @@
                 <TextBlock VerticalAlignment="Center" FontSize="16"
                            Margin="20,10,0,0" FontWeight="Medium">Giá sản phẩm:</TextBlock>
                 <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="12,10,0,-5" Background="GhostWhite">
+                        Width="280" Height="30" Margin="12,10,0,-5" Background="GhostWhite">
                     <TextBox Text="{Binding Price}" BorderThickness="0" FontSize="14" Background="{x:Null}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
@@ -748,7 +748,7 @@
                 <TextBlock VerticalAlignment="Center" FontSize="16" 
                            Margin="20,10,0,0" FontWeight="Medium">Nơi xuất xứ:</TextBlock>
                 <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="24,10,0,0" Background="GhostWhite">
+                        Width="280" Height="30" Margin="24,10,0,0" Background="GhostWhite">
                     <TextBox Text="{Binding Origin}" BorderThickness="0" FontSize="14" Background="{x:Null}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
@@ -1356,7 +1356,7 @@
                     <TextBlock VerticalAlignment="Center" FontSize="16" 
                            Margin="10,10,0,0" FontWeight="Medium">Họ và tên:</TextBlock>
                     <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="35,10,0,0" Background="GhostWhite">
+                        Width="280" Height="30" Margin="35,10,0,0" Background="GhostWhite">
                         <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}" Text="{Binding CustomerName}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -1370,7 +1370,7 @@
                     <TextBlock VerticalAlignment="Center" FontSize="16" 
                            Margin="10,10,0,0" FontWeight="Medium">Số điện thoại:</TextBlock>
                     <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="10,10,0,0" Background="GhostWhite">
+                        Width="280" Height="30" Margin="10,10,0,0" Background="GhostWhite">
                         <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}" Text="{Binding PhoneNumber}"
                              Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -1380,7 +1380,7 @@
                     <TextBlock VerticalAlignment="Center" FontSize="16" 
                            Margin="10,10,0,0" FontWeight="Medium">Địa chỉ:</TextBlock>
                     <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
-                        Width="230" Height="30" Margin="56,10,0,5" Background="GhostWhite">
+                        Width="280" Height="30" Margin="56,10,0,5" Background="GhostWhite">
                         <TextBox  BorderThickness="0" FontSize="14" Background="{x:Null}" Text="{Binding Address}"
                              Margin="5,0,0,5" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

@@ -625,8 +625,7 @@ namespace CakeShopApp
 				AddCakeGrid.Visibility = Visibility.Visible;
 				if (isEditMode == false)
 				{
-					int newID = 10;//GetMinID();
-					cake = new Cake() { ID = newID.ToString() };
+					cake = new Cake() { ID = Guid.NewGuid().ToString() };
 					//{ CakeID = newID, Stage = "Bắt đầu" };
 				}
 				AddCakeGrid.DataContext = cake;
