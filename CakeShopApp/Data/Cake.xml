@@ -1,66 +1,566 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCake xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Cake>
-    <CakeName>Bánh tránggg</CakeName>
-    <ID>0</ID>
-    <Category>1</Category>
-    <Price>10343</Price>
-    <PrimaryImagePath>Images/0.jpg</PrimaryImagePath>
+    <CakeName>Angel Pony Cake</CakeName>
+    <ID>cd8b8826-4dd4-43a2-98a4-ddead3bbed98</ID>
+    <Category>Bánh Bơ-gơ</Category>
+    <Price>750000</Price>
+    <PrimaryImagePath>Images/cd8b8826-4dd4-43a2-98a4-ddead3bbed98_0.jpeg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
-        <ImagePath>Images/0.jpg</ImagePath>
-      </CakeImage>
-      <CakeImage>
-        <ImagePath>Images/1.jpg</ImagePath>
-      </CakeImage>
-      <CakeImage>
-        <ImagePath>Images/2.jpg</ImagePath>
+        <ImagePath>Images/cd8b8826-4dd4-43a2-98a4-ddead3bbed98_0.jpeg</ImagePath>
       </CakeImage>
     </ImagesList>
-    <Description>Bánh tráng siêu to khổng lồ.</Description>
+    <Description>Tại sao bánh kem nhà La Vita lại khác với các sản phẩm bánh kem bông lan thông thường trên thị trường?
+
+Cốt bánh kem của chúng tôi là cốt bánh đặc, ít ngọt, theo xu hướng healthy kiểu Châu Âu, khác hẳn với cốt bánh mềm thường thấy của bánh bông lan.
+Lớp kem sử dụng bên ngoài là kem phô mai nhập khẩu cao cấp của Elle &amp; Vire, một thương hiệu cực kỳ nổi tiếng và cao cấp về các dòng kem của Pháp, với vị chua nhẹ, ngậy ngậy, ít béo, ít ngọt, đảm bảo quý khách sẽ có một bữa tiệc sinh nhật hoàn toàn mới lạ!</Description>
+    <Origin>Châu Âu</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Carrot Birthday Cake</CakeName>
+    <ID>71a7479a-e300-4fda-b21d-3df5fc7ede64</ID>
+    <Category>Bánh kem</Category>
+    <Price>590000</Price>
+    <PrimaryImagePath>Images/71a7479a-e300-4fda-b21d-3df5fc7ede64_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/71a7479a-e300-4fda-b21d-3df5fc7ede64_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Nếu bạn là tín đồ của mùi hương và sự giản đơn thì Carrot Cake là sự lựa chọn tuyệt vời nhất để chiều chuộng vị giác.
+
+Đây là loại bánh có truyền thống lâu đời, được cho là có nguồn gốc từ Thụy Điển và trở nên nổi tiếng ở Mỹ vào khoảng những năm 1960, cho đến bây giờ nó vẫn là một trong những loại bánh được yêu thích trên thế giới, đặc biệt là ở Anh.
+
+Ngày nay, bánh Cà rốt có nhiều biến tấu đa dạng, nhưng tại tiệm bánh La Vita chúng mình vẫn giữ đúng phong vị Châu Âu. Bánh có kết cấu đặc, mềm ẩm và hương thơm khó chối từ.
+
+Hương vị đặc trưng đó đến từ thành phần chính – cà rốt tươi ngon, được tuyển chọn kỹ lưỡng từ vùng nông sản Đà Lạt, nơi cà rốt được trồng tự nhiên, có chứa nhiều Beta Carotene rất tốt cho đôi mắt. Từng sợi cà rốt bào mịn hòa quyện cùng mùi hương của bột quế và hạt óc chó mang đến mùi vị thơm bùi và cảm giác giòn sần sật thú vị khi ăn, chinh phục mọi tâm hồn yêu bánh kể cả vị giác non nớt của các bé nhỏ.
+
+Đơn giản nhưng hoàn hảo là tất cả những gì bạn sẽ cảm nhận khi thưởng thức chiếc bánh Cà rốt ít ngọt nhưng tròn vị này.</Description>
+    <Origin>Thuỵ Điển</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Dark Rye With Caraway Bread</CakeName>
+    <ID>3e28f374-72cd-447b-81b4-4efe95280230</ID>
+    <Category>Bánh mì</Category>
+    <Price>60000</Price>
+    <PrimaryImagePath>Images/3e28f374-72cd-447b-81b4-4efe95280230_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/3e28f374-72cd-447b-81b4-4efe95280230_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Dark Rye Bread, mãi là một trong những vị bánh Âu lâu đời và đặc sắc nhất.
+
+Bảo tồn nguyên vẹn những tinh túy truyền thống kết hợp với nguyên liệu được tuyển lựa, bánh mì đen Đan Mạch luôn là một trong những lựa chọn yêu thích của những nhà hàng, những chuỗi bán lẻ cao cấp là đối tác của La Vita Bakery.
+
+Và, tất nhiên, cũng là lựa chọn của rất nhiều quý khách hàng đáng mến vốn chuộng nét ẩm thực Âu tinh tế cổ điển. Bữa ăn thú vị, chẳng cần phải lo ngại gì nhiều về cân nặng bắt đầu bằng vài miếng bánh nóng giòn đầy đủ dưỡng chất kèm một chút rau, lát thịt hoặc trứng.</Description>
+    <Origin>Đan Mạch</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>High Fiber Bread</CakeName>
+    <ID>86f45e23-6db1-4930-9e3f-70c09ff4217f</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>75000</Price>
+    <PrimaryImagePath>Images/86f45e23-6db1-4930-9e3f-70c09ff4217f_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/86f45e23-6db1-4930-9e3f-70c09ff4217f_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>High Fiber Bread – Bánh mì ăn kiêng!
+
+– Fiber là chất xơ!
+– High Fiber là Giàu chất xơ!
+
+High Fiber Bread của La Vita là bánh mì được làm từ bột giàu chất xơ, nhập khẩu nguyên bao từ Đức về Việt Nam. La Vita quyết tâm mời chuyên gia người Đức để làm High Fiber Bread theo tiêu chuẩn của chính nơi sản sinh ra dòng bột này.
+
+Bánh vô cùng thơm và rất dai. Từng lát bánh chứa nhiều hạt ngũ cốc và lớp vỏ nguyên cám. Chỉ với 2 lát bánh nướng thơm phết Phô Mai Light hoặc Bơ ăn kiêng, cùng đĩa Salad cho bữa sáng. Bạn sẽ thực sự an tâm về sự dinh dưỡng của High Fiber mà lại giữ cho vóc dáng thon thả, không gây tăng cân cho bạn và gia đình bạn.
+
+Khách của La Vita yêu thích High Fiber lắm, vô cùng ngon, dễ ăn mà lại giữ cho dáng vóc thanh mảnh nữa!
+
+Hãy cùng La Vita gìn giữ sức khỏe và vóc dáng với Bánh mì chất xơ – High Fiber Bread nhé!</Description>
+    <Origin>Đức</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Xmas Cupcake #3</CakeName>
+    <ID>0e1954a4-50b7-4903-b033-0b5c7dc56b96</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>60000</Price>
+    <PrimaryImagePath>Images/0e1954a4-50b7-4903-b033-0b5c7dc56b96_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/0e1954a4-50b7-4903-b033-0b5c7dc56b96_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Nhân bánh tuỳ chọn:
+– Red velvet
+– Chocolate
+– Cà Rốt Óc Chó
+– Chuối Óc Chó
+
+Bạn có thể làm quà tặng cho người thân, hoặc tự thưởng chút “ngọt ngào” cho mình trong đêm Giáng sinh!
+
+Giáng sinh về rồi, còn ngại gì mà không yêu thương nhau?</Description>
     <Origin>Việt Nam</Origin>
-    <Producer>Kinh đô</Producer>
+    <Producer>La Vita</Producer>
   </Cake>
   <Cake>
-    <CakeName>Bánh kem</CakeName>
-    <ID>1</ID>
-    <Category>3</Category>
-    <Price>24214</Price>
-    <PrimaryImagePath>Images/1.jpg</PrimaryImagePath>
+    <CakeName>Banana Walnuts Birthday Cake</CakeName>
+    <ID>a4388d2c-1aed-4f21-9756-bd40bd3e71a4</ID>
+    <Category>Bánh ổ dài</Category>
+    <Price>590000</Price>
+    <PrimaryImagePath>Images/a4388d2c-1aed-4f21-9756-bd40bd3e71a4_0.jpg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
-        <ImagePath>Images/0.jpg</ImagePath>
-      </CakeImage>
-      <CakeImage>
-        <ImagePath>Images/1.jpg</ImagePath>
-      </CakeImage>
-      <CakeImage>
-        <ImagePath>Images/2.jpg</ImagePath>
+        <ImagePath>Images/a4388d2c-1aed-4f21-9756-bd40bd3e71a4_0.jpg</ImagePath>
       </CakeImage>
     </ImagesList>
-    <Description>Bánh kem siêu to khổng lồ.</Description>
-    <Origin>Ấn Độ</Origin>
-    <Producer>Oreo</Producer>
+    <Description>Có một loại bánh không cầu kỳ, không lộng lẫy nhưng thơm ngon theo một hương vị rất riêng biệt. Hương vị được quyện nên từ vị ngọt tự nhiên của chuối chín dẻo thơm, vị béo bùi từ những hạt óc chó dinh dưỡng, kèm theo lớp bánh bông lan mềm mịn. Đó chính là Banana Walnuts Cake.
+
+Sự kết hợp của chuối và hạt óc chó – 2 loại thực phẩm giàu chất dinh dưỡng cho sức khỏe và sự phát triển của trí não, đã tạo nên một chiếc bánh thơm ngon khó cưỡng và có giá trị dinh dưỡng cao. Đó cũng chính là lý do vì sao Banana Walnuts Cake luôn dành được sự yêu mến của quý khách hàng và trở thành sản phẩm “Best seller” của La Vita trong suốt thời gian qua.
+
+Một chiếc bánh sinh nhật giản đơn và thuần khiết, nhưng luôn là món quà “ưng cái bụng” dành cho những ai yêu thích hương vị nguyên chất thơm lành từ thiên nhiên xứ mình.</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
   </Cake>
   <Cake>
-    <CakeName>Bánh bông lan</CakeName>
-    <ID>2</ID>
-    <Category>2</Category>
-    <Price>1274</Price>
-    <PrimaryImagePath>Images/2.jpg</PrimaryImagePath>
+    <CakeName>King Cake</CakeName>
+    <ID>0ec6c439-91ba-4271-83f6-4dec6e73d10e</ID>
+    <Category>Các loại khác</Category>
+    <Price>850000</Price>
+    <PrimaryImagePath>Images/0ec6c439-91ba-4271-83f6-4dec6e73d10e_0.jpeg</PrimaryImagePath>
     <ImagesList>
       <CakeImage>
-        <ImagePath>Images/0.jpg</ImagePath>
-      </CakeImage>
-      <CakeImage>
-        <ImagePath>Images/1.jpg</ImagePath>
-      </CakeImage>
-      <CakeImage>
-        <ImagePath>Images/2.jpg</ImagePath>
+        <ImagePath>Images/0ec6c439-91ba-4271-83f6-4dec6e73d10e_0.jpeg</ImagePath>
       </CakeImage>
     </ImagesList>
-    <Description>Bánh bông lan siêu to khổng lồ.</Description>
-    <Origin>Hàn Quốc</Origin>
-    <Producer>Lotte</Producer>
+    <Description>Cốt bánh kem của chúng tôi là cốt bánh đặc, ít ngọt, theo xu hướng healthy kiểu Châu Âu, khác hẳn với cốt bánh mềm thường thấy của bánh bông lan.
+Lớp kem sử dụng bên ngoài là kem phô mai nhập khẩu cao cấp của Elle &amp; Vire, một thương hiệu cực kỳ nổi tiếng và cao cấp về các dòng kem của Pháp, với vị chua nhẹ, ngậy ngậy, ít béo, ít ngọt, đảm bảo quý khách sẽ có một bữa tiệc sinh nhật hoàn toàn mới lạ!</Description>
+    <Origin>Châu Âu</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Cinnamon Raisin Swirl Bread</CakeName>
+    <ID>7715e5ea-c123-4fbc-9009-f43919b721d9</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>88000</Price>
+    <PrimaryImagePath>Images/7715e5ea-c123-4fbc-9009-f43919b721d9_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/7715e5ea-c123-4fbc-9009-f43919b721d9_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>
+      Cốt bánh kem của chúng tôi là cốt bánh đặc, ít ngọt, theo xu hướng healthy kiểu Châu Âu, khác hẳn với cốt bánh mềm thường thấy của bánh bông lan.
+      Lớp kem sử dụng bên ngoài là kem phô mai nhập khẩu cao cấp của Elle &amp; Vire, một thương hiệu cực kỳ nổi tiếng và cao cấp về các dòng kem của Pháp, với vị chua nhẹ, ngậy ngậy, ít béo, ít ngọt, đảm bảo quý khách sẽ có một bữa tiệc sinh nhật hoàn toàn mới lạ!
+    </Description>
+    <Origin>Châu Âu</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Baby Canxi Buns (6 Pack)</CakeName>
+    <ID>a3260012-647d-4cfb-a079-49ce75af784c</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>81000</Price>
+    <PrimaryImagePath>Images/a3260012-647d-4cfb-a079-49ce75af784c_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/a3260012-647d-4cfb-a079-49ce75af784c_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh canxi vỏ trứng với bột yến mạch – Baby Canxi Buns]
+Đã từ lâu, rất nhiều khách hàng thân quý của La Vita Bakery không ngớt nhắn tin, gọi điện thậm chí chia sẻ những tâm sự dài về một mong muốn có dòng sản phẩm bánh dành cho các bé đang thời kỳ ăn dặm hoặc các mẹ bầu, những người đang nâng niu đứa con yêu quý của mình trong bụng. Họ tìm kiếm một dòng bánh vừa ngon, mượt mà dễ ăn lại cung cấp đầy đủ các dưỡng chất thiết yếu nhất cho trẻ nhỏ và mẹ bầu trong giai đoạn phát triển mạnh mẽ của thể chất lẫn trí lực.
+
+Và bản thân La Vita Bakery cũng không ngừng thử nghiệm tìm tòi một dòng sản phẩm như vậy, một dòng sản phẩm vẫn là bánh mì có thể dùng hàng ngày nhưng lại giúp hỗ trợ tối đa cho những nhu cầu phát triển quan trọng đó. Bằng sự miệt mài được cộng hưởng với lòng đam mê những chiếc bánh thực sự chất lượng, La Vita Bakery đã kết hợp thành công các nguyên liệu hảo hạng giàu dưỡng chất để tạo ra dòng bánh đáp ứng tốt cho nhu cầu của trẻ và mẹ bầu. Đó là dòng bánh canxi vỏ trứng và bột yến mạch (baby canxi buns).
+
+Sự ngọt ngào mềm mại từ những loại bột cao cấp cùng sữa tươi, được bổ sung xốt canxi vỏ trứng và bột yến mạch, bánh canxi yến mạch sẽ là món ăn ngon miệng giàu dinh dưỡng và vi chất giúp bé tăng cường sức đề kháng, phát triển tốt chiều cao, giúp các mẹ bầu cung cấp nhiều hơn năng lượng cùng dưỡng chất cho thai nhi. Không những thế, vì là dòng bánh mì truyền thống nên bánh có thể được dùng hàng ngày, trong mọi bữa ăn.
+
+La Vita Bakery giới thiệu với quý khách hàng thân quý của mình một trong những nỗ lực tìm tòi mới nhất của chúng tôi trong hành trình tìm kiếm những chiếc bánh tốt nhất, an lành và ngọt ngào nhất để phổ biến đến những ân nhân của mình. Đó là cách mà La Vita Bakery tri ân cũng như trung thành với tôn chỉ của mình “enjoy la dolce vita” – “tận hưởng cuộc sống tươi đẹp”!
+
+Rất mong quý khách hàng sử dụng và tiếp tục góp ý chỉnh sửa để La Vita Bakery ngày càng hoàn thiện cũng như thân thuộc hơn với các bạn
+
+Cảm ơn sâu sắc!</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Hot Cross Buns (6 Pack)</CakeName>
+    <ID>56e16aad-0ae0-40e4-b970-3a1def58602b</ID>
+    <Category>Bánh mì</Category>
+    <Price>174000</Price>
+    <PrimaryImagePath>Images/56e16aad-0ae0-40e4-b970-3a1def58602b_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/56e16aad-0ae0-40e4-b970-3a1def58602b_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Hot Cross Bun là một loại bánh ngọt hình tròn có hình chữ thập ở mặt trên. Theo truyền thống, bánh thường được dùng vào ngày lễ thứ sáu Good Friday trước Lễ Phục Sinh. Tuy nhiên ở nơi xuất xứ của chúng là Anh hoặc ở một số cửa hàng ở Úc, bánh được bày bán quanh năm. Do đó, La Vita cũng luôn sẵn sàng làm bánh này bất cứ lúc nào trong năm theo yêu cầu của quý khách hàng.</Description>
+    <Origin>Úc</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Whole Wheat Multiseed Bagels (3 Pack)</CakeName>
+    <ID>8c038597-aac8-4aaf-96a7-293db701584f</ID>
+    <Category>Các loại khác</Category>
+    <Price>81000</Price>
+    <PrimaryImagePath>Images/8c038597-aac8-4aaf-96a7-293db701584f_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/8c038597-aac8-4aaf-96a7-293db701584f_0.jpeg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/8c038597-aac8-4aaf-96a7-293db701584f_1.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh Mỳ Vòng Ngũ Cốc Nguyên Cám
+Chất bánh mềm, thơm mùi ngũ cốc, dinh dưỡng từ các loại hạt như: Hạt Lanh, yến mạch, hạt dưa, hạt bí…
+Trọng lượng: 120 gram/cái
+Hình dáng: Ổ tròn hình donut
+Số lượng: Túi 3 cái</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Chocolate Cupcake</CakeName>
+    <ID>2210616c-ea55-442c-b63b-8665b4178812</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>40000</Price>
+    <PrimaryImagePath>Images/2210616c-ea55-442c-b63b-8665b4178812_0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/2210616c-ea55-442c-b63b-8665b4178812_0.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>
+      Bánh Mỳ Vòng Ngũ Cốc Nguyên Cám
+      Chất bánh mềm, thơm mùi ngũ cốc, dinh dưỡng từ các loại hạt như: Hạt Lanh, yến mạch, hạt dưa, hạt bí…
+      Trọng lượng: 120 gram/cái
+      Hình dáng: Ổ tròn hình donut
+      Số lượng: Túi 3 cái
+    </Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Takesumi Whole Wheat Bread</CakeName>
+    <ID>cedead3d-4606-4d75-b872-e1839ba6579d</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>88000</Price>
+    <PrimaryImagePath>Images/cedead3d-4606-4d75-b872-e1839ba6579d_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/cedead3d-4606-4d75-b872-e1839ba6579d_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bạn có biết, những chất độc hại sẽ kết đọng trong nếp gấp khúc của thành ruột qua thức ăn, nước uống không lành mạnh hàng ngày?! Những cặn độc tố đó đến từ dầu mỡ chiên nhiều lần, từ chất phụ gia bị cấm lẫn trong thực phẩm, từ nước đóng chai có hoá chất, từ những đồ ăn cũ… chúng rất khó chuyển hoá và theo năm tháng sẽ tích tụ ngày một nhiều hơn trong thành ruột, dẫn đến những nguy cơ bệnh tật khó lường trước.
+
+Với mong muốn giúp khách hàng được dùng 1 loại bánh vừa ngon miệng, mà ưu điểm đặc biệt là:
+– Detox thành ruột,
+– Hút sạch độc tố trong từng ngách nhỏ
+– Thanh lọc cơ thể cho một cơ thể khoẻ mạnh hơn
+
+La Vita đã sản xuất ra nhóm Bánh Tinh Than Tre – Takesumi Products được làm từ bột tinh than tre hoạt tính Bona Takesumi. Bột than tre hoạt tính Bona Takesumi được nghiền từ loại tre Mosontake quý hiếm của Nhật Bản, có độ tinh khiết cao và chứa các khoáng chất như kali, canxi, photpho, sắt… Ngoài ra, tre Mosontake có đặc tính xốp, giúp bột Takesumi có khả năng hút khuẩn và loại bỏ chất độc hại tuyệt vời. ​
+
+Lợi ích sử dụng:
+
+▪ Nếu bạn uống 1 ly lớn nước ấm vào buổi sáng và sau đó dùng bánh Tinh Than Tre Nhật Bản. Sau 1 tuần, đường ruột của bạn gần như sạch sẽ, trơn chu, nhẹ nhàng hơn trước đó.
+▪ Vấn đề về tiêu hoá khó sẽ được cải thiện đáng kể.
+▪ Hệ tiêu hoá tốt sẽ giúp cho làn da thêm tươi trẻ và mịn màng.
+
+Nhóm sản phẩm giải độc cơ thể luôn sẵn sàng ở La Vita Bakery, nóng hổi và thanh khiết để mong được góp mặt trong bữa ăn của quý khách thân thương.</Description>
+    <Origin>Nhật Bản</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Whole Wheat Sourdough Bread</CakeName>
+    <ID>50e9d13d-def3-4b82-b8e1-89547ca3fc15</ID>
+    <Category>Bánh Bơ-gơ</Category>
+    <Price>55000</Price>
+    <PrimaryImagePath>Images/50e9d13d-def3-4b82-b8e1-89547ca3fc15_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/50e9d13d-def3-4b82-b8e1-89547ca3fc15_0.jpeg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/50e9d13d-def3-4b82-b8e1-89547ca3fc15_1.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh Mì Chua Nguyên Cám La Vita được làm từ bột mì nguyên cám ủ chua, chất bánh dai ngon, hương thơm chua dịu nhẹ của mùi men ủ kỹ rất dễ chịu và đặc biệt có lợi cho hệ tiêu hoá.
+
+Ngoài ra, bột mì nguyên cám có hàm lượng chất dinh dưỡng cao, lượng gluten thấp hơn bột mì thường, giúp xương chắc khoẻ, tăng cường hệ thống miễn dịch, giảm cholesterol, hỗ trợ ăn kiêng và đặc biệt giúp kiểm soát đường huyết tốt.
+
+Bánh rất phù hợp để sử dụng kèm với mọi loại đồ ăn từ chay đến mặn, cho một hương vị lạ miệng khó có thể tìm thấy ở các loại bánh mì khác!</Description>
+    <Origin>Ý</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Salted Caramel Popcorn</CakeName>
+    <ID>de81e348-c0f4-4448-a535-e6d4ec9c6543</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>39000</Price>
+    <PrimaryImagePath>Images/de81e348-c0f4-4448-a535-e6d4ec9c6543_0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/de81e348-c0f4-4448-a535-e6d4ec9c6543_0.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/de81e348-c0f4-4448-a535-e6d4ec9c6543_1.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/de81e348-c0f4-4448-a535-e6d4ec9c6543_2.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/de81e348-c0f4-4448-a535-e6d4ec9c6543_3.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>
+      Bánh Mì Chua Nguyên Cám La Vita được làm từ bột mì nguyên cám ủ chua, chất bánh dai ngon, hương thơm chua dịu nhẹ của mùi men ủ kỹ rất dễ chịu và đặc biệt có lợi cho hệ tiêu hoá.
+
+      Ngoài ra, bột mì nguyên cám có hàm lượng chất dinh dưỡng cao, lượng gluten thấp hơn bột mì thường, giúp xương chắc khoẻ, tăng cường hệ thống miễn dịch, giảm cholesterol, hỗ trợ ăn kiêng và đặc biệt giúp kiểm soát đường huyết tốt.
+
+      Bánh rất phù hợp để sử dụng kèm với mọi loại đồ ăn từ chay đến mặn, cho một hương vị lạ miệng khó có thể tìm thấy ở các loại bánh mì khác!
+    </Description>
+    <Origin>Mỹ</Origin>
+    <Producer>DOSH</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Whole Wheat 12 Grain Bread</CakeName>
+    <ID>28ceb8f6-5236-49f7-b9bb-3582a0f86300</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>60000</Price>
+    <PrimaryImagePath>Images/28ceb8f6-5236-49f7-b9bb-3582a0f86300_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/28ceb8f6-5236-49f7-b9bb-3582a0f86300_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Whole wheat 12 grain bread – Bánh 12 Hạt Nguyên Cám, một trong những loại bánh mặc nhiên có mặt trong mỗi đơn hàng từ đối tác của La Vita Bakery.
+
+Có một phân cảnh nhỏ đầy thú vị trong bộ phim truyền hình nổi tiếng của Mĩ vào thập niên 90 là Ngôi Nhà Nhỏ Trên Thảo Nguyên. Cảnh cô nàng phản diện cay nghiệt hay ngúng nguẩy Nellie Oleson (Alison Arngrim đóng) trong một buổi sáng đã ném thẳng ly sữa vào người Laura. Thực ra Nellie định ném thứ đang cầm trên tay phải chứ không phải ly sữa, nhưng đó lại là một lát bánh 12 grain nóng hổi và cô vừa mới làm một miếng ngon lành. Tiểu thư sang chảnh “đáng ghét nhất phim” ấy hoá ra vẫn có một gu ẩm thực rất tinh tế thậm chí khắt khe, 12 grain bread là một trong những loại bánh mà cô yêu thích nhất.
+
+Ở La Vita Bakery, quý khách hàng có thể tìm thấy nguyên vẹn giá trị đặc trưng của một trong những dòng bánh thuần Âu. Và, bánh cũng vô cùng đặc biệt về mùi vị bởi sự phối kết đa dạng hạt ngũ cốc thơm ngon bổ dưỡng.
+
+Những sản phẩm tốt lành, gửi đến quý khách như một niềm vui!</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Yule log | Buche de Noel</CakeName>
+    <ID>4ca815de-fd64-4235-a175-56859072912c</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>350000</Price>
+    <PrimaryImagePath>Images/4ca815de-fd64-4235-a175-56859072912c_0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/4ca815de-fd64-4235-a175-56859072912c_0.jpg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/4ca815de-fd64-4235-a175-56859072912c_1.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Yule Log Cake – Bánh khúc cây vốn từ lâu đã trở thành món bánh truyền thống trong dịp xum vầy Giáng Sinh. Hơi ấm và ánh lửa từ “yule log” thắp lên niềm hi vọng, hạnh phúc và bình an cho một mùa mới.
+
+Bánh khúc cây La Vita năm nay có cốt bánh mềm từ bánh cuộn trà rang Hojicha, kết hợp cùng kem cheese và dark chocolate để trang trí. Vì thế bánh sẽ có hương thơm thoang thoảng của trà rang, chút “cháy” đậm như caramel và chua nhẹ béo ngậy nhưng ngấy từ phô mai tươi. Bánh ngọt mà lại không ngọt xíu nào.</Description>
+    <Origin>Châu Âu</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Chocolate Chip Cookies (3 Pack)</CakeName>
+    <ID>77f1bea0-5c3d-4921-86e4-5b18d824c271</ID>
+    <Category>Bánh ổ dài</Category>
+    <Price>65000</Price>
+    <PrimaryImagePath>Images/77f1bea0-5c3d-4921-86e4-5b18d824c271_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/77f1bea0-5c3d-4921-86e4-5b18d824c271_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Chocolate Chip Cookies là một niềm tự hào của La Vita. Thật là những chiếc bánh cookies tuyệt vời khi hầu hết các vị khách đều nhận xét: “Đây là chiếc bánh cookie ngon lành nhất mà tôi đã từng được ăn”!</Description>
+    <Origin>Ý</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Chocolate Orange Scones (3 Pack)</CakeName>
+    <ID>33803647-ee75-4775-8ee1-940b6246bf61</ID>
+    <Category>Bánh kem</Category>
+    <Price>75000</Price>
+    <PrimaryImagePath>Images/33803647-ee75-4775-8ee1-940b6246bf61_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/33803647-ee75-4775-8ee1-940b6246bf61_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Scones là dòng bánh cao cấp và được mệnh danh là dòng bánh Hoàng Tộc bởi xưa kia bánh thường được dùng trong các buổi trà chiều của Nữ Hoàng Anh. Do đó khi dùng với các loại trà Anh rất hợp vị và tôn lên sự tinh tế của Scones.
+Đặt trước: 1 ngày để được phục vụ tốt nhất</Description>
+    <Origin>Anh</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Pesto Parmesan Bagels (3 Pack)</CakeName>
+    <ID>1777d92e-96a7-4544-af19-63c113af33c3</ID>
+    <Category>Bánh kem</Category>
+    <Price>81000</Price>
+    <PrimaryImagePath>Images/1777d92e-96a7-4544-af19-63c113af33c3_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/1777d92e-96a7-4544-af19-63c113af33c3_0.jpeg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/1777d92e-96a7-4544-af19-63c113af33c3_1.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bánh Mỳ Vòng Thảo Dược
+Chất bánh mềm, có vị nguyệt quế tây, phô mai parmesan thơm ngậy
+Trọng lượng: 120 gram/cái
+Hình dáng: Ổ tròn hình donut</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Set-Of-Four Mini Mixed</CakeName>
+    <ID>b3b22bc4-3fed-4137-ac3d-291aa1fb7af1</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>125000</Price>
+    <PrimaryImagePath>Images/b3b22bc4-3fed-4137-ac3d-291aa1fb7af1_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/b3b22bc4-3fed-4137-ac3d-291aa1fb7af1_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Bao gồm 4 vị:
+
+Mini Chuối Óc Chó
+Mini Cà Rốt
+Mini Cam Vị Chanh
+Mini Chocolate</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Dark Queen</CakeName>
+    <ID>6e787887-3e37-48be-a53c-87bf452dec0e</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>800000</Price>
+    <PrimaryImagePath>Images/6e787887-3e37-48be-a53c-87bf452dec0e_0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/6e787887-3e37-48be-a53c-87bf452dec0e_0.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Cốt bánh kem của chúng tôi là cốt bánh đặc, ít ngọt, theo xu hướng healthy kiểu Châu Âu, khác hẳn với cốt bánh mềm thường thấy của bánh bông lan.
+Lớp kem sử dụng bên ngoài là kem phô mai nhập khẩu cao cấp của Elle &amp; Vire, một thương hiệu cực kỳ nổi tiếng và cao cấp về các dòng kem của Pháp, với vị chua nhẹ, ngậy ngậy, ít béo, ít ngọt, đảm bảo quý khách sẽ có một bữa tiệc sinh nhật hoàn toàn mới lạ!</Description>
+    <Origin>Châu Âu</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Pikachu Team</CakeName>
+    <ID>a2cdc16c-4ae5-40b7-b5e6-1630ed56b885</ID>
+    <Category>Bánh ổ dài</Category>
+    <Price>680000</Price>
+    <PrimaryImagePath>Images/a2cdc16c-4ae5-40b7-b5e6-1630ed56b885_0.png</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/a2cdc16c-4ae5-40b7-b5e6-1630ed56b885_0.png</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>▪️ Banana Walnut Cake
+
+▪️ Carrot Cake
+
+▪️ Chocolate Cake
+
+▪️ Red Velvet Cake</Description>
+    <Origin>Việt Nam</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Crystal Cake</CakeName>
+    <ID>8a99dc49-4486-4da6-9b20-16227d145fd7</ID>
+    <Category>Bánh mì vòng</Category>
+    <Price>700000</Price>
+    <PrimaryImagePath>Images/8a99dc49-4486-4da6-9b20-16227d145fd7_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/8a99dc49-4486-4da6-9b20-16227d145fd7_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Cốt bánh kem của chúng tôi là cốt bánh đặc, ít ngọt, theo xu hướng healthy kiểu Châu Âu, khác hẳn với cốt bánh mềm thường thấy của bánh bông lan.
+Lớp kem sử dụng bên ngoài là kem phô mai nhập khẩu cao cấp của Elle &amp; Vire, một thương hiệu cực kỳ nổi tiếng và cao cấp về các dòng kem của Pháp, với vị chua nhẹ, ngậy ngậy, ít béo, ít ngọt, đảm bảo quý khách sẽ có một bữa tiệc sinh nhật hoàn toàn mới lạ!</Description>
+    <Origin>Pháp</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>New York Cheese Cake (18cm)</CakeName>
+    <ID>c5a45d81-2fd5-49b0-a4d3-9e3f0f43c058</ID>
+    <Category>Bánh kem</Category>
+    <Price>500000</Price>
+    <PrimaryImagePath>Images/c5a45d81-2fd5-49b0-a4d3-9e3f0f43c058_0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/c5a45d81-2fd5-49b0-a4d3-9e3f0f43c058_0.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Đang cập nhật</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>American Apple Pie</CakeName>
+    <ID>654a2d8b-4373-4fc8-a5d9-d01a33c43c7c</ID>
+    <Category>Bánh Bơ-gơ</Category>
+    <Price>550000</Price>
+    <PrimaryImagePath>Images/654a2d8b-4373-4fc8-a5d9-d01a33c43c7c_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/654a2d8b-4373-4fc8-a5d9-d01a33c43c7c_0.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Đang cập nhật</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>Banana Walnuts Loaf Cake</CakeName>
+    <ID>3166d108-b6db-42c3-bf39-167ba3425b7f</ID>
+    <Category>Bánh nướng nhỏ</Category>
+    <Price>165000</Price>
+    <PrimaryImagePath>Images/3166d108-b6db-42c3-bf39-167ba3425b7f_0.jpeg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/3166d108-b6db-42c3-bf39-167ba3425b7f_0.jpeg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/3166d108-b6db-42c3-bf39-167ba3425b7f_1.jpeg</ImagePath>
+      </CakeImage>
+      <CakeImage>
+        <ImagePath>Images/3166d108-b6db-42c3-bf39-167ba3425b7f_2.jpeg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Phải kể từ thời điểm La Vita ra mắt đến bây giờ, “Banana Walnuts Cake” của chúng tôi ngay lập tức đã là sản phẩm “Best Seller” khi dành được sự yêu mến của 1 lượng fan “khủng” và đứng đầu trong Top những chiếc “Sweet Loaf Cake” gây nghiện của nhà La Vita.
+
+Được làm từ những nguyên liệu tốt nhất, bánh chuối với hạt óc chó còn đặc biệt ở mùi vị không thể lẫn của hạt óc chó nướng cùng vị chuối chín cây được tuyển lựa kết hợp trong một công thức chắt lọc. Vị ngọt tự nhiên từ chuối chín thanh dịu và đầy dư vị, hương thơm ấm đượm nổi bật của hạt óc chó vốn là một trong những hương vị bản sắc của Châu Âu – cái nôi của rất nhiều loại bánh ngũ cốc tuyệt hảo. Banana Walnut ở La Vita Bakery là một dòng bánh mà quý khách hàng xưa và nay luôn trao gửi trọn vẹn niềm tin cùng sự yêu mến.</Description>
+    <Origin>Mỹ</Origin>
+    <Producer>La Vita</Producer>
+  </Cake>
+  <Cake>
+    <CakeName>The Pink Princess</CakeName>
+    <ID>892b68ac-260c-4aef-8c07-1decd259714b</ID>
+    <Category>Bánh Bơ-gơ</Category>
+    <Price>730000</Price>
+    <PrimaryImagePath>Images/892b68ac-260c-4aef-8c07-1decd259714b_0.jpg</PrimaryImagePath>
+    <ImagesList>
+      <CakeImage>
+        <ImagePath>Images/892b68ac-260c-4aef-8c07-1decd259714b_0.jpg</ImagePath>
+      </CakeImage>
+    </ImagesList>
+    <Description>Cốt bánh kem của chúng tôi là cốt bánh đặc, ít ngọt, theo xu hướng healthy kiểu Châu Âu, khác hẳn với cốt bánh mềm thường thấy của bánh bông lan.
+Lớp kem sử dụng bên ngoài là kem phô mai nhập khẩu cao cấp của Elle &amp; Vire, một thương hiệu cực kỳ nổi tiếng và cao cấp về các dòng kem của Pháp, với vị chua nhẹ, ngậy ngậy, ít béo, ít ngọt, đảm bảo quý khách sẽ có một bữa tiệc sinh nhật hoàn toàn mới lạ!</Description>
+    <Origin>Châu Âu</Origin>
+    <Producer>La Vita</Producer>
   </Cake>
 </ArrayOfCake>

@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -32,8 +33,7 @@ namespace CakeShopApp
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private Button clickedControlButton;
-		private List<Cake> CakeInfoList = new List<Cake>();     //Danh sách thông tin tất cả các món bánh ngọt
-		private List<Bill> BillList = new List<Bill>();         //Danh sách hóa đơn
+		private List<Cake> CakeInfoList = new List<Cake>();     //Danh sách thông tin tất cả các món bánh ngọt 
 		public BindingList<CakeCategory> CakeCategoryList = new BindingList<CakeCategory> {
 			new CakeCategory { Name = "Tất cả" },
 			new CakeCategory { Name = "Bánh Bơ-gơ" },
@@ -44,16 +44,16 @@ namespace CakeShopApp
 			new CakeCategory { Name = "Bánh ổ dài" },
 			new CakeCategory { Name = "Các loại khác" }
 		};
-		public List<int> YearList = new List<int>();			//Danh sách 10 năm gần đây tính từ năm hiện tại
+		public List<int> YearList = new List<int>();            //Danh sách 10 năm gần đây tính từ năm hiện tại
 		private List<string> MonthList = new List<string>();    //Danh sách 12 tháng trong 1 năm
-		private Bill bill = new Bill() 
+		private Bill bill = new Bill()
 		{
-			CakesList = new BindingList<CakeInfo>(), 
-			ID = Guid.NewGuid().ToString(), 
+			CakesList = new BindingList<CakeInfo>(),
+			ID = Guid.NewGuid().ToString(),
 			Date = DateTime.Now.ToString("dd/MM/yyyy")
 		};
-		private BindingList<Bill> ListBill = new BindingList<Bill>();
-		//private BindingList<CakeInfo> ListCakeInCart = new BindingList<CakeInfo>(); //Danh sách các món bánh ngọt đang nằm trong giỏ hàng
+		private BindingList<Bill> ListBill = new BindingList<Bill>();   //Danh sách hóa đơn
+																		//private BindingList<CakeInfo> ListCakeInCart = new BindingList<CakeInfo>(); //Danh sách các món bánh ngọt đang nằm trong giỏ hàng
 		private CollectionView view;
 		private BindingList<ColorSetting> ListColor = new BindingList<ColorSetting>       //Tạo dữ liệu màu cho ListColor
 		{
@@ -108,89 +108,6 @@ namespace CakeShopApp
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 
-			/*CakeInfoList = new List<Cake>
-			{
-				new Cake
-				{
-					CakeName = "Bánh tráng",
-					Category = "Bánh Bơ-gơ",
-					Description = "Bánh tráng siêu to khổng lồ.",
-					ID = "0",
-					ImagesList = new BindingList<CakeImage>
-					{
-						new CakeImage
-						{
-							ImagePath = "Images/0.jpg"
-						},
-						new CakeImage
-						{
-							ImagePath = "Images/1.jpg"
-						},
-						new CakeImage
-						{
-							ImagePath = "Images/2.jpg"
-						}
-					},
-					Price = 100000,
-					PrimaryImagePath = "Images/0.jpg"
-				}
-			};*/
-			/*BillList = new List<Bill>
-			{
-				new Bill
-				{
-					Address = "KTX khu B",
-					CakesList = new BindingList<CakeInfo>
-					{
-						new CakeInfo
-						{
-							CakeName = "Bánh tráng",
-							ID = "0",
-							Number = 5,
-							Price = "10343"
-						},
-						new CakeInfo
-						{
-							CakeName = "Bánh bông lan",
-							ID = "2",
-							Number = 10,
-							Price = "1274"
-						}
-					},
-					CustomerName = "Bùi Văn Vĩ",
-					Date = "09/01/2021",
-					PaymentMethod = 0,
-					PhoneNumber = "0124321432",
-					TotalMoney = 64455
-				},
-				new Bill
-				{
-					Address = "KTX khu A",
-					CakesList = new BindingList<CakeInfo>
-					{
-						new CakeInfo
-						{
-							CakeName = "Bánh kem",
-							ID = "1",
-							Number = 3,
-							Price = "24214220"
-						},
-						new CakeInfo
-						{
-							CakeName = "Bánh bông lan",
-							ID = "2",
-							Number = 4,
-							Price = "1274"
-						}
-					},
-					CustomerName = "Phạm Tấn",
-					Date = "19/09/2021",
-					PaymentMethod = 1,
-					PhoneNumber = "0158442736",
-					TotalMoney = 72647756
-				}
-			};*/
-
 			//Tạo list chứa 10 năm trở lại đây
 			DateTime today = DateTime.Today;
 			for (int i = today.Year - 5; i <= today.Year + 5; i++)
@@ -215,8 +132,8 @@ namespace CakeShopApp
 			//Loại bánh ngọt hiển thị ở màn hình trang chủ
 			CakeCategoryCombobox.ItemsSource = CakeCategoryList;
 			CakeCategoryCombobox.SelectedItem = CakeCategoryList[0];
-			StageComboBox.ItemsSource = CakeCategoryList;
-			StageComboBox.SelectedItem = CakeCategoryList[0];
+			//StageComboBox.ItemsSource = CakeCategoryList;
+			//StageComboBox.SelectedItem = CakeCategoryList[0];
 
 			this.DataContext = this;
 
@@ -224,8 +141,7 @@ namespace CakeShopApp
 			SettingColorItemsControl.ItemsSource = ListColor;
 
 			//Cài đặt màu chủ đạo cho ứng dụng
-			//ColorScheme = ConfigurationManager.AppSettings["ColorScheme"];
-			ColorScheme = ListColor[8].Color;
+			ColorScheme = ConfigurationManager.AppSettings["ColorScheme"];
 
 			//Mặc định khi mở ứng dụng thị hiển thị menu ở dạng mở rộng
 			isMinimizeMenu = false;
@@ -248,6 +164,9 @@ namespace CakeShopApp
 			TotalBillMoneyTextBlock.DataContext = bill;
 			TotalOrderTextBlock.DataContext = bill;
 			OrderGrid.DataContext = bill;
+
+			invoiceListGridListView.ItemsSource = ListBill;
+			CustomerInfo.DataContext = bill;
 
 			//Default buttons
 			clickedControlButton = HomeButton;
@@ -277,12 +196,12 @@ namespace CakeShopApp
 			{
 				using (var reader = new StreamReader(@"Data\Bill.xml"))
 				{
-					BillList = (List<Bill>)xsFood.Deserialize(reader);
+					ListBill = (BindingList<Bill>)xsFood.Deserialize(reader);
 				}
 			}
 			catch
 			{
-				BillList = new List<Bill>();
+				ListBill = new BindingList<Bill>();
 			}
 
 			// Đọc dữ liệu Bill từ data
@@ -384,9 +303,9 @@ namespace CakeShopApp
 			writer.Close();
 
 			//Ghi dữ liệu hóa đơn mua hàng
-			xs = new XmlSerializer(typeof(List<Bill>));
+			xs = new XmlSerializer(typeof(BindingList<Bill>));
 			writer = new StreamWriter(@"Data\Bill.xml");
-			xs.Serialize(writer, BillList);
+			xs.Serialize(writer, ListBill);
 			writer.Close();
 		}
 
@@ -406,9 +325,9 @@ namespace CakeShopApp
 		{
 			SaveListFood();
 			SaveListBill();
-			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-			//config.AppSettings.Settings["ColorScheme"].Value = ColorScheme;
-			//config.Save(ConfigurationSaveMode.Minimal);
+			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			config.AppSettings.Settings["ColorScheme"].Value = ColorScheme;
+			config.Save(ConfigurationSaveMode.Minimal);
 			Application.Current.Shutdown();
 
 		}
@@ -461,7 +380,7 @@ namespace CakeShopApp
 		{
 			bool result = true;
 			var cakeInfo = (Cake)item;
-			if (FilterCondition.Type != "Tất cả" && FilterCondition.Type != CakeCategoryList[cakeInfo.Category].Name)
+			if (FilterCondition.Type != "Tất cả" && FilterCondition.Type != cakeInfo.Category)
 			{
 				result = false;
 			}
@@ -504,7 +423,7 @@ namespace CakeShopApp
 
 			}
 
-			
+
 		}
 
 		private void EditCakeButton_Click(object sender, RoutedEventArgs e)
@@ -517,12 +436,12 @@ namespace CakeShopApp
 
 		private void DeleteCakeButton_Click(object sender, RoutedEventArgs e)
 		{
-			/*TripInfoList.Remove(TripInfoList[selectedTripIndex]);
+			CakeInfoList.Remove(CakeInfoList[selectedCakeIndex]);
 
 			//
-			DetailTripGrid.Visibility = Visibility.Collapsed;
+			DetailCakeGrid.Visibility = Visibility.Collapsed;
 			//Tắt màu của nút Add
-			var wrapPanel = (WrapPanel)AddTripButton.Content;
+			var wrapPanel = (WrapPanel)AddCakeButton.Content;
 			var collection = wrapPanel.Children;
 			var block = (TextBlock)collection[0];
 			var text = (TextBlock)collection[2];
@@ -531,7 +450,7 @@ namespace CakeShopApp
 
 			//Quay về màn hình Home
 			clickedControlButton = HomeButton;
-			TripListGrid.Visibility = Visibility.Visible;
+			CakeListGrid.Visibility = Visibility.Visible;
 			TypeBarDockPanel.Visibility = Visibility.Visible;
 			ControlStackPanel.Visibility = Visibility.Visible;
 			//Hiển thị màu cho nút Home
@@ -546,7 +465,7 @@ namespace CakeShopApp
 			isEditMode = false;
 
 			//Cập nhật lại giao diện
-			UpdateUIFromData();*/
+			UpdateUIFromData();
 		}
 
 		private void SearchCakeButton_Click(object sender, RoutedEventArgs e)
@@ -599,7 +518,7 @@ namespace CakeShopApp
 		{
 
 			var category = CakeInfoList[selectedCakeIndex].Category;
-			((TextBlock)sender).Text = CakeCategoryList[category].Name;
+			((TextBlock)sender).Text = category;
 
 		}
 
@@ -625,6 +544,8 @@ namespace CakeShopApp
 			AddCakeGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình giỏ hàng
 			CartGrid.Visibility = Visibility.Collapsed;
+			//Đóng giao diện danh sách hóa đơn
+			InvoiceListGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện thống kê doanh thu
 			StatisticGrid.Visibility = Visibility.Collapsed;
 			//Đóng giao diện màn hình cài đặt
@@ -667,7 +588,14 @@ namespace CakeShopApp
 				if (isEditMode == false)
 				{
 					cake = new Cake() { ID = Guid.NewGuid().ToString() };
+					AddCakeTextBlock.Text = "THÊM SẢN PHẨM MỚI";
 					//{ CakeID = newID, Stage = "Bắt đầu" };
+				}
+				else
+				{
+
+					AddCakeTextBlock.Text = "CHỈNH SỬA SẢN PHẨM";
+
 				}
 				AddCakeGrid.DataContext = cake;
 			}
@@ -675,8 +603,14 @@ namespace CakeShopApp
 			{
 				CartGrid.Visibility = Visibility.Visible;
 				ControlStackPanel.Visibility = Visibility.Visible;
+				CakeInfo.Visibility = Visibility.Visible;
 				shoppingCartButton.IsEnabled = false;
 				shoppingCartButton.Foreground = Brushes.Black;
+			}
+			else if (button == BillListButton)
+			{
+				InvoiceListGrid.Visibility = Visibility.Visible;
+				ControlStackPanel.Visibility = Visibility.Visible;
 			}
 			else if (button == StatisticButton)
 			{
@@ -720,7 +654,7 @@ namespace CakeShopApp
 		private void YearStatisticCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 
-			
+
 
 		}
 
@@ -866,16 +800,16 @@ namespace CakeShopApp
 
 		private void ShowSplashScreenCheckBox_Checked(object sender, RoutedEventArgs e)
 		{
-			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-			//config.AppSettings.Settings["ShowSplashScreen"].Value = "true";
-			//config.Save(ConfigurationSaveMode.Minimal);
+			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			config.AppSettings.Settings["ShowSplashScreen"].Value = "true";
+			config.Save(ConfigurationSaveMode.Minimal);
 		}
 
 		private void ShowSplashScreenCheckBox_Unchecked(object sender, RoutedEventArgs e)
 		{
-			//var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-			//config.AppSettings.Settings["ShowSplashScreen"].Value = "false";
-			//config.Save(ConfigurationSaveMode.Minimal);
+			var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			config.AppSettings.Settings["ShowSplashScreen"].Value = "false";
+			config.Save(ConfigurationSaveMode.Minimal);
 		}
 
 		private void CakePriceTextBlock_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -900,7 +834,7 @@ namespace CakeShopApp
 			var selectedYear = 0;
 			int.TryParse(YearStatisticCombobox.SelectedItem.ToString(), out selectedYear);
 			//Tính toán doanh thu theo tháng
-			foreach (var bill in BillList)
+			foreach (var bill in ListBill)
 			{
 
 				//Chuyển chuỗi ngày tháng năm sang kiểu DateTime
@@ -916,7 +850,7 @@ namespace CakeShopApp
 					}
 
 				}
-				
+
 			}
 
 			//Vẽ biểu đồ hình cột thể hiện doanh thu theo tháng
@@ -945,7 +879,7 @@ namespace CakeShopApp
 			var selectedMonth = MonthStatisticCombobox.SelectedIndex + 1;
 			var selectedYear = 0;
 			int.TryParse(YearStatisticCombobox.SelectedItem.ToString(), out selectedYear);
-			foreach (var bill in BillList)
+			foreach (var bill in ListBill)
 			{
 
 				//Tăng giá trị doanh thu theo loại cho các sản phẩm bánh trong hóa đơn
@@ -959,7 +893,15 @@ namespace CakeShopApp
 					{
 						if (double.TryParse(cake.Price, out result))
 						{
-							categoryRevenueList[cake.Category] += result * cake.Number;
+							for (int i = 0; i < CakeCategoryList.Count; i++)
+							{
+								if (CakeCategoryList[i].Name == cake.Category)
+								{
+									categoryRevenueList[i] += result * cake.Number;
+									break;
+								}
+							}
+
 						}
 					}
 
@@ -1225,6 +1167,18 @@ namespace CakeShopApp
 
 		private void orderCompleteButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (bill.TotalMoney == "0")
+			{
+				MessageBox.Show("Giỏ hàng rỗng!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+				return;
+			}
+
+			if (string.IsNullOrEmpty(bill.CustomerName) || string.IsNullOrEmpty(bill.PhoneNumber) || string.IsNullOrEmpty(bill.Address))
+			{
+				MessageBox.Show("Thông tin chưa đầy đủ!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+				return;
+			}
+
 			orderCompleteButton.IsEnabled = false;
 			shoppingCartButton.IsEnabled = true;
 			checkOutDetailsButton.IsEnabled = true;
@@ -1249,7 +1203,7 @@ namespace CakeShopApp
 				long.TryParse(((TextBox)sender).Text, out result);
 				if (result >= 1)
 				{
-					
+
 					long totalCost = result * long.Parse(cake.Price);
 					//Kiểm tra tràn số
 					if (totalCost < 0)
@@ -1266,16 +1220,16 @@ namespace CakeShopApp
 						cake.Total = totalCost.ToString();
 
 					}
-					
+
 				}
 				else
 				{
 					MessageBox.Show("Số lượng không hợp lệ!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
 					((TextBox)sender).Text = cake.Number.ToString();
 				}
-				
+
 			}
-			
+
 		}
 
 		private void DeleteCakeInCart_Click(object sender, RoutedEventArgs e)
@@ -1297,6 +1251,19 @@ namespace CakeShopApp
 				ID = Guid.NewGuid().ToString(),
 				Date = DateTime.Now.ToString("dd/MM/yyyy")
 			};
+			
+			//Gán lại itemsource cho giỏ hàng
+			CakeInCartListView.ItemsSource = bill.CakesList;
+			CakeInCheckOutListView.ItemsSource = bill.CakesList;
+			OrderCheckOutListView.ItemsSource = bill.CakesList;
+			TotalBillMoneyTextBlock.DataContext = bill;
+			TotalOrderTextBlock.DataContext = bill;
+			OrderGrid.DataContext = bill;
+			CustomerInfo.DataContext = bill;
+
+			OrderGrid.Visibility = Visibility.Collapsed;
+			orderCompleteButton.IsEnabled = true;
+			orderCompleteButton.Foreground = Brushes.White;
 
 			//Quay về màn hình trang chủ
 			//Đóng màn hình giỏ hàng
@@ -1394,5 +1361,6 @@ namespace CakeShopApp
 
 			checkOutDetailsButton_Click(null, e);
 		}
+
 	}
 }

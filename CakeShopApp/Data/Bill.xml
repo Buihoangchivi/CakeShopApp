@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBill xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Bill>
+    <ID>f2ef5a08-3756-4d36-859e-0cc690a2e924</ID>
+    <CustomerName>abc</CustomerName>
+    <PhoneNumber>123</PhoneNumber>
+    <Address>xyz</Address>
+    <PaymentMethod>0</PaymentMethod>
+    <TotalMoney>810000</TotalMoney>
+    <Date>15/01/2021</Date>
+    <CakesList>
+      <CakeInfo>
+        <CakeName>Angel Pony Cake</CakeName>
+        <ID>cd8b8826-4dd4-43a2-98a4-ddead3bbed98</ID>
+        <Price>750000</Price>
+        <Number>13</Number>
+        <Total>750000</Total>
+        <Category>0</Category>
+        <PrimaryImagePath>Images/cd8b8826-4dd4-43a2-98a4-ddead3bbed98_0.jpeg</PrimaryImagePath>
+      </CakeInfo>
+      <CakeInfo>
+        <CakeName>Dark Rye With Caraway Bread</CakeName>
+        <ID>3e28f374-72cd-447b-81b4-4efe95280230</ID>
+        <Price>60000</Price>
+        <Number>15</Number>
+        <Total>60000</Total>
+        <Category>0</Category>
+        <PrimaryImagePath>Images/3e28f374-72cd-447b-81b4-4efe95280230_0.jpeg</PrimaryImagePath>
+      </CakeInfo>
+    </CakesList>
+  </Bill>
+</ArrayOfBill>

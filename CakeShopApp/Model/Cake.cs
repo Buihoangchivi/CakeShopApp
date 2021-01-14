@@ -9,7 +9,7 @@ public class Cake : INotifyPropertyChanged
 {
 	private string cakeName;
 	private string id;
-	private int category;
+	private string category;
 	private string price;
 	private string primaryImagePath;        //Đường dẫn ảnh chính
 	private BindingList<CakeImage> imagesList;
@@ -41,7 +41,7 @@ public class Cake : INotifyPropertyChanged
 			OnPropertyChanged("ID");
 		}
 	}
-	public int Category
+	public string Category
 	{
 		get
 		{
@@ -145,6 +145,7 @@ public class Cake : INotifyPropertyChanged
 		Category = oldCake.Category;
 		Price = string.Copy(oldCake.Price);
 		primaryImagePath = string.Copy(oldCake.PrimaryImagePath);
+		description = string.Copy(oldCake.description);
 
 		imagesList = new BindingList<CakeImage>();
 

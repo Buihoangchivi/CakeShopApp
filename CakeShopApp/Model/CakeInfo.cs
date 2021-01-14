@@ -12,7 +12,7 @@ public class CakeInfo : INotifyPropertyChanged
 	private string price;
 	private long number;
 	private string total;
-	private int category;
+	private string category;
 	private string primaryImagePath;        //Đường dẫn ảnh chính
 
 	public string CakeName
@@ -75,7 +75,7 @@ public class CakeInfo : INotifyPropertyChanged
 			OnPropertyChanged("Total");
 		}
 	}
-	public int Category
+	public string Category
 	{
 		get
 		{
