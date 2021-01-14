@@ -491,6 +491,221 @@
             </Grid>
         </ScrollViewer>
 
+        <!--Thêm sản phẩm mới-->
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="AddCakeGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="45"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Tiêu đề Thêm sản phẩm mới-->
+            <TextBlock Grid.Column="1" FontSize="25" Text="THÊM SẢN PHẨM MỚI" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{DynamicResource ColorScheme}" FontWeight="ExtraBold" FontStyle="Italic"/>
+
+            <!--Hai nút lưu và hủy sản phẩm mới-->
+            <StackPanel Grid.Column="2" Orientation="Horizontal" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Background="White" BorderThickness="0" Name="CancelTripButton" 
+                                Click="CancelTripButton_Click" Height="35" VerticalAlignment="Top">
+                    <WrapPanel Margin="15,0">
+                        <Image Source="Images/deleteText.png" Width="15" Margin="0,0,7,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" FontWeight="Medium">HỦY</TextBlock>
+                    </WrapPanel>
+                </Button>
+                <Button Margin="0,0,10,0" Background="White" BorderThickness="0" Name="SaveTripButton" 
+                        Click="SaveTripButton_Click" Height="35" VerticalAlignment="Top">
+                    <WrapPanel Margin="15,0">
+                        <Image Source="Images/saveImage.png" Width="20" Margin="0,0,7,0" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" FontWeight="Medium">LƯU</TextBlock>
+                    </WrapPanel>
+                </Button>
+            </StackPanel>
+
+            <!--Khung thêm hình ảnh sản phẩm-->
+            <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+                    Background="Gainsboro" CornerRadius="10" Margin="0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+            </Border>
+
+            <!--Nhập tên sản phẩm-->
+            <StackPanel Grid.Row="1" Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" FontSize="16" 
+                           Margin="10,10,0,0" FontWeight="Medium">Tên sản phẩm:</TextBlock>
+                <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
+                        Width="230" Height="30" Margin="5,10,0,0" Background="GhostWhite">
+                    <TextBox Text="{Binding CakeName}" BorderThickness="0" FontSize="14" Background="{x:Null}"
+                             Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+            <!--Nhập mã sản phẩm-->
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" FontSize="16"
+                           Margin="10,10,0,0" FontWeight="Medium">Mã sản phẩm:</TextBlock>
+                <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
+                        Width="230" Height="30" Margin="5,10,0,-5" Background="GhostWhite">
+                    <TextBox Text="{Binding ID}" BorderThickness="0" FontSize="14" Background="{x:Null}"
+                             Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+
+
+            <!--Khung thêm hình ảnh sản phẩm-->
+            <Border Grid.Row="3" Grid.Column="1" Background="Gainsboro" 
+                    CornerRadius="10" Margin="0,10,0,5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Hai nút thêm và xóa ảnh sản phẩm-->
+                    <DockPanel VerticalAlignment="Center">
+                        <TextBlock DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" 
+                               Text="Hình ảnh sản phẩm" Margin="10,0,0,0" FontWeight="Medium"/>
+                        <Button Name="AddImageButton" Click="AddImageButton_Click" Height="25"
+                            DockPanel.Dock="Right" HorizontalAlignment="Right" Width="25" 
+                            BorderThickness="0" Margin="0,0,10,0">
+                            <Image Source="Images/addImage.png" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                        <Button Name="DeleteImageButton" Click="DeleteImageButton_Click" Height="25" 
+                            HorizontalAlignment="Right" Width="25" BorderThickness="0">
+                            <Image Source="Images/deleteRecipe.png" Width="18" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                    </DockPanel>
+
+                    <!--Khung hiển thị hình ảnh sản phẩm-->
+                    <ListView Grid.Row="1" Name="ImagesListView" ItemsSource="{Binding ImagesList}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Rectangle RadiusX="10" RadiusY="10" Width="106" Height="80">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource converter}}" 
+                                       Stretch="UniformToFill"
+                                       RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+
+            <!--Khung hiển thị danh sách thành viên-->
+            <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Background="Gainsboro" 
+                    CornerRadius="10" Margin="10,0,0,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+            </Border>
+
+            <Border Grid.Row="3"  Grid.Column="2" Background="Gainsboro" 
+                    CornerRadius="10" Margin="10,10,0,5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="230" Color="Black" ShadowDepth="8" Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Hai nút thêm và xóa ảnh sản phẩm-->
+                    <DockPanel VerticalAlignment="Center">
+                        <TextBlock DockPanel.Dock="Left" FontSize="16" VerticalAlignment="Center" 
+                               Text="Mô tả sản phẩm" Margin="10,0,0,0" FontWeight="Medium"/>
+
+                    </DockPanel>
+                    <TextBox Grid.Row="1" Name="Description" Background="Transparent" BorderBrush="Transparent" 
+                             BorderThickness="0" FontSize="16" FontWeight="Medium" 
+                             AcceptsReturn="True"                     
+                             Text="{Binding Description}"
+                             >
+
+                    </TextBox>
+
+
+                </Grid>
+
+
+            </Border>
+
+            <!--Chọn loại của sản phẩm-->
+            <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+
+                <TextBlock VerticalAlignment="Center" FontSize="16" 
+                           Margin="20,5,0,0" FontWeight="Medium">Loại sản phẩm:</TextBlock>
+                <ComboBox Name="StageComboBox" SelectedValuePath="Content" FontSize="14"
+                          SelectedValue="{Binding Category}" Margin="35,15,0,0">
+                    <ComboBoxItem>
+                        Tất cả
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Bánh Bơ-gơ
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Bánh kem
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Bánh mì
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Bánh mì vòng
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Bánh nướng nhỏ
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Bánh ổ dài
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Các loại khác
+                    </ComboBoxItem>
+
+                </ComboBox>
+
+            </StackPanel>
+
+            <!--Nhập giá sản phẩm-->
+            <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" FontSize="16"
+                           Margin="20,10,0,0" FontWeight="Medium">Giá sản phẩm:</TextBlock>
+                <Border CornerRadius="7" BorderThickness="1.5" BorderBrush="Gray"
+                        Width="230" Height="30" Margin="5,10,0,-5" Background="GhostWhite">
+                    <TextBox Text="{Binding Price}" BorderThickness="0" FontSize="14" Background="{x:Null}"
+                             Margin="5,0" Height="25.5" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+
         <!--Chi tiết món bánh-->
         <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Name="DetailCakeGrid" Margin="0,0,10,0" Visibility="Collapsed">
             <Grid.RowDefinitions>
