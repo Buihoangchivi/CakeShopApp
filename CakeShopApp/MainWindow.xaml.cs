@@ -462,6 +462,12 @@ namespace CakeShopApp
 				IsDetailCake = true;
 
 			}
+			else
+			{
+
+				isBuyCakeClicked = false;
+
+			}
 
 			
 		}
@@ -1204,13 +1210,28 @@ namespace CakeShopApp
 			if (e.Key == Key.Enter)
 			{
 				var cake = ((TextBox)sender).DataContext as CakeInfo;
-				var result = 1;
-				int.TryParse(((TextBox)sender).Text, out result);
+				long result = 1;
+				long.TryParse(((TextBox)sender).Text, out result);
 				if (result >= 1)
 				{
-					cake.Number = result;
-					long totalCost = result * int.Parse(cake.Price);
-					cake.Total = FormatPriceString(totalCost.ToString()) + " ₫";
+					
+					long totalCost = result * long.Parse(cake.Price);
+					//Kiểm tra tràn số
+					if (totalCost < 0)
+					{
+
+						MessageBox.Show("Số lượng quá lớn không thể tính toán!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+						((TextBox)sender).Text = cake.Number.ToString();
+
+					}
+					else
+					{
+
+						cake.Number = result;
+						cake.Total = FormatPriceString(totalCost.ToString()) + " ₫";
+
+					}
+					
 				}
 				else
 				{
